@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:stretchColumns="*">
+
+    <include layout="@layout/tr_block_info_tv_3x_tv_btn" />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/spi_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="1"
+            style="@style/td_spinner__container_top"/>
+
+        <Spinner
+            android:id="@+id/spi_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_span="1"
+            style="@style/td_spinner__container_top"/>
+
+        <Spinner
+            android:id="@+id/spi_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_span="1"
+            style="@style/td_spinner__container_top"/>
+
+    </TableRow>
+
+    <include layout="@layout/toolbox_form_section_action_buttons" />
+</TableLayout>

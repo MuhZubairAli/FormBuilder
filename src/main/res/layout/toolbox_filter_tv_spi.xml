@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="?attr/bgGradientPrimary"
+    android:animateLayoutChanges="true"
+    android:elevation="@dimen/elevationHeight">
+
+    <TextView
+        android:id="@+id/tv"
+        style="@style/textH5"
+        android:textStyle="normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <Spinner
+        android:id="@+id/spi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/borderInput"/>
+
+</LinearLayout>

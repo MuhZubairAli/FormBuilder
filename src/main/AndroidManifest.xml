@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pk.gov.pbs.formbuilder">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application>
+        <!-- this is how jobIntentService is added with appropriate permission -->
+<!--        <service-->
+<!--            android:name="pk.gov.pbs.formbuilder.services.TestJobIntentService"-->
+<!--            android:permission="android.permission.BIND_JOB_SERVICE" />-->
+
+    </application>
+</manifest>

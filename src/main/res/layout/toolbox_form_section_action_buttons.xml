@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/container_section_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:alpha="0"
+        android:layout_span="3">
+
+        <TextView
+            android:id="@+id/action_debug"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Debug"
+            style="@style/btn_topSection"/>
+
+        <TextView
+            android:id="@+id/action_show_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Data Display"
+            style="@style/btn_topSection"/>
+
+        <TextView
+            android:id="@+id/action_force_exit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Force Exit"
+            style="@style/btn_topSection"/>
+
+    </LinearLayout>
+
+</TableRow>

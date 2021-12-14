@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="themeComponents">
+        <!--        Primary Colors-->
+        <attr name="colorPrimary" format="color" />
+        <attr name="colorPrimaryLight" format="color" />
+        <attr name="colorPrimaryDark" format="color" />
+
+        <!--        Accent Colors-->
+        <attr name="colorAccent" format="color" />
+        <attr name="colorAccentDark" format="color" />
+        <attr name="colorAccentLight" format="color" />
+
+        <!--        Text Colors-->
+        <attr name="colorText" format="color" />
+        <attr name="colorTextDim" format="color" />
+        <attr name="colorTextDark" format="color" />
+
+        <attr name="colorQuestionCardBackground" format="color" />
+        <attr name="colorQuestionStatementBackground" format="color" />
+        <attr name="colorQuestionStatementBackgroundDim" format="color" />
+        <attr name="colorBgQuestionSubgroupHeading" format="color" />
+
+        <!--        Gray Colors-->
+        <attr name="colorGray1" format="color" />
+        <attr name="colorGray2" format="color" />
+        <attr name="colorGray3" format="color" />
+        <attr name="colorGray4" format="color" />
+        <attr name="colorGray5" format="color" />
+        <attr name="colorGray10" format="color" />
+
+        <!--        Primary Gradient as background for Clickable View-->
+        <attr name="colorPrimaryGradientActive" format="color" />
+        <attr name="colorPrimaryGradientStart" format="color" />
+        <attr name="colorPrimaryGradientEnd" format="color" />
+
+        <!--        Accent Gradient as background for Clickable View-->
+        <attr name="colorAccentGradientActive" format="color" />
+        <attr name="colorAccentGradientStart" format="color" />
+        <attr name="colorAccentGradientEnd" format="color" />
+
+        <!-- Drawable references -->
+        <attr name="drawableLogo" format="reference" />
+        <attr name="drawableBackground" format="reference" />
+        <attr name="bgCardUnlocked" format="reference" />
+        <attr name="bgCardLocked" format="reference" />
+        <attr name="borderBtnAskNext" format="reference" />
+        <attr name="borderTableHeading" format="reference" />
+        <attr name="borderInput" format="reference" />
+        <attr name="borderEditText" format="reference" />
+        <attr name="borderSpinner" format="reference" />
+
+        <attr name="bgGradientCredit" format="reference" />
+        <attr name="bgGradientAccent" format="reference" />
+        <attr name="bgGradientPrimary" format="reference" />
+        <attr name="bgMainMenu" format="reference" />
+
+        <attr name="bgSelectableUnlocked" format="reference" />
+        <attr name="bgSelectableLocked" format="reference" />
+        <attr name="bgSelectableLockedUnanswered" format="reference" />
+
+        <attr name="bgInputSubgroup" format="reference" />
+
+        <attr name="bgInputData" format="reference" />
+        <attr name="bgInputDataAccent" format="reference" />
+
+    </declare-styleable>
+</resources>

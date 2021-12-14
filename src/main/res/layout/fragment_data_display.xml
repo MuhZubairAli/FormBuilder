@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?colorPrimaryDark"
+    tools:context="pk.gov.pbs.formbuilder.core.FragmentDataDisplay">
+
+    <LinearLayout
+        android:id="@+id/container_data_display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontSizeH3"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</ScrollView>

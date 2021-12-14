@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="?attr/bgGradientPrimary"
+    android:fillViewport="true">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacePrimary"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/th_information_zygote"
+                android:text="@string/th_household_details"
+                android:layout_margin="@dimen/spacePrimaryHalf"
+                android:textAlignment="center"
+                android:layout_span="3"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/td_pc"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/td_bc"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/td_hh"
+                style="@style/tableCellZygote"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/th_region"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/td_locality"
+                style="@style/tableCellZygote"
+                android:layout_span="2"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/th_field_office"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/td_field_office"
+                style="@style/tableCellZygote"
+                android:layout_span="2"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/th_user"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/current_loggedin_user"
+                style="@style/tableCellZygote"
+                android:layout_span="2"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/th_province"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/td_province"
+                style="@style/tableCellZygote"
+                android:layout_span="2"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/th_district"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/td_district"
+                style="@style/tableCellZygote"
+                android:layout_span="2"/>
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/th_mouza"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/td_mouza"
+                style="@style/tableCellZygote"
+                android:layout_span="2"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/th_start"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/td_assign_start_date"
+                style="@style/tableCellZygote"
+                android:layout_span="2"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/th_end"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/td_assign_end_date"
+                style="@style/tableCellZygote"
+                android:layout_span="2"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/th_latitude"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/tv_latitude"
+                style="@style/tableCellZygote"
+                android:layout_span="2"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@string/th_longitude"
+                style="@style/tableCellZygote"/>
+
+            <TextView
+                android:id="@+id/tv_longitude"
+                style="@style/tableCellZygote"
+                android:layout_span="2"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacePrimary">
+
+            <TextView
+                style="@style/textH5"
+                android:textStyle="normal"
+                android:text="@string/label_specify_action_zygote"
+                android:layout_span="3"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/sp_form_status"
+                style="@style/td_spinner__container_top"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:focusedByDefault="true"
+                android:layout_span="3"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacePrimary">
+
+            <TextView
+                style="@style/textH5"
+                android:textStyle="normal"
+                android:text="@string/label_specify_details"
+                android:layout_span="3"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_action_detail"
+                android:padding="@dimen/spacePrimaryHalf"
+                android:layout_margin="@dimen/spaceTiny"
+                android:background="?attr/borderInput"
+                android:textColorHint="?attr/colorTextDim"
+                android:textSize="@dimen/fontSizeNormal"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:textColor="?attr/colorText"
+                android:hint="@string/et_hint_reason"
+                android:imeOptions="actionDone"
+                android:imeActionLabel="@string/label_btn_keyboard_action"
+                android:layout_span="3"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="@dimen/spacePrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnAction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/specify_option_action_btn_title"
+                android:layout_span="3"
+                style="@style/btnInput"/>
+        </TableRow>
+    </TableLayout>
+</ScrollView>

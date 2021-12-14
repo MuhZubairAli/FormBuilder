@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/spacePrimary"
+    android:paddingStart="@dimen/spacePrimary"
+    android:paddingEnd="@dimen/spacePrimary">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacePrimary"
+        android:layout_marginBottom="@dimen/spacePrimary"
+        style="@style/tvQuestion" />
+
+    <include layout="@layout/input_actv" android:id="@+id/kbi"/>
+
+</LinearLayout>

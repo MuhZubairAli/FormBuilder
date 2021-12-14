@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+<!--            <solid-->
+<!--                android:color="@color/ddColorGray3" />-->
+            <stroke
+                android:color="@color/ddColorGray3"
+                android:width="@dimen/spaceTiny"/>
+            <corners
+                android:radius="@dimen/cornerRoundRadiusTiny" />
+            <padding
+                android:left="@dimen/spacePrimaryHalf"
+                android:right="@dimen/spacePrimaryHalf"
+                android:top="@dimen/spacePrimaryHalf"
+                android:bottom="@dimen/spacePrimary" />
+        </shape>
+    </item>
+</selector>

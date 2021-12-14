@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?attr/drawableBackground"
+    android:padding="@dimen/spacePrimary">
+
+    <LinearLayout
+        android:id="@+id/container_toolbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacePrimary"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <TableLayout
+                android:id="@+id/table_hh_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:id="@+id/table_heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/th_hh"
+                        android:textSize="@dimen/fontSizeH4"
+                        style="@style/thBordered" />
+
+                    <TextView
+                        android:text="@string/th_status"
+                        android:textSize="@dimen/fontSizeH4"
+                        style="@style/thBordered" />
+
+                    <TextView
+                        android:textSize="@dimen/fontSizeH4"
+                        style="@style/thBordered" />
+
+                    <TextView
+                        android:text="@string/th_action"
+                        android:textSize="@dimen/fontSizeH4"
+                        android:layout_span="2"
+                        style="@style/thBordered" />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </HorizontalScrollView>
+
+    </ScrollView>
+
+</LinearLayout>

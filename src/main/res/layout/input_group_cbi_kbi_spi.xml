@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/cbi"
+        style="@style/compoundInputItem"
+        android:layout_width="0dp"
+        android:layout_weight="55"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/kbi"
+        style="@style/etInput"
+        android:textColor="?attr/colorText"
+        android:layout_width="0dp"
+        android:layout_weight="20"
+        android:layout_height="match_parent"/>
+
+    <Spinner
+        android:id="@+id/spi"
+        android:layout_width="0dp"
+        android:layout_weight="25"
+        android:layout_height="wrap_content" />
+
+</TableRow>

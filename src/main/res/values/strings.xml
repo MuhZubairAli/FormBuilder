@@ -1,0 +1,187 @@
+<resources>
+    <string name="app_title">Tablet Based Data Collection System</string>
+    <string name="institute_name">Pakistan Bureau of Statistics</string>
+    <string name="credit">Powered by DP Center, SS Wing</string>
+    <string name="copyright_and_version">Copyright 2020-%1$d PBS - v%2$s</string>
+    <string name="default_question">Question Statement</string>
+
+    <string name="label_btn_keyboard_action">Next</string>
+    <string name="action_ask_next_title">Ask Next</string>
+
+    <string name="specify_option_label"><![CDATA[<small>Specify your option</small>]]></string>
+    <string name="specify_numeric_input"><![CDATA[<small>Specify the number</small>]]></string>
+    <string name="annex_option_label"><![CDATA[<small>Enter input to search from relevant annexures</small>]]></string>
+
+    <string name="title_default_confirm_dialogue">Attention!</string>
+    <string name="title_default_alert_dialogue">Alert!</string>
+
+    <string name="validation_error_title">Invalid Answer</string>
+    <string name="validation_error_message"><![CDATA[%1$s<br />\n<br />\n<b>Make Sure That</b><br />\n%2$s<br />\n<br />\n<small>Error Code : %3$s</small>]]></string>
+    <string name="question_condition_error_message"><![CDATA[%1$s<br />\n<br />\n<small>Error Code : %2$s</small>]]></string>
+
+    <string name="label_btn_a">A</string>
+    <string name="label_btn_b">B</string>
+    <string name="label_btn_c">C</string>
+
+    <!-- Form Beginner Spinner options -->
+    <string-array name="arr_labels_form_begin_actions">
+        <item>Open Form</item>
+        <item>Mark Refusal</item>
+        <item>Marn Non-Contacted</item>
+    </string-array>
+
+    <!--    Error Messages-->
+    <string name="e201">Failed to parse server response</string>
+    <string name="e202">Failed to connect with server</string>
+    <string name="e203">No un-synced households found from database</string>
+
+    <string name="e11">Username or Password is wrong</string>
+    <string name="e12">Session expired, Please sign in again</string>
+    <string name="e13">Please provide valid answer to question in order to move forward</string>
+    <string name="e14">Can not unlock critical question, If you need to change answer reset the question</string>
+    <string name="e15">Maximum length of 255 characters reached</string>
+    <string name="e16">This section is not applicable on any household member, Click OK to go to next section</string>
+    <string name="e17">Data integrity constraint failed, PostCondition not satisfied</string>
+    <string name="e18">Please provide some input, Blank entry is not permitted</string>
+    <string name="e19">This section is not applicable on any household member, Click OK to go to close the form</string>
+    <string name="e110">Invalid questionnaire state, more than one questions are unlocked.</string>
+
+    <string name="input_error_msg">Invalid input!</string>
+    <string name="max_digit_limit_exceeded_msg">Maximum numbers limit exceeded!</string>
+    <string name="max_phone_digit_limit_exceeded_msg">Number of digits in specified phone numbers exceeds the limit!</string>
+    <string name="max_character_limit_exceeded_msg">Maximum character limit for text input exceeded!</string>
+
+
+    <!-- Specifiable_selectable_label_second_parameter_placeholder -->
+    <string name="concat_specifiable_question"><![CDATA[%1$s<br />%2$s]]></string>
+    <string name="specifiable_selectable_label_template"><![CDATA[%1$s <small>(%2$s)</small>]]></string>
+    <string name="s_s_l_2nd_param_placeholder">Specify</string>
+    <string name="s_s_l_2nd_default_value">Unspecified</string>
+    <string name="concat_2_string">%1$s%2$s</string>
+    <string name="concat_2_string_spaced">%1$s %2$s</string>
+    <string name="concat_2_string_enclosed">%1$s (%2$s)</string>
+
+    <string name="specify_option_action_btn_title">Proceed</string>
+    <string name="hint_annex_code">Enter annex code</string>
+    <string name="hint_search_annex">Search annex by description</string>
+    <string name="annex_code_display_template">[<![CDATA[<b>Annex Code : </b>%1$s]]></string>
+    <string name="title_default_filter_container">Chose criteria to filter data</string>
+
+    <string name="th_focal_office">Focal Office</string>
+    <string name="th_district">District</string>
+    <string name="th_tehseel">Tehseel</string>
+    <string name="th_block_code">Block Code</string>
+    <string name="th_household">Household</string>
+    <string name="th_households">Households</string>
+    <string name="th_total">Total</string>
+    <string name="th_start">Start</string>
+    <string name="th_end">End</string>
+    <string name="th_action">Action</string>
+    <string name="th_status">Status</string>
+    <string name="th_hh_status">Household Status</string>
+    <string name="th_aid">#</string>
+    <string name="th_province">Province</string>
+    <string name="th_region">Region</string>
+    <string name="th_prcode">PrCode</string>
+    <string name="th_household_details">Household Details</string>
+    <string name="th_field_office">Field Office</string>
+    <string name="th_mouza">Mouza / Village</string>
+    <string name="th_quarter">Quarter</string>
+    <string name="th_user">Enumerator</string>
+    <string name="th_assigned">Assigned</string>
+    <string name="th_completed">Completed</string>
+    <string name="th_non_contacted">Non Contacted</string>
+    <string name="th_refused">Refused</string>
+    <string name="th_pending">Pending</string>
+    <string name="th_date">Date</string>
+    <string name="et_hint_reason">Specify reason</string>
+    <string name="th_create_date">Create Date</string>
+    <string name="th_type">Type</string>
+    <string name="action_normal_exit_title">Normal Exit</string>
+    <string name="th_locality">Locality</string>
+    <string name="th_address">Address</string>
+    <string name="th_head_name">Head Name</string>
+    <string name="th_father_name">Father Name</string>
+    <string name="th_hh">HH</string>
+    <string name="th_app_version">App Version</string>
+    <string name="th_server_url">Server URL</string>
+    <string name="th_remarks">Remarks</string>
+    <string name="th_latitude">Latitude</string>
+    <string name="th_longitude">Longitude</string>
+    <string name="th_accuracy">Accuracy</string>
+    <string name="section_updated">Section updated successfully!</string>
+    <string name="covered_percentage">Covered Percentage</string>
+    <string name="label_specify_details">Provide detail/reason for selected action (if applicable)</string>
+    <string name="label_specify_action_zygote">Specify action for selected household</string>
+    <string name="title_pc">Processing Code</string>
+    <string name="title_bc">Block Code</string>
+    <string name="title_hh">Household</string>
+
+    <string name="pd_label_please_wait">Please wait…</string>
+
+    <!-- Labels for inputs -->
+    <string name="label_input_filter_via_bc">Select Block Code</string>
+
+    <!-- Actions labels -->
+    <string name="label_action_sign_out_and_exit">Logout and Exit</string>
+    <string name="label_action_force_exit">Force Exit</string>
+    <string name="label_action_settings">Settings</string>
+    <string name="label_action_partially_refused">Partially Refused</string>
+    <string name="label_action_show_data">Toggle Data Display</string>
+    <string name="label_action_goto_roster">Goto Roster</string>
+
+    <!-- Labels for buttons -->
+    <string name="label_btn_settings">Settings</string>
+    <string name="label_btn_app_settings">Settings</string>
+    <string name="label_btn_cancel">Cancel</string>
+    <string name="label_btn_ok">OK</string>
+    <string name="label_btn_begin">Begin</string>
+    <string name="label_btn_merge_roster">Merge Roster</string>
+    <string name="label_btn_details">Details</string>
+    <string name="label_btn_resume">Resume</string>
+    <string name="label_btn_closed">Closed</string>
+    <string name="label_btn_save_close">Save / Close</string>
+
+    <!-- Labels for Main Menu Buttons -->
+    <string name="main_menu_item_exit">Exit</string>
+    <string name="main_menu_item_view_household">Blocks Status</string>
+    <string name="main_menu_item_start_survey">Start Survey</string>
+    <string name="main_menu_item_sync">Data Sync</string>
+    <string name="main_menu_item_map">View Map</string>
+    <string name="main_menu_item_request_help">Help Center</string>
+
+    <string name="alert_goto_next_section_message">Are you sure to goto next section?</string>
+    <!-- GPS Setting GPS Alert string -->
+    <string name="alert_dialog_gps_title">Location Service Inaccessible</string>
+    <string name="alert_dialog_gps_message">GPS is not enabled or permission not granted, Click Settings to go to location settings menu in order to enable location and grant permission.</string>
+
+    <!-- Permissions Setting all permissions Alert string -->
+    <string name="alert_dialog_all_permissions_title">Enable All Permissions</string>
+    <string name="alert_dialog_all_permissions_message">All permissions must be granted to the app, Click Settings to open app settings and allow all permissions.</string>
+
+    <!-- Permissions Setting location and storage Alert string -->
+    <string name="alert_dialog_location_storage_title">Location and Storage Permissions Required</string>
+    <string name="alert_dialog_location_storage_message">Allow access to location and storage functionality in order to get current location and read / write backup.</string>
+
+    <!-- Form Beginner asd Closer Dialog messages -->
+    <string name="ask_close_form">Are sure to close the form?</string>
+    <string name="ask_partially_refuse">Are sure to mark the form as Partially Refused, Form will be closed and can not be Resumed?</string>
+    <string name="mark_hh_nc_confirm_msg">Are you sure to mark the form as Non-Contacted for Household <b>%1$d</b>? Form will be closed.</string>
+
+    <!-- Theme settings dialogue strings -->
+    <string name="th_name">Name</string>
+    <string name="th_cnic">CNIC</string>
+    <string name="th_login_expiry">Login Expiry</string>
+    <string name="th_label_spi_chose_theme">Chose Theme</string>
+    <string name="th_label_spi_change_gender">Change enumerator gender</string>
+
+
+    <string name="heading_paid_consumed"><![CDATA[<b>Paid and Consumed</b><br />(Report value in Whole rupees)]]></string>
+    <string name="heading_unpaid_consumed"><![CDATA[<b>Unpaid and Consumed</b><br />(Report value in Whole rupees)]]></string>
+    <string name="label_input_day">Day</string>
+    <string name="label_input_month">Month</string>
+    <string name="label_input_year">Year</string>
+    <string name="label_symbol_down_arrow">↓</string>
+    <string name="label_symbol_up_arrow">↑</string>
+
+</resources>

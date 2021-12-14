@@ -1,0 +1,352 @@
+<resources>
+
+    <style name="DawnDark" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorAccent">@color/ddColorAccent</item>
+        <item name="colorAccentDark">@color/ddColorAccentDark</item>
+        <item name="colorAccentLight">@color/ddColorAccentLight</item>
+        <item name="colorQuestionStatementBackground">@color/ddColorAccentDark</item>
+        <item name="colorQuestionStatementBackgroundDim">@color/ddColorGray3</item>
+        <item name="colorBgQuestionSubgroupHeading">@color/ddColorGray2</item>
+
+        <item name="colorText">@color/ddColorText</item>
+        <item name="colorTextDim">@color/ddColorTextDim</item>
+        <item name="colorTextDark">#999999</item>
+
+        <item name="colorPrimary">@color/ddColorGray2</item>
+        <item name="colorPrimaryDark">@color/ddColorGray4</item>
+
+        <item name="colorGray1">@color/ddColorGray1</item>
+        <item name="colorGray2">@color/ddColorGray2</item>
+        <item name="colorGray3">@color/ddColorGray3</item>
+        <item name="colorGray4">@color/ddColorGray4</item>
+        <item name="colorGray5">@color/ddColorGray5</item>
+        <item name="colorGray10">@color/ddColorGray10</item>
+
+        <item name="colorPrimaryGradientActive">#1A212B</item>
+        <item name="colorPrimaryGradientStart">#343C45</item>
+        <item name="colorPrimaryGradientEnd">?attr/colorPrimaryDark</item>
+
+        <item name="colorAccentGradientActive">?attr/colorPrimaryGradientActive</item>
+        <item name="colorAccentGradientStart">?attr/colorPrimary</item>
+        <item name="colorAccentGradientEnd">?attr/colorPrimaryDark</item>
+
+        <item name="drawableLogo">@drawable/logo_pbs_sm</item>
+        <item name="drawableBackground">?attr/colorGray1</item>
+
+        <item name="bgGradientAccent">@drawable/dd_bg_accent_gradient</item>
+        <item name="bgGradientPrimary">@drawable/dd_gradient_primary</item>
+        <item name="bgGradientCredit">@drawable/dd_bg_gradient_credits</item>
+
+        <item name="bgMainMenu">@drawable/dd_gradient_primary</item>
+        <item name="borderBtnAskNext">@drawable/dd_bg_btn_ask_next_question</item>
+        <item name="borderTableHeading">@drawable/dd_bg_cell_table</item>
+        <item name="borderInput">@drawable/dd_border_input</item>
+        <item name="borderEditText">@drawable/dd_border_input_et_bordered</item>
+        <item name="borderSpinner">@drawable/dd_border_spinner</item>
+
+        <item name="colorQuestionCardBackground">@color/ddColorGray4</item>
+        <item name="bgCardUnlocked">@drawable/dd_bg_question_unlocked</item>
+        <item name="bgCardLocked">@drawable/dd_bg_question_locked</item>
+
+        <item name="bgSelectableUnlocked">@drawable/dd_gradient_primary</item>
+        <item name="bgSelectableLocked">@drawable/dd_bg_selectable_locked</item>
+        <item name="bgSelectableLockedUnanswered">@drawable/dd_bg_selectable_locked_unanswered</item>
+
+
+        <item name="bgInputSubgroup">@drawable/dd_bg_input_subgroup</item>
+
+        <item name="bgInputData">@drawable/dd_bg_input_data</item>
+        <item name="bgInputDataAccent">@drawable/dd_bg_input_data_accent</item>
+
+    </style>
+
+
+    <style name="DayLight" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/dlColorAccent</item>
+        <item name="colorPrimaryDark">@color/dlColorAccentDark</item>
+        <item name="colorPrimaryLight">@color/dlColorAccentLight</item>
+        <item name="colorBgQuestionSubgroupHeading">@color/dlColorGray3</item>
+        <item name="colorQuestionStatementBackground">@color/dlColorAccentLight</item>
+        <item name="colorQuestionStatementBackgroundDim">@color/dlColorGray4</item>
+
+        <item name="colorAccent">@color/dlColorAccent</item>
+        <item name="colorAccentLight">@color/dlColorAccentLight</item>
+        <item name="colorAccentDark">@color/dlColorAccentDark</item>
+
+        <item name="colorText">@color/dlColorText</item>
+        <item name="colorTextDim">@color/dlColorTextDim</item>
+        <item name="colorTextDark">#555555</item>
+
+        <!--- Imported Color Scheme -->
+        <item name="colorGray1">@color/dlColorGray1</item>
+        <item name="colorGray2">@color/dlColorGray2</item>
+        <item name="colorGray3">@color/dlColorGray3</item>
+        <item name="colorGray4">@color/dlColorGray4</item>
+        <item name="colorGray5">@color/dlColorGray5</item>
+        <item name="colorGray10">@color/dlColorGray10</item>
+
+        <!--        Gradient as background for Clickable View-->
+        <item name="colorPrimaryGradientActive">@color/dlColorGray3</item>
+        <item name="colorPrimaryGradientStart">@color/dlColorGray3</item>
+        <item name="colorPrimaryGradientEnd">@color/dlColorGray4</item>
+
+        <!--        Gradient as background for Clickable View-->
+        <item name="colorAccentGradientActive">?attr/colorAccentDark</item>
+        <item name="colorAccentGradientStart">?attr/colorAccentLight</item>
+        <item name="colorAccentGradientEnd">?attr/colorAccent</item>
+
+        <!-- drawables -->
+        <item name="drawableLogo">@drawable/logo_pbs_sm_black</item>
+        <item name="drawableBackground">?attr/colorGray2</item>
+
+        <item name="bgGradientAccent">@drawable/dl_bg_accent_gradient</item>
+        <item name="bgGradientPrimary">@drawable/dl_gradient_primary</item>
+        <item name="bgGradientCredit">@drawable/dl_bg_gradient_credits</item>
+
+        <item name="bgMainMenu">@drawable/dl_gradient_primary</item>
+        <item name="borderBtnAskNext">@drawable/dl_bg_btn_ask_next_question</item>
+        <item name="borderTableHeading">@drawable/dl_bg_cell_table</item>
+        <item name="borderInput">@drawable/dl_border_input</item>
+        <item name="borderEditText">@drawable/dl_border_input_et_border</item>
+        <item name="borderSpinner">@drawable/dl_border_spinner</item>
+
+        <item name="colorQuestionCardBackground">@color/dlColorGray1</item>
+        <item name="bgCardUnlocked">@drawable/dl_bg_question_unlocked</item>
+        <item name="bgCardLocked">@drawable/dl_bg_question_locked</item>
+
+        <item name="bgSelectableUnlocked">@drawable/dl_bg_selectable_unlocked</item>
+        <item name="bgSelectableLocked">@drawable/dl_bg_selectable_locked</item>
+        <item name="bgSelectableLockedUnanswered">@drawable/dl_bg_selectable_locked_unanswered</item>
+
+
+        <item name="bgInputSubgroup">@drawable/dl_bg_input_subgroup</item>
+
+        <item name="bgInputData">@drawable/dl_bg_input_data</item>
+        <item name="bgInputDataAccent">@drawable/dl_bg_input_data_accent</item>
+
+    </style>
+
+    <style name="AlertDialogTheme" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">?attr/bgGradientPrimary</item>
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="alertDialogCenterButtons">true</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorError</item>
+        <item name="android:textSize">@dimen/fontSizeH4</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="android:textSize">@dimen/fontSizeH4</item>
+    </style>
+
+
+    <!-- Text Styles -->
+    <style name="textH3">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/fontSizeH3</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:layout_marginBottom">@dimen/spacePrimary</item>
+    </style>
+
+    <style name="textH4" parent="textH3">
+        <item name="android:textSize">@dimen/fontSizeH4</item>
+        <item name="android:layout_marginBottom">@dimen/spacePrimaryHalf</item>
+    </style>
+
+    <style name="textH5" parent="textH4">
+        <item name="android:textSize">@dimen/fontSizeNormal</item>
+        <item name="android:layout_marginBottom">@dimen/spaceTiny</item>
+    </style>
+
+    <style name="textH6" parent="textH5">
+        <item name="android:textSize">@dimen/fontSizeSmall</item>
+    </style>
+
+    <!-- Main Menu Components -->
+    <style name="mainMenuItem">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_weight">0.5</item>
+        <item name="android:layout_margin">@dimen/spacePrimaryHalf</item>
+        <item name="android:background">?attr/bgMainMenu</item>
+    </style>
+
+    <style name="mainMenuItem.icon">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="mainMenuItem.text" parent="textH5">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+
+    <!--   Survey Element Styles -->
+    <!-- ======================== -->
+    <style name="tvQuestion" parent="textH4">
+        <item name="android:textSize">@dimen/fontSizeQuestion</item>
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+
+    <style name="tvQuestionHint" parent="textH5">
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:textSize">@dimen/fontSizeNormal</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+
+    <style name="tvInputLabel">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:textSize">@dimen/fontSizeNormal</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">@dimen/spacePrimaryHalf</item>
+    </style>
+
+    <style name="tvInputLabelSecondary" parent="tvInputLabel">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- =========================================================================================== -->
+    <!-- Form Inputs Style -->
+    <style name="etInput">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">@dimen/spacePrimaryHalf</item>
+        <item name="android:padding">@dimen/spacePrimaryHalf</item>
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:textColorHint">?attr/colorTextDim</item>
+        <item name="android:textSize">@dimen/fontSizeH4</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <style name="compoundInputItem" parent="textH4">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?attr/bgSelectableUnlocked</item>
+        <item name="android:layout_margin">@dimen/spacePrimaryHalf</item>
+    </style>
+
+    <style name="spInput" parent="@android:style/Widget.Spinner">
+        <item name="android:layout_margin">@dimen/spacePrimaryHalf</item>
+        <item name="android:background">?attr/borderSpinner</item>
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="showDividers">middle</item>
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+        <item name="android:dropDownSelector">@android:color/white</item>
+    </style>
+
+    <style name="btnInput" parent="textH4">
+        <item name="android:layout_margin">@dimen/spacePrimaryHalf</item>
+        <item name="android:background">?attr/bgGradientAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="btnAction">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/bgGradientAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/fontSizeH3</item>
+        <item name="android:paddingStart">@dimen/spaceBig</item>
+        <item name="android:paddingEnd">@dimen/spaceBig</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- =========================================================================================== -->
+    <!-- Table Styles-->
+
+    <string name="table_heading_cell">
+        <item name="android:padding">@dimen/spacePrimaryHalf</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+        <item name="android:background">?attr/borderTableHeading</item>
+    </string>
+
+    <style name="ci_total_cell">
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:background">?attr/borderTableHeading</item>
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+        <item name="android:text">0</item>
+    </style>
+    <style name="tableCellZygote">
+        <item name="android:padding">@dimen/spacePrimaryHalf</item>
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:textSize">@dimen/fontSizeNormal</item>
+        <item name="android:background">?attr/borderTableHeading</item>
+    </style>
+
+    <style name="tdContainerTop">
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:textSize">@dimen/fontSizeNormal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:background">?attr/borderInput</item>
+    </style>
+
+    <style name="th_information_zygote" parent="textH4">
+        <item name="android:textColor">?attr/colorText</item>
+    </style>
+
+    <style parent="@android:style/Widget.Spinner" name="td_spinner__container_top">
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+        <item name="android:background">?attr/borderInput</item>
+        <item name="android:textColor">?attr/colorText</item>
+    </style>
+
+    <style name="tableCell">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:textSize">@dimen/fontSizeNormal</item>
+    </style>
+
+    <style parent="tdContainerTop" name="tdBordered_topSection">
+        <item name="android:padding">0dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+        <item name="android:background">?attr/borderTableHeading</item>
+    </style>
+
+    <style parent="tdContainerTop" name="btn_topSection">
+        <item name="android:padding">@dimen/spaceInternal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+        <item name="android:background">?attr/borderInput</item>
+        <item name="android:backgroundTint">?attr/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style parent="tdContainerTop" name="thBordered">
+        <item name="android:padding">@dimen/spacePrimaryHalf</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+        <item name="android:background">?attr/borderTableHeading</item>
+    </style>
+
+</resources>

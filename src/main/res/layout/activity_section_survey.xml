@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/drawableBackground"
+    android:screenOrientation="portrait"
+    android:windowSoftInputMode="adjustPan"
+    android:animateLayoutChanges="true"
+    android:theme="@style/Theme.AppCompat.NoActionBar">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/container_toolbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorGray4"
+            app:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ProgressBar
+            android:id="@+id/pb_form"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="-6dp"
+            android:layout_marginBottom="-7dp"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/spacePrimaryHalf"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSurveyForm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/spacePrimary"
+            android:layout_marginRight="@dimen/spacePrimary"
+            android:layout_marginBottom="@dimen/spacePrimary"
+            android:layout_marginTop="@dimen/spacePrimaryHalf"
+            />
+
+        <LinearLayout
+            android:id="@+id/container_data_display"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?colorGray2"
+            android:translationY="@dimen/spacePrimary"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    app:tabTextColor="?colorTextDark"
+                    app:tabSelectedTextColor="?colorText"
+                    app:tabMode="auto"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?bgGradientPrimary"
+                    android:padding="@dimen/spacePrimaryHalf"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:drawableEndCompat="@drawable/ic_up_down"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/view_pager"/>
+
+        </LinearLayout>
+    </FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
