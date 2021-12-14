@@ -25,7 +25,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
     public static short FORCE_ASK_NEXT = 0;
     protected ActivityFormSection mContext;
     protected ArrayList<Question> mQuestions;
-    protected static Typeface UrduFontFace;
+    //protected static Typeface UrduFontFace;
 
     class QuestionViewHolder extends RecyclerView.ViewHolder {
         TextView tvQuestion,tvQuestionHint;
@@ -35,10 +35,10 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
             super(itemView);
 
             tvQuestion = itemView.findViewById(R.id.tv_question);
-            tvQuestion.setTypeface(UrduFontFace);
+            //tvQuestion.setTypeface(UrduFontFace);
 
             tvQuestionHint = itemView.findViewById(R.id.tv_question_hint);
-            tvQuestionHint.setTypeface(UrduFontFace);
+            //tvQuestionHint.setTypeface(UrduFontFace);
 
             containerInput = itemView.findViewById(R.id.container_answer);
 
@@ -117,7 +117,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
     public QuestionnaireAdapter(ActivityFormSection context){
         this.mContext = context;
         this.mQuestions = context.getQuestionnaireManager().getQuestions();
-        UrduFontFace = Typeface.createFromAsset(context.getAssets(), "fonts/Jameel_Noori_Nastaleeq_Kasheeda.ttf");
+        //UrduFontFace = Typeface.createFromAsset(context.getAssets(), "fonts/Jameel_Noori_Nastaleeq_Kasheeda.ttf");
     }
 
     @NonNull
