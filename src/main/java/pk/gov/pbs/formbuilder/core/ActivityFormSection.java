@@ -622,9 +622,9 @@ public abstract class ActivityFormSection extends ActivityCustom {
 
     @Override
     public void onBackPressed() {
-        if (mDataDisplay.getVisibility() != View.GONE) {
+        if (mDataDisplay != null && mDataDisplay.getVisibility() != View.GONE) {
             onActionClickToggleDataDisplay();
-        } else if (mSectionActionButtons.getVisibility() == View.VISIBLE) {
+        } else if (mSectionActionButtons != null && mSectionActionButtons.getVisibility() == View.VISIBLE) {
             toggleActionButtonsDisplay();
         }
     }
