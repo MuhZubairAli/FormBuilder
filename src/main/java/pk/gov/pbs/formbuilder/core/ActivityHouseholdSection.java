@@ -6,17 +6,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import pk.gov.pbs.formbuilder.R;
-import pk.gov.pbs.formbuilder.toolkits.UXEventListeners;
 import pk.gov.pbs.formbuilder.exceptions.InvalidQuestionStateException;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.models.HouseholdSection;
 import pk.gov.pbs.formbuilder.pojos.ItemSpinnerSection;
 import pk.gov.pbs.utils.ExceptionReporter;
+import pk.gov.pbs.utils.UXEventListeners;
 
 public abstract class ActivityHouseholdSection extends ActivityFormSection {
     protected Spinner mSpinnerSections;
