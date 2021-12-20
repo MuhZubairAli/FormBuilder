@@ -3,6 +3,7 @@ package pk.gov.pbs.formbuilder.core;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.List;
 
 import pk.gov.pbs.formbuilder.R;
+import pk.gov.pbs.formbuilder.exceptions.IllegalMethodCallException;
 import pk.gov.pbs.formbuilder.pojos.ItemSpinnerMember;
 import pk.gov.pbs.formbuilder.exceptions.InvalidQuestionStateException;
 import pk.gov.pbs.formbuilder.inputs.singular.ButtonInput;
@@ -34,6 +36,7 @@ import pk.gov.pbs.utils.ExceptionReporter;
 import pk.gov.pbs.utils.UXEventListeners;
 
 public abstract class ActivityFormSection extends ActivityCustom {
+    private static final String TAG = ActivityFormSection.class.getSimpleName();
     protected QuestionnaireManager<?> mQuestionnaireManager;
     protected QuestionnaireBuilder mQuestionnaireBuilder;
     protected QuestionnaireAdapter mAdapter;
@@ -455,7 +458,10 @@ public abstract class ActivityFormSection extends ActivityCustom {
     }
 
     protected void startSection(){
-        mContainerForm.post(this::startSectionImmediate);
+        if (mContainerForm != null)
+            mContainerForm.post(this::startSectionImmediate);
+        else
+            Log.e(TAG, "startSection: Can not start section probably because of premature termination of onCreate method", new IllegalMethodCallException("RecyclerView]:mContainerForm is null"));
     }
 
     protected void startSectionImmediate(){
@@ -622,9 +628,9 @@ public abstract class ActivityFormSection extends ActivityCustom {
 
     @Override
     public void onBackPressed() {
-        if (mDataDisplay.getVisibility() != View.GONE) {
+        if (mDataDisplay != null && mDataDisplay.getVisibility() != View.GONE) {
             onActionClickToggleDataDisplay();
-        } else if (mSectionActionButtons.getVisibility() == View.VISIBLE) {
+        } else if (mSectionActionButtons != null && mSectionActionButtons.getVisibility() == View.VISIBLE) {
             toggleActionButtonsDisplay();
         }
     }

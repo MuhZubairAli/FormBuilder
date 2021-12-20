@@ -100,10 +100,10 @@
         <item name="drawableBackground">?attr/colorGray2</item>
 
         <item name="bgGradientAccent">@drawable/dl_bg_accent_gradient</item>
-        <item name="bgGradientPrimary">@drawable/dl_gradient_primary</item>
+        <item name="bgGradientPrimary">@drawable/gradient_primary_dialogue</item>
         <item name="bgGradientCredit">@drawable/dl_bg_gradient_credits</item>
 
-        <item name="bgMainMenu">@drawable/dl_gradient_primary</item>
+        <item name="bgMainMenu">@drawable/gradient_primary_dialogue</item>
         <item name="borderBtnAskNext">@drawable/dl_bg_btn_ask_next_question</item>
         <item name="borderTableHeading">@drawable/dl_bg_cell_table</item>
         <item name="borderInput">@drawable/dl_border_input</item>
