@@ -461,7 +461,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
         if (mContainerForm != null)
             mContainerForm.post(this::startSectionImmediate);
         else
-            Log.e(TAG, "startSection: Can not start section probably because of premature termination of onCreate method", new IllegalMethodCallException("RecyclerView]:mContainerForm is null"));
+            Log.d(TAG, "startSection: Can not start section probably because of premature termination of onCreate method");
     }
 
     protected void startSectionImmediate(){
