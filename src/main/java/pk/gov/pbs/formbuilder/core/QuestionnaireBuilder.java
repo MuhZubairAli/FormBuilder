@@ -145,7 +145,11 @@ public class QuestionnaireBuilder {
 
     public Question makeSI(String qIndex, int oStart, int oEnd, @Nullable Validator validator){
         List<String> options = new ArrayList<>();
-        String label = "Select Appropriate Option";
+        String label;
+        if (mLabelProvider.isLang("ur"))
+            label = "مناسب آپشن کا انتخاب کریں";
+        else
+            label = "Select Appropriate Option";
         int count = oStart-1;
         String index;
         while (label != null || count <= oEnd) {

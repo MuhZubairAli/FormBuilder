@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.formbuilder.core.ActivityFormSection;
 import pk.gov.pbs.formbuilder.inputs.abstracts.input.SingularInput;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class SpinnerInput extends SingularInput {
     protected Spinner inputElement;
@@ -152,11 +154,26 @@ public class SpinnerInput extends SingularInput {
         Spinner item;
         if(getInputView() == null) {
             item = (Spinner) inflater.inflate(getResId(), parent, false);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(inflater.getContext(), R.layout.item_list_sp, getOptions(labels));
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(inflater.getContext(), R.layout.item_list_sp, getOptions(labels)) {
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    TextView view = (TextView) super.getView(position, convertView, parent);
+                    ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), view);
+                    return view;
+                }
+
+                @Override
+                public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                    TextView view = (TextView) super.getDropDownView(position, convertView, parent);
+                    ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), view);
+                    return view;
+                }
+            };
+
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             item.setAdapter(adapter);
             inputElement = item;
-        }else {
+        } else {
             item = getInputView();
             ((ViewGroup) item.getParent()).removeView(item);
         }
