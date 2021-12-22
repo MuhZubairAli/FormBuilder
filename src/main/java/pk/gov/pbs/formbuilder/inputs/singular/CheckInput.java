@@ -10,6 +10,7 @@ import pk.gov.pbs.formbuilder.R;
 import pk.gov.pbs.formbuilder.core.LabelProvider;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class CheckInput extends Selectable {
     protected CheckBox inputElement;
@@ -68,6 +69,7 @@ public class CheckInput extends Selectable {
         CheckBox item;
         if(getInputView() == null) {
             item = (CheckBox) inflater.inflate(getResId(), parent, false);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), item);
             Spanned text = Html.fromHtml(getValue().toString() + ". " + labels.getLabel(getIndex()));
             item.setText(text);
             inputElement = item;

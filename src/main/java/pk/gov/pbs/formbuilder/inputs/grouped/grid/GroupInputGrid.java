@@ -14,6 +14,7 @@ import pk.gov.pbs.formbuilder.inputs.abstracts.input.GroupInput;
 import pk.gov.pbs.formbuilder.inputs.abstracts.input.SingularInput;
 import pk.gov.pbs.formbuilder.meta.ColumnCount;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public abstract class GroupInputGrid extends GroupInput {
     protected final int mColumnCount;
@@ -106,6 +107,7 @@ public abstract class GroupInputGrid extends GroupInput {
             item = (ViewGroup) inflater.inflate(getResId(), parent, false);
             if (labels.hasLabel(getIndex())){
                 TextView qStatement = (TextView) inflater.inflate(R.layout.label_input_tv, item, false);
+                ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), qStatement);
                 qStatement.setText(Html.fromHtml(labels.getLabel(getIndex())));
                 item.addView(qStatement);
             }
@@ -123,6 +125,7 @@ public abstract class GroupInputGrid extends GroupInput {
                 for (int j = 0; j < mColumnCount; j++) {
                     if (++abCount < mSingularInputs.length) {
                         TextView inputLabel = (TextView) inflater.inflate(R.layout.label_input_tv, rowLabels, false);
+                        ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), inputLabel);
                         mLabelsInputs[i+j] = inputLabel;
                         Spanned label = Html.fromHtml(labels.getLabel(mSingularInputs[abCount].getIndex()));
                         inputLabel.setText(label);

@@ -18,6 +18,7 @@ import pk.gov.pbs.formbuilder.inputs.singular.DataInput;
 import pk.gov.pbs.formbuilder.meta.ColumnCount;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class GroupInputGridData extends GroupInputGrid {
     public GroupInputGridData(String index, ColumnCount columnCount, DataInput[] singularInput) {
@@ -78,6 +79,7 @@ public class GroupInputGridData extends GroupInputGrid {
             item = (ViewGroup) inflater.inflate(getResId(), parent, false);
             if (labels.hasLabel(getIndex())){
                 TextView qStatement = (TextView) inflater.inflate(R.layout.label_input_tv, item, false);
+                ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), qStatement);
                 String label;
                 if (labels.hasHint(getIndex()))
                     label = labels.getLabel(getIndex())

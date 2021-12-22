@@ -23,8 +23,9 @@ import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.formbuilder.core.ActivityFormSection;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
-import pk.gov.pbs.formbuilder.utils.ThemeUtils;
+import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class GroupInputCheckedKBI extends GroupInputTableRow {
     protected KeyboardInput mKeyboardInput;
@@ -48,20 +49,20 @@ public class GroupInputCheckedKBI extends GroupInputTableRow {
 
     private void lockItem(CheckBox item){
         if(!item.isChecked())
-            ThemeUtils.applyThemedDrawableToView(item, R.attr.bgSelectableLockedUnanswered);
+            FormBuilderThemeHelper.applyThemedDrawableToView(item, R.attr.bgSelectableLockedUnanswered);
         else
-            ThemeUtils.applyThemedDrawableToView(item, R.attr.bgSelectableLocked);
+            FormBuilderThemeHelper.applyThemedDrawableToView(item, R.attr.bgSelectableLocked);
 
         if (tvCode != null && tvCode.getVisibility() == View.VISIBLE)
-            ThemeUtils.applyThemedDrawableToView(tvCode, R.attr.bgSelectableLockedUnanswered);
+            FormBuilderThemeHelper.applyThemedDrawableToView(tvCode, R.attr.bgSelectableLockedUnanswered);
 
         item.setClickable(false);
     }
 
     private void unlockItem(CheckBox item){
-        ThemeUtils.applyThemedDrawableToView(item, R.attr.bgSelectableUnlocked);
+        FormBuilderThemeHelper.applyThemedDrawableToView(item, R.attr.bgSelectableUnlocked);
         if (tvCode != null && tvCode.getVisibility() == View.VISIBLE)
-            ThemeUtils.applyThemedDrawableToView(tvCode, R.attr.bgSelectableUnlocked);
+            FormBuilderThemeHelper.applyThemedDrawableToView(tvCode, R.attr.bgSelectableUnlocked);
 
         item.setClickable(true);
     }
@@ -251,10 +252,12 @@ public class GroupInputCheckedKBI extends GroupInputTableRow {
 
             Spanned htm = Html.fromHtml(labels.getLabel(getIndex()));
             cbi = item.findViewById(R.id.cbi);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), cbi);
             cbi.setText(htm);
 
             ViewGroup container =  item.findViewById(R.id.container_kbi);
             mKeyboardInput.inflate(inflater, labels, container);
+
             if (labels.hasHint(getIndex()+"_kbi"))
                 mKeyboardInput.setHintText(labels.getHint(getIndex()+"_kbi"));
             mKeyboardInput.lock();

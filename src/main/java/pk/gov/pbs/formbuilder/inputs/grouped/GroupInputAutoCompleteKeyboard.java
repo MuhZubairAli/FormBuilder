@@ -17,6 +17,7 @@ import pk.gov.pbs.formbuilder.inputs.singular.AutoCompleteKeyboardInput;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class GroupInputAutoCompleteKeyboard extends GroupInputLinearLayout {
     private final AutoCompleteKeyboardInput mKeyboardInput;
@@ -106,7 +107,9 @@ public class GroupInputAutoCompleteKeyboard extends GroupInputLinearLayout {
             item = (LinearLayout) inflater.inflate(getResId(), parent, false);
 
             Spanned htm = Html.fromHtml(labels.getLabel(getIndex()));
-            ((TextView) item.findViewById(R.id.tv)).setText(htm);
+            TextView tvLabel = item.findViewById(R.id.tv);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), tvLabel);
+            tvLabel.setText(htm);
 
             LinearLayout container = item.findViewById(R.id.container_kbi);
             mKeyboardInput.inflate(inflater, labels, container);

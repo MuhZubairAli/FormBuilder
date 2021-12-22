@@ -1,6 +1,7 @@
 package pk.gov.pbs.formbuilder.inputs.singular;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.View;
@@ -25,6 +26,7 @@ import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.models.Option;
 import pk.gov.pbs.formbuilder.pojos.DatumIdentifier;
 import pk.gov.pbs.formbuilder.pojos.OptionTuple;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public abstract class SpecifiableSelectable extends Selectable {
     protected DatumIdentifier identifier;
@@ -139,7 +141,9 @@ public abstract class SpecifiableSelectable extends Selectable {
                 )
         );
 
-        ((TextView) mDialogue.findViewById(R.id.tv)).setText(htm);
+        TextView tvLabel =  mDialogue.findViewById(R.id.tv);
+        ThemeUtils.setupTextViewStylesByLocale(context.getLabelProvider().getLocale(), tvLabel);
+        tvLabel.setText(htm);
 
         AlertDialog alert = context.getUXToolkit().getDialogBuilder()
                 .setView(mDialogue)
@@ -234,6 +238,7 @@ public abstract class SpecifiableSelectable extends Selectable {
         alert.getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
         ;
+
         alert.show();
     }
 }

@@ -11,6 +11,7 @@ import pk.gov.pbs.formbuilder.R;
 import pk.gov.pbs.formbuilder.core.LabelProvider;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.pojos.DatumIdentifier;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class SpecifiableRadioInput extends SpecifiableSelectable {
     private RadioButton inputElement;
@@ -60,6 +61,7 @@ public class SpecifiableRadioInput extends SpecifiableSelectable {
         RadioButton item;
         if(getInputView() == null) {
             item =(RadioButton) inflater.inflate(getResId(), parent, false);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), item);
             String label = inflater
                     .getContext()
                     .getString(

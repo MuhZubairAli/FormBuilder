@@ -16,6 +16,7 @@ import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class GroupInputDate extends GroupInputLinearLayout {
     protected DateInput mDateInput;
@@ -80,7 +81,9 @@ public class GroupInputDate extends GroupInputLinearLayout {
             item = (LinearLayout) inflater.inflate(getResId(), parent, false);
 
             Spanned htm = Html.fromHtml(labels.getLabel(getIndex()));
-            ((TextView) item.findViewById(R.id.tv)).setText(htm);
+            TextView tvLabel = item.findViewById(R.id.tv);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), tvLabel);
+            tvLabel.setText(htm);
 
             LinearLayout container = item.findViewById(R.id.container_date_input);
             mDateInput.inflate(inflater, labels, container);

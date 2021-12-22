@@ -1,7 +1,6 @@
 package pk.gov.pbs.formbuilder.inputs.singular;
 
 import android.text.Html;
-import android.text.Spannable;
 import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +16,7 @@ import pk.gov.pbs.formbuilder.exceptions.IllegalMethodCallException;
 import pk.gov.pbs.formbuilder.inputs.abstracts.input.SingularInput;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class DataInput extends SingularInput {
     private static LabelProvider mLabelProvider;
@@ -32,7 +32,7 @@ public class DataInput extends SingularInput {
 
     public DataInput highlight() throws IllegalMethodCallException {
         if (inputElement != null) {
-            throw new IllegalMethodCallException("useAccentColor] - This method is only effective for un-inflated askable");
+            throw new IllegalMethodCallException("highlight()] - This method is only effective for un-inflated askable");
         }
 
         useAccent = true;
@@ -145,6 +145,7 @@ public class DataInput extends SingularInput {
             tv2 = item.findViewById(R.id.tv_2);
             tv3 = item.findViewById(R.id.tv_3);
 
+
             if (labels.hasLabel(getIndex()))
                 tvLabel.setHint(Html.fromHtml(labels.getLabel(getIndex())));
             else
@@ -156,6 +157,7 @@ public class DataInput extends SingularInput {
             };
 
             inputElement = item;
+            ThemeUtils.setupTextViewStylesByLocale(mLabelProvider.getLocale(), tv1, tv2, tv3, tvLabel);
         }else {
             item = getInputView();
             ((ViewGroup) item.getParent()).removeView(item);

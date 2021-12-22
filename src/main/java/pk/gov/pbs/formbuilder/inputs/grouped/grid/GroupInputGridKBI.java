@@ -17,7 +17,7 @@ import pk.gov.pbs.formbuilder.inputs.abstracts.input.SingularInput;
 import pk.gov.pbs.formbuilder.meta.ColumnCount;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
-import pk.gov.pbs.formbuilder.utils.ThemeUtils;
+import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
 import pk.gov.pbs.formbuilder.validator.Validator;
 
 public class GroupInputGridKBI extends GroupInputGrid {
@@ -130,8 +130,8 @@ public class GroupInputGridKBI extends GroupInputGrid {
             }
 
             input.setOnFocusChangeListener((v, hasFocus) -> {
-                int colorCode = (hasFocus) ? ThemeUtils.getColorByTheme(context, R.attr.colorAccent)
-                        : ThemeUtils.getColorByTheme(context, R.attr.colorTextDim);
+                int colorCode = (hasFocus) ? FormBuilderThemeHelper.getColorByTheme(context, R.attr.colorAccent)
+                        : FormBuilderThemeHelper.getColorByTheme(context, R.attr.colorTextDim);
 
                 if (mLabelsInputs[index] != null)
                     mLabelsInputs[index].setTextColor(colorCode);

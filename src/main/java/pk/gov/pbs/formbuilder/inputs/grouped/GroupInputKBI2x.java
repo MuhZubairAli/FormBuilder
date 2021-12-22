@@ -20,8 +20,9 @@ import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.formbuilder.core.ActivityFormSection;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
-import pk.gov.pbs.formbuilder.utils.ThemeUtils;
+import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class GroupInputKBI2x extends GroupInputLinearLayout {
     private final KeyboardInput[] mKeyboardInputs;
@@ -284,6 +285,7 @@ public class GroupInputKBI2x extends GroupInputLinearLayout {
 
             TextView tv_1 = item.findViewById(R.id.tv_1);
             TextView tv_2 = item.findViewById(R.id.tv_2);
+            ThemeUtils.setupTextViewStylesByLocale(labelProvider.getLocale(), label, tv_1, tv_2);
 
             String lblA = labelProvider.getLabel(getIndex()+"a");
             String lblB = labelProvider.getLabel(getIndex()+"b");
@@ -292,8 +294,8 @@ public class GroupInputKBI2x extends GroupInputLinearLayout {
                 tv_1.setText(Html.fromHtml(lblA));
                 EditText kbi_1 = mKeyboardInputs[0].getInputView();
                 kbi_1.setOnFocusChangeListener((v, hasFocus) -> {
-                    int colorCode = (hasFocus) ? ThemeUtils.getColorByTheme(inflater.getContext(), R.attr.colorAccent)
-                            : ThemeUtils.getColorByTheme(inflater.getContext(), R.attr.colorTextDim);
+                    int colorCode = (hasFocus) ? FormBuilderThemeHelper.getColorByTheme(inflater.getContext(), R.attr.colorAccent)
+                            : FormBuilderThemeHelper.getColorByTheme(inflater.getContext(), R.attr.colorTextDim);
 
                     tv_1.setTextColor(colorCode);
                     kbi_1.setHintTextColor(colorCode);
@@ -306,8 +308,8 @@ public class GroupInputKBI2x extends GroupInputLinearLayout {
                 tv_2.setText(Html.fromHtml(lblB));
                 EditText kbi_2 = mKeyboardInputs[1].getInputView();
                 kbi_2.setOnFocusChangeListener((v, hasFocus) -> {
-                    int colorCode = (hasFocus) ? ThemeUtils.getColorByTheme(inflater.getContext(), R.attr.colorAccent)
-                            : ThemeUtils.getColorByTheme(inflater.getContext(), R.attr.colorTextDim);
+                    int colorCode = (hasFocus) ? FormBuilderThemeHelper.getColorByTheme(inflater.getContext(), R.attr.colorAccent)
+                            : FormBuilderThemeHelper.getColorByTheme(inflater.getContext(), R.attr.colorTextDim);
 
                     tv_2.setTextColor(colorCode);
                     kbi_2.setHintTextColor(colorCode);

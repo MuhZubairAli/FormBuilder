@@ -17,6 +17,7 @@ import pk.gov.pbs.formbuilder.meta.ColumnCount;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public abstract class GroupInputSelectable extends GroupInput {
     protected final int mColumnCount;
@@ -169,6 +170,7 @@ public abstract class GroupInputSelectable extends GroupInput {
         if(getInputView() == null) {
             item = (ViewGroup) inflater.inflate(getResId(), parent, false);
             TextView label = item.findViewById(R.id.tv);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), label);
             if(labels.hasLabel(getIndex())) {
                 StringBuilder qLabel = new StringBuilder();
                 if (hasExtras())

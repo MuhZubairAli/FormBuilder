@@ -16,7 +16,7 @@ import pk.gov.pbs.formbuilder.inputs.abstracts.input.GroupInput;
 import pk.gov.pbs.formbuilder.inputs.grouped.GroupInputLinearLayout;
 import pk.gov.pbs.formbuilder.inputs.grouped.GroupInputRBI;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
-import pk.gov.pbs.formbuilder.utils.ThemeUtils;
+import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
 import pk.gov.pbs.formbuilder.validator.Validator;
 import pk.gov.pbs.utils.ExceptionReporter;
 
@@ -263,9 +263,9 @@ public class GroupInputRadioChecked extends GroupInputLinearLayout {
             mRadioInput.lock();
 
             if (tvCode != null && tvCode.getVisibility() == View.VISIBLE)
-                ThemeUtils.applyThemedDrawableToView(tvCode, R.attr.bgSelectableLockedUnanswered);
+                FormBuilderThemeHelper.applyThemedDrawableToView(tvCode, R.attr.bgSelectableLockedUnanswered);
             if (tvUnit != null && tvUnit.getVisibility() == View.VISIBLE)
-                ThemeUtils.applyThemedDrawableToView(tvUnit, R.attr.bgSelectableLockedUnanswered);
+                FormBuilderThemeHelper.applyThemedDrawableToView(tvUnit, R.attr.bgSelectableLockedUnanswered);
 
             IS_UNLOCKED = false;
             return true;
@@ -285,9 +285,9 @@ public class GroupInputRadioChecked extends GroupInputLinearLayout {
             mRadioInput.unlock();
 
             if (tvCode != null && tvCode.getVisibility() == View.VISIBLE)
-                ThemeUtils.applyThemedDrawableToView(tvCode, R.attr.bgSelectableUnlocked);
+                FormBuilderThemeHelper.applyThemedDrawableToView(tvCode, R.attr.bgSelectableUnlocked);
             if (tvUnit != null && tvUnit.getVisibility() == View.VISIBLE)
-                ThemeUtils.applyThemedDrawableToView(tvUnit, R.attr.bgSelectableUnlocked);
+                FormBuilderThemeHelper.applyThemedDrawableToView(tvUnit, R.attr.bgSelectableUnlocked);
 
             IS_UNLOCKED = true;
             return true;

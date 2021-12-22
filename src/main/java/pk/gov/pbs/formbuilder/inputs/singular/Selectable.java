@@ -10,7 +10,7 @@ import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.formbuilder.core.ActivityFormSection;
 import pk.gov.pbs.formbuilder.inputs.abstracts.input.SingularInput;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
-import pk.gov.pbs.formbuilder.utils.ThemeUtils;
+import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
 
 public abstract class Selectable extends SingularInput {
     protected Selectable.OnSetAnswerEvent onAnswersEvent;
@@ -61,9 +61,9 @@ public abstract class Selectable extends SingularInput {
 
         if(getInputView() != null){
             if(!getInputView().isChecked()) {
-                ThemeUtils.applyThemedDrawableToView(getInputView(), R.attr.bgSelectableLockedUnanswered);
+                FormBuilderThemeHelper.applyThemedDrawableToView(getInputView(), R.attr.bgSelectableLockedUnanswered);
             }else {
-                ThemeUtils.applyThemedDrawableToView(getInputView(), R.attr.bgSelectableLocked);
+                FormBuilderThemeHelper.applyThemedDrawableToView(getInputView(), R.attr.bgSelectableLocked);
             }
             getInputView().setClickable(false);
             IS_UNLOCKED = false;
@@ -78,7 +78,7 @@ public abstract class Selectable extends SingularInput {
             return true;
 
         if(getInputView() != null){
-            ThemeUtils.applyThemedDrawableToView(getInputView(), R.attr.bgSelectableUnlocked);
+            FormBuilderThemeHelper.applyThemedDrawableToView(getInputView(), R.attr.bgSelectableUnlocked);
             getInputView().setClickable(true);
             IS_UNLOCKED = true;
             return true;

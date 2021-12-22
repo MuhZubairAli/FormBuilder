@@ -4,24 +4,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 import pk.gov.pbs.formbuilder.meta.Constants;
 
 public abstract class LabelProvider {
+    public static final Locale PAKISTAN_LOCALE = new Locale("ur","PK");
     private static int counter = 0;
-    protected String lang;
+    protected Locale mLocale;
     protected HashMap<String,String> labels;
     protected HashMap<String,String> altLabels;
     protected HashMap<String,String> hints;
     protected HashMap<String,String> placeholders;
     protected HashMap<String,Integer> countableLabels;
-    protected String[] nominals = new String[]{ "Zero", "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth" };
+    protected String[] nominals_en = new String[]{ "Zero", "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth" };
+    protected String[] nominals_ur = new String[]{ "صفر", "اول", "دوم", "سوم", "چہارم", "پنجم", "ششم", "ہفتم", "ہشتم", "نہم", "دہم" };
     public LabelProvider(){
-        this("en");
+        this(Locale.getDefault());
     }
 
-    public LabelProvider(String lang){
-        this.lang = lang;
+    public LabelProvider(Locale locale){
+        this.mLocale = locale;
         labels = new HashMap<>();
         altLabels = new HashMap<>();
         hints = new HashMap<>();
@@ -30,7 +33,7 @@ public abstract class LabelProvider {
         loadLabels();
     }
 
-    protected void loadDefaultLabels(){
+    protected final void loadDefaultLabels(){
         if(isLang("en")){
             addLabel(Constants.Index.QUESTION_SECTION_END,"Section Completed");
             addLabel(Constants.Index.LABEL_BTN_NEXT_SECTION, "Go to Next Section");
@@ -39,22 +42,31 @@ public abstract class LabelProvider {
             addLabel(Constants.Index.LABEL_BTN_NEXT_HH,"Go To Next Household");
             addLabel(Constants.Index.LABEL_BTN_UPDATE, "Update Section");
         }
+        else if (isLang("ur")) {
+            addLabel(Constants.Index.QUESTION_SECTION_END,"سیکشن کا اندراج مکمل ہو چکا ہے");
+            addLabel(Constants.Index.LABEL_BTN_NEXT_SECTION, "اگلے سیکشن پر جائیں");
+            addLabel(Constants.Index.LABEL_BTN_NEXT_ITERATION, "نیا اندراج کیجیۓ");
+            addLabel(Constants.Index.LABEL_BTN_REPEAT,"گھرانے کے اگلے فرد کیلۓ سیکشن کا اندراج کیجۓ");
+            addLabel(Constants.Index.LABEL_BTN_NEXT_HH,"اگلے گھرانے کا اندراج کیجۓ");
+            addLabel(Constants.Index.LABEL_BTN_UPDATE, "سیکشن اندراج میں تبدیلی محفوظ کیجۓ");
+        }
     }
 
-    void loadLabels(){
-        if(isLang("en"))
+    final void loadLabels(){
+        if(isLang("ur"))
+            ur();
+        else
             en();
-//        else if(isLocale("ur"))
-//            ur();
+
     }
 
-    public String newLabel(String label) {
+    public final String newLabel(String label) {
         String index = "new_"+counter++;
         labels.put(index,label);
         return index;
     }
 
-    public String newLabel(String label, String... args) {
+    public final String newLabel(String label, String... args) {
         String index = "new_"+counter++;
         if (args != null && args.length > 0){
             for (int i=1; i <= args.length; i++){
@@ -134,21 +146,29 @@ public abstract class LabelProvider {
                 else
                     countableLabels.put(index, 1);
             }
-
-            return label.replace("{:count}", nominals[countableLabels.get(index)]);
+            if (isLang("en"))
+                return label.replace("{:count}", nominals_en[countableLabels.get(index)]);
+            return label.replace("{:count}", nominals_ur[countableLabels.get(index)]);
         }
+
         return null;
     }
 
     public boolean isLang(String lang){
-        return this.lang.equalsIgnoreCase(lang);
+        return this.mLocale.getLanguage().equalsIgnoreCase(lang);
+    }
+
+    public Locale getLocale(){
+        return mLocale;
     }
 
     public void reset(){
         placeholders.clear();
     }
 
-    public abstract void en();
-    //abstract void ur();
+    protected abstract void en();
+    protected void ur() {
+
+    }
 
 }

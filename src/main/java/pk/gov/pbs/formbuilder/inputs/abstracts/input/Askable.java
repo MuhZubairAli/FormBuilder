@@ -3,7 +3,6 @@ package pk.gov.pbs.formbuilder.inputs.abstracts.input;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.Nullable;
 
 import pk.gov.pbs.formbuilder.core.ViewModelFormSection;
@@ -88,6 +87,7 @@ public abstract class Askable {
             IS_VISIBLE = false;
         }
     }
+
     public void show(){
         if(IS_VISIBLE)
             return;

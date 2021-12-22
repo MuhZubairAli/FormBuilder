@@ -17,8 +17,9 @@ import pk.gov.pbs.formbuilder.core.ActivityFormSection;
 import pk.gov.pbs.formbuilder.inputs.abstracts.input.GroupInput;
 import pk.gov.pbs.formbuilder.inputs.grouped.GroupInputLinearLayout;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
-import pk.gov.pbs.formbuilder.utils.ThemeUtils;
+import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 /**
  * This input is not fully generalized in it's layout
@@ -294,24 +295,24 @@ public class GroupInputChecked extends GroupInputLinearLayout {
     private void lockItem(){
         CheckBox item = cbi;
         if(!item.isChecked()) {
-            ThemeUtils.applyThemedDrawableToView(item, R.attr.bgSelectableLockedUnanswered);
+            FormBuilderThemeHelper.applyThemedDrawableToView(item, R.attr.bgSelectableLockedUnanswered);
         }else {
-            ThemeUtils.applyThemedDrawableToView(item, R.attr.bgSelectableLocked);
+            FormBuilderThemeHelper.applyThemedDrawableToView(item, R.attr.bgSelectableLocked);
         }
         if (tvCode != null && tvCode.getVisibility() == View.VISIBLE)
-            ThemeUtils.applyThemedDrawableToView(tvCode, R.attr.bgSelectableLockedUnanswered);
+            FormBuilderThemeHelper.applyThemedDrawableToView(tvCode, R.attr.bgSelectableLockedUnanswered);
         if (tvUnit != null && tvUnit.getVisibility() == View.VISIBLE)
-            ThemeUtils.applyThemedDrawableToView(tvUnit, R.attr.bgSelectableLockedUnanswered);
+            FormBuilderThemeHelper.applyThemedDrawableToView(tvUnit, R.attr.bgSelectableLockedUnanswered);
         item.setClickable(false);
     }
 
     private void unlockItem(){
         CheckBox item = cbi;
-        ThemeUtils.applyThemedDrawableToView(item, R.attr.bgSelectableUnlocked);
+        FormBuilderThemeHelper.applyThemedDrawableToView(item, R.attr.bgSelectableUnlocked);
         if (tvCode != null && tvCode.getVisibility() == View.VISIBLE)
-            ThemeUtils.applyThemedDrawableToView(tvCode, R.attr.bgSelectableUnlocked);
+            FormBuilderThemeHelper.applyThemedDrawableToView(tvCode, R.attr.bgSelectableUnlocked);
         if (tvUnit != null && tvUnit.getVisibility() == View.VISIBLE)
-            ThemeUtils.applyThemedDrawableToView(tvUnit, R.attr.bgSelectableUnlocked);
+            FormBuilderThemeHelper.applyThemedDrawableToView(tvUnit, R.attr.bgSelectableUnlocked);
         item.setClickable(true);
     }
 
@@ -410,6 +411,7 @@ public class GroupInputChecked extends GroupInputLinearLayout {
             cbi = item.findViewById(R.id.cbi);
             tvCode = item.findViewById(R.id.tv_1);
             tvUnit = item.findViewById(R.id.tv_2);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), cbi);
             mContainerInputGroup = item.findViewById(R.id.container_input_group);
 
             if (mExtras != null) {

@@ -10,6 +10,7 @@ import pk.gov.pbs.formbuilder.R;
 import pk.gov.pbs.formbuilder.core.LabelProvider;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.pojos.DatumIdentifier;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class SpecifiableCheckInput extends SpecifiableSelectable {
     protected CheckBox inputElement;
@@ -73,6 +74,7 @@ public class SpecifiableCheckInput extends SpecifiableSelectable {
         CheckBox item;
         if(getInputView() == null) {
             item = (CheckBox) inflater.inflate(getResId(), parent, false);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), item);
             String label = inflater
                     .getContext()
                     .getString(

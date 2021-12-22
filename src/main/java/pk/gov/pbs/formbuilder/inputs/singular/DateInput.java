@@ -21,7 +21,7 @@ import pk.gov.pbs.formbuilder.inputs.abstracts.input.SingularInput;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
-import pk.gov.pbs.formbuilder.utils.ThemeUtils;
+import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.formbuilder.validator.BetweenValidator;
 import pk.gov.pbs.formbuilder.validator.Validator;
@@ -255,8 +255,8 @@ public class DateInput extends SingularInput {
 
             EditText kbi_1 = mKeyboardInputs[0].getInputView();
             kbi_1.setOnFocusChangeListener((v, hasFocus) -> {
-                int colorCode = (hasFocus) ? ThemeUtils.getColorByTheme(inflater.getContext(), R.attr.colorAccent)
-                        : ThemeUtils.getColorByTheme(inflater.getContext(), R.attr.colorTextDim);
+                int colorCode = (hasFocus) ? FormBuilderThemeHelper.getColorByTheme(inflater.getContext(), R.attr.colorAccent)
+                        : FormBuilderThemeHelper.getColorByTheme(inflater.getContext(), R.attr.colorTextDim);
 
                 tv_1.setTextColor(colorCode);
                 kbi_1.setHintTextColor(colorCode);
@@ -269,8 +269,8 @@ public class DateInput extends SingularInput {
 
             EditText kbi_2 = mKeyboardInputs[1].getInputView();
             kbi_2.setOnFocusChangeListener((v, hasFocus) -> {
-                int colorCode = (hasFocus) ? ThemeUtils.getColorByTheme(inflater.getContext(), R.attr.colorAccent)
-                        : ThemeUtils.getColorByTheme(inflater.getContext(), R.attr.colorTextDim);
+                int colorCode = (hasFocus) ? FormBuilderThemeHelper.getColorByTheme(inflater.getContext(), R.attr.colorAccent)
+                        : FormBuilderThemeHelper.getColorByTheme(inflater.getContext(), R.attr.colorTextDim);
 
                 tv_2.setTextColor(colorCode);
                 kbi_2.setHintTextColor(colorCode);
@@ -282,8 +282,8 @@ public class DateInput extends SingularInput {
 
             EditText kbi_3 = mKeyboardInputs[2].getInputView();
             kbi_3.setOnFocusChangeListener((v, hasFocus) -> {
-                int colorCode = (hasFocus) ? ThemeUtils.getColorByTheme(inflater.getContext(), R.attr.colorAccent)
-                        : ThemeUtils.getColorByTheme(inflater.getContext(), R.attr.colorTextDim);
+                int colorCode = (hasFocus) ? FormBuilderThemeHelper.getColorByTheme(inflater.getContext(), R.attr.colorAccent)
+                        : FormBuilderThemeHelper.getColorByTheme(inflater.getContext(), R.attr.colorTextDim);
 
                 tv_3.setTextColor(colorCode);
                 kbi_3.setHintTextColor(colorCode);

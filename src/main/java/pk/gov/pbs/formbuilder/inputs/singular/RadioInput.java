@@ -11,6 +11,7 @@ import pk.gov.pbs.formbuilder.R;
 import pk.gov.pbs.formbuilder.core.LabelProvider;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class RadioInput extends Selectable {
     private RadioButton inputElement;
@@ -45,6 +46,7 @@ public class RadioInput extends Selectable {
         RadioButton item;
         if(getInputView() == null) {
             item =(RadioButton) inflater.inflate(getResId(), parent, false);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), item);
             Spanned text = Html.fromHtml(getValue().toString() + ". " + labels.getLabel(getIndex()));
             item.setText(text);
             inputElement = item;

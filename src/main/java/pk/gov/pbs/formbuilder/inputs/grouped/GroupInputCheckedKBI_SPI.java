@@ -28,8 +28,9 @@ import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.formbuilder.core.ActivityFormSection;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
-import pk.gov.pbs.formbuilder.utils.ThemeUtils;
+import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class GroupInputCheckedKBI_SPI extends GroupInputTableRow {
     protected EditText kbi;
@@ -183,15 +184,15 @@ public class GroupInputCheckedKBI_SPI extends GroupInputTableRow {
 
     private void lockItem(CheckBox item){
         if(!item.isChecked()) {
-            ThemeUtils.applyThemedDrawableToView(item, R.attr.bgSelectableLockedUnanswered);
+            FormBuilderThemeHelper.applyThemedDrawableToView(item, R.attr.bgSelectableLockedUnanswered);
         }else {
-            ThemeUtils.applyThemedDrawableToView(item, R.attr.bgSelectableLocked);
+            FormBuilderThemeHelper.applyThemedDrawableToView(item, R.attr.bgSelectableLocked);
         }
         item.setClickable(false);
     }
 
     private void unlockItem(CheckBox item){
-        ThemeUtils.applyThemedDrawableToView(item, R.attr.bgSelectableUnlocked);
+        FormBuilderThemeHelper.applyThemedDrawableToView(item, R.attr.bgSelectableUnlocked);
         item.setClickable(true);
     }
 
@@ -332,6 +333,7 @@ public class GroupInputCheckedKBI_SPI extends GroupInputTableRow {
 
             Spanned htm = Html.fromHtml(labelProvider.getLabel(getIndex()));
             cbi = item.findViewById(R.id.cbi);
+            ThemeUtils.setupTextViewStylesByLocale(labelProvider.getLocale(), cbi);
             cbi.setText(htm);
 
 

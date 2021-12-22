@@ -13,6 +13,7 @@ import pk.gov.pbs.formbuilder.core.LabelProvider;
 import pk.gov.pbs.formbuilder.core.ActivityFormSection;
 import pk.gov.pbs.formbuilder.inputs.abstracts.input.SingularInput;
 import pk.gov.pbs.formbuilder.models.Section;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class ButtonInput extends SingularInput {
     private final View.OnClickListener handler;
@@ -105,6 +106,7 @@ public class ButtonInput extends SingularInput {
     public void inflate(LayoutInflater inflater, LabelProvider labels, ViewGroup parent) {
         if(getInputView() == null) {
             inputElement = (Button) inflater.inflate(getResId(), parent, false);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), inputElement);
             Spanned text = Html.fromHtml(labels.getLabel(getIndex()));
             inputElement.setText(text);
         }else {

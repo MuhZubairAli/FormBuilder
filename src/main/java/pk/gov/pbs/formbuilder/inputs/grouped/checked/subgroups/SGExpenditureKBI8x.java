@@ -21,7 +21,7 @@ import pk.gov.pbs.formbuilder.core.ActivityFormSection;
 import pk.gov.pbs.formbuilder.inputs.grouped.GroupInputLinearLayout;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
-import pk.gov.pbs.formbuilder.utils.ThemeUtils;
+import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
 import pk.gov.pbs.formbuilder.validator.OptionalValidator;
 import pk.gov.pbs.formbuilder.validator.PhoneNumberValidator;
 import pk.gov.pbs.formbuilder.validator.Validator;
@@ -246,8 +246,8 @@ public class SGExpenditureKBI8x extends GroupInputLinearLayout {
                 }
 
                 input.setOnFocusChangeListener((v, hasFocus) -> {
-                    int colorCode = (hasFocus) ? ThemeUtils.getColorByTheme(context, R.attr.colorAccent)
-                            : ThemeUtils.getColorByTheme(context, R.attr.colorTextDim);
+                    int colorCode = (hasFocus) ? FormBuilderThemeHelper.getColorByTheme(context, R.attr.colorAccent)
+                            : FormBuilderThemeHelper.getColorByTheme(context, R.attr.colorTextDim);
 
                     if (mLabelsInput[index] != null)
                         mLabelsInput[index].setTextColor(colorCode);

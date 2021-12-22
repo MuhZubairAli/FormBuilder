@@ -18,6 +18,7 @@ import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.formbuilder.core.ActivityFormSection;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class GroupInputKBI extends GroupInputLinearLayout {
     private final KeyboardInput mKeyboardInput;
@@ -153,7 +154,9 @@ public class GroupInputKBI extends GroupInputLinearLayout {
                 qStmt = labels.getLabel(getIndex());
 
             Spanned htm = Html.fromHtml(qStmt);
-            ((TextView) item.findViewById(R.id.tv)).setText(htm);
+            TextView tvLabel = item.findViewById(R.id.tv);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), tvLabel);
+            tvLabel.setText(htm);
 
             LinearLayout c_kbi = item.findViewById(R.id.kbi);
             mKeyboardInput.inflate(inflater, labels, c_kbi);

@@ -24,6 +24,7 @@ import pk.gov.pbs.formbuilder.core.ActivityFormSection;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class GroupInputButtonedKBI extends GroupInputLinearLayout {
     private boolean crossEditInfiniteLoopHack = false;
@@ -236,7 +237,9 @@ public class GroupInputButtonedKBI extends GroupInputLinearLayout {
         if(getInputView() == null) {
             item = (LinearLayout) inflater.inflate(getResId(), container, false);
 
-            ((TextView) item.findViewById(R.id.tv)).setText(
+            TextView tvLabel = item.findViewById(R.id.tv);
+            ThemeUtils.setupTextViewStylesByLocale(labelProvider.getLocale(), tvLabel);
+            tvLabel.setText(
                     Html.fromHtml(labelProvider.getLabel(getIndex()))
             );
 
@@ -247,6 +250,7 @@ public class GroupInputButtonedKBI extends GroupInputLinearLayout {
 
             btn_1 = item.findViewById(R.id.btn_1);
             btn_2 = item.findViewById(R.id.btn_2);
+            ThemeUtils.setupTextViewStylesByLocale(labelProvider.getLocale(), btn_1, btn_2);
 
             String btnLabel1 = labelProvider.getLabel(getIndex()+"_btn");
             if (btnLabel1 == null)

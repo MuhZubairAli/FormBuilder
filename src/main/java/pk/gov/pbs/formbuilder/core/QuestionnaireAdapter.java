@@ -19,13 +19,14 @@ import java.util.ArrayList;
 import pk.gov.pbs.formbuilder.R;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.formbuilder.meta.QuestionStates;
-import pk.gov.pbs.formbuilder.utils.ThemeUtils;
+import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdapter.QuestionViewHolder> {
     public static short FORCE_ASK_NEXT = 0;
     protected ActivityFormSection mContext;
     protected ArrayList<Question> mQuestions;
-    //protected static Typeface UrduFontFace;
+    protected static Typeface mUrduFontFace;
 
     class QuestionViewHolder extends RecyclerView.ViewHolder {
         TextView tvQuestion,tvQuestionHint;
@@ -34,13 +35,12 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
         QuestionViewHolder(@NonNull View itemView, int viewType) {
             super(itemView);
 
-            tvQuestion = itemView.findViewById(R.id.tv_question);
-            //tvQuestion.setTypeface(UrduFontFace);
-
-            tvQuestionHint = itemView.findViewById(R.id.tv_question_hint);
-            //tvQuestionHint.setTypeface(UrduFontFace);
-
             containerInput = itemView.findViewById(R.id.container_answer);
+            tvQuestion = itemView.findViewById(R.id.tv_question);
+            tvQuestionHint = itemView.findViewById(R.id.tv_question_hint);
+            ThemeUtils.setupTextViewStylesByLocale(
+                    mContext.getLabelProvider().getLocale(), tvQuestion, tvQuestionHint
+            );
 
             FORCE_ASK_NEXT = 0;
             mQuestions.get(viewType).initialize(mContext, containerInput);
@@ -117,7 +117,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
     public QuestionnaireAdapter(ActivityFormSection context){
         this.mContext = context;
         this.mQuestions = context.getQuestionnaireManager().getQuestions();
-        //UrduFontFace = Typeface.createFromAsset(context.getAssets(), "fonts/Jameel_Noori_Nastaleeq_Kasheeda.ttf");
+        mUrduFontFace = FormBuilderThemeHelper.getUrduFontTypeFace(context);
     }
 
     @NonNull
@@ -137,7 +137,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
             if (isHeader) {
                 holder.tvQuestionHint.setVisibility(View.GONE);
                 holder.tvQuestion.setTextColor(Color.WHITE);
-                holder.tvQuestion.setBackgroundColor(ThemeUtils.getColorByTheme(mContext, R.attr.colorAccentDark));
+                holder.tvQuestion.setBackgroundColor(FormBuilderThemeHelper.getColorByTheme(mContext, R.attr.colorAccentDark));
             }
         }
         holder.tvQuestion.setText(qHTM);

@@ -22,7 +22,7 @@ import pk.gov.pbs.formbuilder.inputs.abstracts.adapters.SingularInputAdapter;
 import pk.gov.pbs.formbuilder.inputs.singular.adapters.TouchInputAdapter;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.meta.QuestionStates;
-import pk.gov.pbs.formbuilder.utils.ThemeUtils;
+import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
 import pk.gov.pbs.utils.StaticUtils;
 
 public class Question {
@@ -154,9 +154,9 @@ public class Question {
             View tvQuestion = container.findViewById(R.id.tv_question);
             View tvQuestionHint = container.findViewById(R.id.tv_question_hint);
 
-            tvQuestion.setBackgroundColor(ThemeUtils.getColorByTheme(container.getContext(), R.attr.colorQuestionStatementBackgroundDim));
-            tvQuestionHint.setBackgroundColor(ThemeUtils.getColorByTheme(container.getContext(), R.attr.colorQuestionStatementBackgroundDim));
-            ThemeUtils.applyThemedDrawableToView(container, R.attr.bgCardLocked);
+            tvQuestion.setBackgroundColor(FormBuilderThemeHelper.getColorByTheme(container.getContext(), R.attr.colorQuestionStatementBackgroundDim));
+            tvQuestionHint.setBackgroundColor(FormBuilderThemeHelper.getColorByTheme(container.getContext(), R.attr.colorQuestionStatementBackgroundDim));
+            FormBuilderThemeHelper.applyThemedDrawableToView(container, R.attr.bgCardLocked);
 
             if(rigidify) {
                 btnLock.setBackgroundResource(R.drawable.ic_rigid_lock);
@@ -204,12 +204,12 @@ public class Question {
             View tvQuestion = container.findViewById(R.id.tv_question);
             View tvQuestionHint = container.findViewById(R.id.tv_question_hint);
 
-            tvQuestion.setBackgroundColor(ThemeUtils.getColorByTheme(container.getContext(), R.attr.colorQuestionStatementBackground));
-            tvQuestionHint.setBackgroundColor(ThemeUtils.getColorByTheme(container.getContext(), R.attr.colorGray5));
+            tvQuestion.setBackgroundColor(FormBuilderThemeHelper.getColorByTheme(container.getContext(), R.attr.colorQuestionStatementBackground));
+            tvQuestionHint.setBackgroundColor(FormBuilderThemeHelper.getColorByTheme(container.getContext(), R.attr.colorGray5));
 
             btnLock.setBackgroundResource(R.drawable.ic_unlocked);
 
-            ThemeUtils.applyThemedDrawableToView(container, R.attr.bgCardUnlocked);
+            FormBuilderThemeHelper.applyThemedDrawableToView(container, R.attr.bgCardUnlocked);
 
             container.setFocusable(true);
             container.setFocusableInTouchMode(true);

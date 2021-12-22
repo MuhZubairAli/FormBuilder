@@ -34,6 +34,7 @@ import pk.gov.pbs.formbuilder.pojos.Annex;
 import pk.gov.pbs.formbuilder.pojos.DatumIdentifier;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class GroupInputAnnex extends GroupInputLinearLayout {
     private DatumIdentifier mIdentifier;
@@ -375,7 +376,9 @@ public class GroupInputAnnex extends GroupInputLinearLayout {
             item = (LinearLayout) inflater.inflate(getResId(), parent, false);
 
             Spanned htm = Html.fromHtml(labels.getLabel(getIndex()));
-            ((TextView) item.findViewById(R.id.tv)).setText(htm);
+            TextView tvLabel = item.findViewById(R.id.tv);
+            ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), tvLabel);
+            tvLabel.setText(htm);
 
             codeInput = item.findViewById(R.id.kbi_2);
             codeInput.setHint(R.string.hint_annex_code);
