@@ -31,6 +31,7 @@ import pk.gov.pbs.formbuilder.pojos.DatumIdentifier;
 import pk.gov.pbs.formbuilder.pojos.OptionTuple;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ThemeUtils;
 
 public class AutoCompleteKeyboardInput extends SingularInput {
     private final DatumIdentifier mDatumIdentifier;
@@ -256,8 +257,10 @@ public class AutoCompleteKeyboardInput extends SingularInput {
         AutoCompleteTextView item;
         if(getInputView() == null) {
             item = (AutoCompleteTextView) inflater.inflate(getResId(), parent, false);
-            if (labels.hasHint(getIndex()+"_kbi"))
-                item.setHint(labels.getHint(getIndex()+"_kbi"));
+            if (labels.hasHint(getIndex()+"_kbi")) {
+                item.setHint(labels.getHint(getIndex() + "_kbi"));
+                //ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), item);
+            }
 
             item.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
 

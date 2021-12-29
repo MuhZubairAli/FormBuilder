@@ -16,6 +16,7 @@ import pk.gov.pbs.formbuilder.meta.QuestionNavigationStatus;
 import pk.gov.pbs.formbuilder.meta.QuestionStates;
 import pk.gov.pbs.formbuilder.pojos.Jump;
 import pk.gov.pbs.formbuilder.pojos.QuestionNavigationResponse;
+import pk.gov.pbs.formbuilder.utils.IPostExecute;
 import pk.gov.pbs.utils.StaticUtils;
 import pk.gov.pbs.utils.UXToolkit;
 
@@ -106,19 +107,29 @@ public class NavigationToolkit {
                 .smoothScrollToPosition(position);
     }
 
-    public void quickScrollTo(int position, boolean flash){
+    public void quickScrollTo(int position, boolean flash, IPostExecute postExecute) {
         mContext
                 .getFormContainer()
                 .scrollToPosition(position);
+
+        if (postExecute != null) {
+            mContext.getFormContainer()
+                    .post(postExecute::postExecute);
+        }
+
         if (flash)
             mQuestions.get(position).flash();
     }
 
     public void quickScrollTo(int position){
-        quickScrollTo(position,false);
+        quickScrollTo(position,false, null);
     }
 
-    public void askNextQuestion(){
+    public void quickScrollTo(int position, boolean flash) {
+        quickScrollTo(position,flash, null);
+    }
+
+    public void askNextQuestion() {
         askNextQuestion(false, (mQuestions.size() -1));
     }
 
@@ -126,12 +137,12 @@ public class NavigationToolkit {
         askNextQuestion(force, (mQuestions.size() -1));
     }
 
-    public void askNextQuestion(int questionNumber){
+    public void askNextQuestion(int questionNumber) {
         askNextQuestion(false, questionNumber);
     }
 
-    public void askNextQuestion(boolean force, int questionNumber){
-        for (int i = 0; i < mQuestions.size() -1; i++) {
+    public void askNextQuestion(boolean force, int questionNumber) {
+        for (int i = 0; i < mQuestions.size(); i++) {
             Question question = mQuestions.get(i);
 
             if(question.getState() == QuestionStates.READ_ONLY)
@@ -140,7 +151,6 @@ public class NavigationToolkit {
             if (i < questionNumber) {
                 if(question.getState() != QuestionStates.LOCKED && question.getState() != QuestionStates.ANSWERED) {
                     quickScrollTo(i,true);
-                    question.requestInputFocus();
                     return;
                 }
             } else if (i == questionNumber) {
@@ -188,14 +198,13 @@ public class NavigationToolkit {
                         || (questionNumber + 1) == mQuestions.size()
                     ) {
                         break;
-                    }else {
+                    } else {
                         if(scrollToNextUnlockedQuestion(i+1)) return;
                     }
                 }
-            } else {
+            } else { // for all question after current clicked question
                 if((i+1) < mQuestions.size() && question.getState() != QuestionStates.LOCKED) {
                     quickScrollTo(i,true);
-                    question.requestInputFocus();
                     return;
                 }
             }
@@ -205,71 +214,8 @@ public class NavigationToolkit {
     }
 
     private void askNextQuestion(boolean force, boolean skipJump, int questionNumber) {
-        Question CQ;
-        if(questionNumber > -1)
-            CQ = mQuestions.get(mQuestions.size()-1);
-        else CQ = null;
-
-        if(CQ != null && CQ.validateAnswer() && !force) {
-            String eCode = CQ.ExecPostCondition(mContext.getQuestionnaireManager(), CQ);
-            if(eCode != null && !eCode.isEmpty()){
-                mUXToolkit.showAlertDialogue(
-                        mContext.getString(R.string.validation_error_title)
-                        , mContext.getString(
-                                R.string.question_condition_error_message
-                                ,mContext.getErrorStatementProvider().getStatement(eCode)
-                                , "13"
-                        )
-                );
-                return;
-            }
-
-            if (CQ.getAdapter() instanceof SingularInputAdapter) {
-                SingularInputAdapter adapter = (SingularInputAdapter) CQ.getAdapter();
-                if (adapter.getJumps() != null && !skipJump) {
-                    int fromSection = mContext.getSectionNumber();
-                    if (adapter.getJumps().size() == 1) {
-                        if (takeJump(fromSection, adapter.getJumps().get(0)))
-                            return;
-                    } else if (adapter.getJumps().size() > 1) {
-                        mUXToolkit.showToast("Multiple Jumps received from Validator, Took action on first one");
-                        if (takeJump(fromSection, adapter.getJumps().get(0)))
-                            return;
-                    }
-                }
-            }
-        } else {
-            //Either no question or Invalid answer
-            if(questionNumber == mQuestions.size()-1) { // if askNextQuestion()'s caller is last one
-                if (CQ != null && !CQ.validateAnswer() && !force) {
-                    mUXToolkit.showAlertDialogue(
-                            mContext.getString(R.string.validation_error_title)
-                            , mContext.getString(
-                                    R.string.validation_error_message,
-                                    CQ.getValidationErrorStatement()
-                                    , CQ.getValidationRuleStatement()
-                                    , "13"
-                            )
-                    );
-                    return;
-                }
-            } else {
-                if((questionNumber + 2) == mQuestions.size() && mQuestions.get(questionNumber + 1).getState() == QuestionStates.UNLOCKED){
-                    quickScrollTo(questionNumber + 1, true);
-                    return;
-                }
-
-                //Todo: remove below chaipee
-                //Chaipee
-//                if (mQuestions.get(questionNumber).getState() == QuestionStates.LOCKED){
-//                    scrollToNextUnlockedQuestion(questionNumber, false);
-//                    return;
-//                }
-
-                quickScrollTo(questionNumber,true);
-                return;
-            }
-        }
+        if (!checkQuestionConditions(force, skipJump, questionNumber))
+            return;
 
         QuestionNavigationResponse response = mContext.getQuestionnaireManager().advanceQuestion();
         if (response.getStatusCode() == QuestionNavigationStatus.VALIDATION_OK) {
@@ -279,25 +225,30 @@ public class NavigationToolkit {
                     .getAdapter())
                     .notifyItemInserted(newItemPos);
 
-            mHandler.post(()-> {
-                if(newItemPos > 0) {
-                    mQuestions.get(newItemPos - 1).lock();
+            mHandler.post(()->{
+                if (newItemPos < mQuestions.size() && mQuestions.get(newItemPos) instanceof QuestionHeader) {
+                    askNextQuestion();
+                    return;
                 }
 
+                mHandler.post(()-> {
+                    if(newItemPos > 0) {
+                        mQuestions.get(newItemPos - 1).lock();
+                    }
+                });
+
+                quickScrollTo(newItemPos);
                 mHandler.post(()->{
-                    quickScrollTo(newItemPos + 1);
-                    mHandler.post(()->{
-                        if (newItemPos < mQuestions.size() && mQuestions.get(newItemPos) instanceof QuestionHeader) {
-                            askNextQuestion();
-                        } else if (newItemPos < mQuestions.size()){
-                            mQuestions.get(newItemPos).requestFocus();
-                            mHandler.postDelayed(() -> {
-                                if (mQuestions.get(newItemPos).getState() != QuestionStates.LOCKED) {
-                                    mQuestions.get(newItemPos).requestInputFocus();
-                                }
-                            }, 50);
-                        }
-                    });
+                    if (newItemPos < mQuestions.size()){
+                        mQuestions.get(newItemPos).requestFocus();
+                        //Focus request is delayed so scrolling to new Question's top would be
+                        //completed by the time focus request is made
+                        mHandler.post(() -> {
+                            if (mQuestions.get(newItemPos).getState() != QuestionStates.LOCKED) {
+                                mQuestions.get(newItemPos).requestInputFocus();
+                            }
+                        });
+                    }
                 });
             });
 
@@ -339,6 +290,62 @@ public class NavigationToolkit {
                 });
             }
         }
+    }
+
+    private boolean checkQuestionConditions(boolean force, boolean skipJump, int questionNumber){
+        Question CQ;
+        if(questionNumber > -1)
+            CQ = mQuestions.get(mQuestions.size()-1);
+        else CQ = null;
+
+        if(CQ != null && CQ.validateAnswer() && !force) {
+            String eCode = CQ.ExecPostCondition(mContext.getQuestionnaireManager(), CQ);
+            if(eCode != null && !eCode.isEmpty()){
+                mUXToolkit.showAlertDialogue(
+                        mContext.getString(R.string.validation_error_title)
+                        , mContext.getString(
+                                R.string.question_condition_error_message
+                                ,mContext.getErrorStatementProvider().getStatement(eCode)
+                                , "13"
+                        )
+                );
+                return false;
+            }
+
+            if (CQ.getAdapter() instanceof SingularInputAdapter) {
+                SingularInputAdapter adapter = (SingularInputAdapter) CQ.getAdapter();
+                if (adapter.getJumps() != null && !skipJump) {
+                    int fromSection = mContext.getSectionNumber();
+                    if (adapter.getJumps().size() == 1) {
+                        return !takeJump(fromSection, adapter.getJumps().get(0));
+                    } else if (adapter.getJumps().size() > 1) {
+                        mUXToolkit.showToast("Multiple Jumps received from Validator, Took action on first one");
+                        return !takeJump(fromSection, adapter.getJumps().get(0));
+                    }
+                }
+            }
+        } else if (CQ != null) {
+            // if clicked question is second last
+            if (questionNumber == mQuestions.size()-2) {
+                quickScrollTo(questionNumber+1);
+                return checkQuestionConditions (force,skipJump, questionNumber+1);
+            }
+
+            if (!CQ.validateAnswer() && !force) {
+                mUXToolkit.showAlertDialogue(
+                        mContext.getString(R.string.validation_error_title)
+                        , mContext.getString(
+                                R.string.validation_error_message,
+                                CQ.getValidationErrorStatement()
+                                , CQ.getValidationRuleStatement()
+                                , "13"
+                        )
+                );
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public boolean verifyQuestionsStatuses(){

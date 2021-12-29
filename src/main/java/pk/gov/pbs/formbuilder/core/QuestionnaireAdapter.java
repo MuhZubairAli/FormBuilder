@@ -140,6 +140,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
                 holder.tvQuestion.setBackgroundColor(FormBuilderThemeHelper.getColorByTheme(mContext, R.attr.colorAccentDark));
             }
         }
+
         holder.tvQuestion.setText(qHTM);
         if (mContext.getLabelProvider().hasHint(question.getIndex())) {
             String htm = mContext.getLabelProvider().getHint(question.getIndex());

@@ -32,7 +32,7 @@ public class DataInput extends SingularInput {
 
     public DataInput highlight() throws IllegalMethodCallException {
         if (inputElement != null) {
-            throw new IllegalMethodCallException("highlight()] - This method is only effective for un-inflated askable");
+            throw new IllegalMethodCallException("DataInput]:highlight - This method is only effective for un-inflated askable");
         }
 
         useAccent = true;

@@ -297,7 +297,7 @@ public class Question {
     }
 
     public void flash(){
-        StaticUtils.getHandler().postDelayed(()->{
+        StaticUtils.getHandler().post(()->{
             try {
                 ViewGroup container = (ViewGroup) (
                         mAdapter.getAnswerContainerView()
@@ -312,7 +312,7 @@ public class Question {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }, 100);
+        });
 
     }
 
