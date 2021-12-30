@@ -5,7 +5,7 @@ import java.util.concurrent.Future;
 
 import pk.gov.pbs.database.DatabaseUtils;
 import pk.gov.pbs.database.ModelBasedRepository;
-import pk.gov.pbs.formbuilder.models.FormContext;
+import pk.gov.pbs.formbuilder.models.SectionContext;
 import pk.gov.pbs.formbuilder.models.RosterSection;
 
 public class HouseholdMemberDao<T extends RosterSection>{
@@ -28,11 +28,11 @@ public class HouseholdMemberDao<T extends RosterSection>{
         );
     }
 
-    public Future<List<T>> getAll(FormContext fc) {
+    public Future<List<T>> getAll(SectionContext fc) {
         return repository.selectRowMultiAs(
                 mMemberClass,
                 "SELECT * FROM " + mMemberClass.getSimpleName() + " WHERE pcode=? AND hhno=?",
-                new String[]{fc.getPCode(), String.valueOf(fc.getHHNo())}
+                new String[]{fc.getBlockIdentifier(), String.valueOf(fc.getHHNo())}
         );
     }
 }

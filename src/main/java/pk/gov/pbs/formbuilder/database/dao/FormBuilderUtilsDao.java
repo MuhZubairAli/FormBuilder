@@ -5,7 +5,7 @@ import java.util.List;
 import pk.gov.pbs.database.DatabaseUtils;
 import pk.gov.pbs.formbuilder.database.FormBuilderRepository;
 import pk.gov.pbs.formbuilder.models.BackupHistory;
-import pk.gov.pbs.formbuilder.models.FormContext;
+import pk.gov.pbs.formbuilder.models.SectionContext;
 
 public class FormBuilderUtilsDao {
     FormBuilderRepository mRepository;
@@ -15,31 +15,31 @@ public class FormBuilderUtilsDao {
     }
 
     //@Query("SELECT * FROM fcs WHERE mPCode=:pcode and mHHNo=:hhno")
-    public FormContext getFCSByContext(FormContext fContext){
+    public SectionContext getFCSByContext(SectionContext fContext){
         return mRepository.getDatabase().selectRowBySQL(
-                FormContext.class, "SELECT * FROM "+FormContext.class.getSimpleName()+" WHERE PCode=? and HHNo=?",
-                new String[] {fContext.getPCode(), String.valueOf(fContext.getHHNo())}
+                SectionContext.class, "SELECT * FROM "+ SectionContext.class.getSimpleName()+" WHERE PCode=? and HHNo=?",
+                new String[] {fContext.getBlockIdentifier(), String.valueOf(fContext.getHHNo())}
         );
     }
 
     //@Query("SELECT * FROM fcs WHERE mPCode=:pcode and mHHNo=:hhno")
-    public FormContext getFCS(String pcode, int hhno){
+    public SectionContext getFCS(String pcode, int hhno){
         return mRepository.getDatabase().selectRowBySQL(
-                FormContext.class, "SELECT * FROM "+FormContext.class.getSimpleName()+" WHERE PCode=? and HHNo=?",
+                SectionContext.class, "SELECT * FROM "+ SectionContext.class.getSimpleName()+" WHERE PCode=? and HHNo=?",
                 new String[] {pcode, String.valueOf(hhno)}
         );
     }
 
-    public Long setFormContext(FormContext fContext){
+    public Long setFormContext(SectionContext fContext){
         return DatabaseUtils.getFutureValue(
                 mRepository.replaceOrThrow(fContext)
         );
     }
 
     //@Query("SELECT * FROM fcs")
-    public List<FormContext> getAllFCs(){
+    public List<SectionContext> getAllFCs(){
         return DatabaseUtils.getFutureValue(mRepository.selectRowMultiAs(
-                FormContext.class, "SELECT * FROM "+FormContext.class.getSimpleName(), null
+                SectionContext.class, "SELECT * FROM "+ SectionContext.class.getSimpleName(), null
         ));
     }
 

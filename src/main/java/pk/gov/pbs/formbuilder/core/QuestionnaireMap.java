@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import pk.gov.pbs.formbuilder.exceptions.InvalidIndexException;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.meta.QuestionStates;
 import pk.gov.pbs.formbuilder.models.HouseholdSection;
@@ -220,36 +221,6 @@ public abstract class QuestionnaireMap {
             return null;
     }
 
-    public void insertAnswer(String qIndex, String abIndex, ValueStore answer){
-        Question q = null;
-        if(indexes.containsKey(qIndex)) {
-            q = map.get(indexes.get(qIndex));
-        }
-        if(q != null)
-            q.loadAnswer(abIndex, answer);
-    }
-
-    public void insertAnswerForSingleAskable(String qIndex, ValueStore answer){
-        insertAnswer(qIndex, qIndex.concat("_1"), answer);
-    }
-
-    public void insertAnswerForSelectable(String qIndex, String abIndex){
-        insertAnswer(qIndex, abIndex, null);
-    }
-
-    public void insertAnswerForSelectable(String qIndex, String abIndex, ValueStore answer){
-        insertAnswer(qIndex, abIndex, answer);
-    }
-
-    public void insertQuestionEvents(String index,  @NonNull Question.Conditions events){
-        Question q = null;
-        if(indexes.containsKey(index)) {
-            q = map.get(indexes.get(index));
-        }
-        if(q != null)
-            q.setConditions(events);
-    }
-
     public Question getNextQuestion(){
         if(hasNextQuestion()) {
             map.get(mapIndex+1).setRemoved(false);
@@ -284,7 +255,6 @@ public abstract class QuestionnaireMap {
         map.clear();
         indexes.clear();
         generateMap();
-
     }
 
     public int getQuestionCount(){

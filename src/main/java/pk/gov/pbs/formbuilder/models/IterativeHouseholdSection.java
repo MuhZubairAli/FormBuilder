@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import pk.gov.pbs.database.annotations.NotNull;
 import pk.gov.pbs.database.annotations.Unique;
 
-public abstract class IterativeSection extends HouseholdSection {
+public abstract class IterativeHouseholdSection extends HouseholdSection {
     @NotNull
     @Expose
     @Unique
@@ -18,13 +18,13 @@ public abstract class IterativeSection extends HouseholdSection {
     }
 
     @Override
-    public FormContext getFormContext(){
-        return new FormContext(pcode, hhno, null, null, ino);
+    public SectionContext getSectionContext(){
+        return new SectionContext(bId, hhno, null, null, ino);
     }
 
     @Override
-    public void setFormContext(FormContext context){
-        this.pcode = context.getPCode();
+    public void setSectionContext(SectionContext context){
+        this.bId = context.getBlockIdentifier();
         this.hhno = context.getHHNo();
         this.ino = context.getIterationNumber();
     }

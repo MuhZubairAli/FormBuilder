@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import pk.gov.pbs.formbuilder.exceptions.InvalidIndexException;
 import pk.gov.pbs.formbuilder.inputs.abstracts.adapters.AskableAdapter;
 import pk.gov.pbs.formbuilder.inputs.grouped.GroupInputDate;
 import pk.gov.pbs.formbuilder.inputs.singular.DateInput;
@@ -57,6 +58,7 @@ import pk.gov.pbs.formbuilder.models.HouseholdSection;
 import pk.gov.pbs.formbuilder.pojos.DatumIdentifier;
 import pk.gov.pbs.formbuilder.pojos.ItemSpinnerMember;
 import pk.gov.pbs.formbuilder.validator.Validator;
+import pk.gov.pbs.utils.ExceptionReporter;
 
 public class QuestionnaireBuilder {
     LabelProvider mLabelProvider;
@@ -126,6 +128,9 @@ public class QuestionnaireBuilder {
                 }
             } catch (IllegalAccessException ignored) {}
             catch (NoSuchFieldException ignored) {}
+            catch (InvalidIndexException e) {
+                ExceptionReporter.printStackTrace(e);
+            }
         }
 
         askables.clear();
@@ -217,7 +222,7 @@ public class QuestionnaireBuilder {
         return makeSI(qIndex, 1, Constants.INVALID_NUMBER, null);
     }
 
-    public Question makeRBI(String qIndex, int oStart, int oEnd, @Nullable Validator validator, @Nullable HashMap<Integer, DatumIdentifier> specifiable){
+    public Question makeRBI(String qIndex, int oStart, int oEnd, @Nullable Validator validator, @Nullable HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         int count = oStart;
         String index = qIndex + "_" + count;
 
@@ -278,38 +283,38 @@ public class QuestionnaireBuilder {
         return question;
     }
 
-    public Question makeRBI(String qIndex, int oStart, Validator validator, HashMap<Integer, DatumIdentifier> specifiables){
+    public Question makeRBI(String qIndex, int oStart, Validator validator, HashMap<Integer, DatumIdentifier> specifiables) throws InvalidIndexException {
         return makeRBI(qIndex, oStart, Constants.INVALID_NUMBER, validator, specifiables);
     }
 
-    public Question makeRBI(String qIndex, int oStart, Validator validator){
+    public Question makeRBI(String qIndex, int oStart, Validator validator) throws InvalidIndexException {
         return makeRBI(qIndex, oStart, Constants.INVALID_NUMBER, validator, null);
     }
 
-    public Question makeRBI(String qIndex, int oStart){
+    public Question makeRBI(String qIndex, int oStart) throws InvalidIndexException {
         return makeRBI(qIndex, oStart, Constants.INVALID_NUMBER, null, null);
     }
 
-    public Question makeRBI(String qIndex, Validator validator, HashMap<Integer, DatumIdentifier> specifiable){
+    public Question makeRBI(String qIndex, Validator validator, HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         return makeRBI(qIndex, 1, Constants.INVALID_NUMBER, validator, specifiable);
     }
 
-    public Question makeRBI(String qIndex, Validator validator){
+    public Question makeRBI(String qIndex, Validator validator) throws InvalidIndexException {
         return makeRBI(qIndex, 1, Constants.INVALID_NUMBER, validator, null);
     }
 
-    public Question makeRBI(String qIndex, HashMap<Integer, DatumIdentifier> specifiable){
+    public Question makeRBI(String qIndex, HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         return makeRBI(qIndex, 1, Constants.INVALID_NUMBER, null, specifiable);
     }
 
-    public Question makeRBI(String qIndex){
+    public Question makeRBI(String qIndex) throws InvalidIndexException {
         return makeRBI(qIndex, 1, Constants.INVALID_NUMBER, null, null);
     }
 
     //=========================================================================================================
 
 
-    public Question makeMultiColRBI(String qIndex, ColumnCount columnCount, int oStart, int oEnd, @Nullable Validator validator, @Nullable HashMap<Integer, DatumIdentifier> specifiable) {
+    public Question makeMultiColRBI(String qIndex, ColumnCount columnCount, int oStart, int oEnd, @Nullable Validator validator, @Nullable HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         int count = oStart;
         String index = qIndex + "_" + count;
 
@@ -370,24 +375,24 @@ public class QuestionnaireBuilder {
         return question;
     }
 
-    public Question makeMultiColRBI(String qIndex, ColumnCount columnCount, Validator validator, HashMap<Integer, DatumIdentifier> specifiable){
+    public Question makeMultiColRBI(String qIndex, ColumnCount columnCount, Validator validator, HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         return makeMultiColRBI(qIndex, columnCount, 1, Constants.INVALID_NUMBER, validator, specifiable);
     }
 
-    public Question makeMultiColRBI(String qIndex, ColumnCount columnCount, HashMap<Integer, DatumIdentifier> specifiable){
+    public Question makeMultiColRBI(String qIndex, ColumnCount columnCount, HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         return makeMultiColRBI(qIndex, columnCount, 1, Constants.INVALID_NUMBER, null, specifiable);
     }
 
-    public Question makeMultiColRBI(String qIndex, ColumnCount columnCount, Validator validator){
+    public Question makeMultiColRBI(String qIndex, ColumnCount columnCount, Validator validator) throws InvalidIndexException {
         return makeMultiColRBI(qIndex, columnCount, 1, Constants.INVALID_NUMBER, validator, null);
     }
 
-    public Question makeMultiColRBI(String qIndex, ColumnCount columnCount){
+    public Question makeMultiColRBI(String qIndex, ColumnCount columnCount) throws InvalidIndexException {
         return makeMultiColRBI(qIndex, columnCount, 1, Constants.INVALID_NUMBER, null, null);
     }
 
     //=========================================================================================================
-    public Question makeMultiColCBI(String qIndex, ColumnCount columnCount, int oStart, int oEnd, @Nullable Validator validator, @Nullable HashMap<Integer, DatumIdentifier> specifiable){
+    public Question makeMultiColCBI(String qIndex, ColumnCount columnCount, int oStart, int oEnd, @Nullable Validator validator, @Nullable HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         int count = oStart;
         String index = qIndex + count;
 
@@ -452,23 +457,23 @@ public class QuestionnaireBuilder {
         return question;
     }
 
-    public Question makeMultiColCBI(String qIndex, ColumnCount columnCount, Validator validator, HashMap<Integer, DatumIdentifier> specifiable){
+    public Question makeMultiColCBI(String qIndex, ColumnCount columnCount, Validator validator, HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         return makeMultiColCBI(qIndex, columnCount, 1, Constants.INVALID_NUMBER, validator, specifiable);
     }
 
-    public Question makeMultiColCBI(String qIndex, ColumnCount columnCount, HashMap<Integer, DatumIdentifier> specifiable){
+    public Question makeMultiColCBI(String qIndex, ColumnCount columnCount, HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         return makeMultiColCBI(qIndex, columnCount, 1, Constants.INVALID_NUMBER, null, specifiable);
     }
 
-    public Question makeMultiColCBI(String qIndex, ColumnCount columnCount, Validator validator){
+    public Question makeMultiColCBI(String qIndex, ColumnCount columnCount, Validator validator) throws InvalidIndexException {
         return makeMultiColCBI(qIndex, columnCount, 1, Constants.INVALID_NUMBER, validator, null);
     }
 
-    public Question makeMultiColCBI(String qIndex, ColumnCount columnCount){
+    public Question makeMultiColCBI(String qIndex, ColumnCount columnCount) throws InvalidIndexException {
         return makeMultiColCBI(qIndex, columnCount, 1, Constants.INVALID_NUMBER, null, null);
     }
     //=========================================================================================================
-    public Question makeCBI(String qIndex, int oStart, int oEnd, @Nullable Validator validator, @Nullable HashMap<Integer, DatumIdentifier> specifiable){
+    public Question makeCBI(String qIndex, int oStart, int oEnd, @Nullable Validator validator, @Nullable HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         int count = oStart;
         String index = qIndex + count;
 
@@ -533,19 +538,19 @@ public class QuestionnaireBuilder {
         return question;
     }
 
-    public Question makeCBI(String qIndex, Validator validator, HashMap<Integer, DatumIdentifier> specifiable){
+    public Question makeCBI(String qIndex, Validator validator, HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         return makeCBI(qIndex, 1, Constants.INVALID_NUMBER, validator, specifiable);
     }
 
-    public Question makeCBI(String qIndex, Validator validator){
+    public Question makeCBI(String qIndex, Validator validator) throws InvalidIndexException {
         return makeCBI(qIndex, 1, Constants.INVALID_NUMBER, validator, null);
     }
 
-    public Question makeCBI(String qIndex, HashMap<Integer, DatumIdentifier> specifiable){
+    public Question makeCBI(String qIndex, HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         return makeCBI(qIndex, 1, Constants.INVALID_NUMBER, null, specifiable);
     }
 
-    public Question makeCBI(String qIndex){
+    public Question makeCBI(String qIndex) throws InvalidIndexException {
         return makeCBI(qIndex, 1, Constants.INVALID_NUMBER, null, null);
     }
 
@@ -584,6 +589,9 @@ public class QuestionnaireBuilder {
                 }
             } catch (IllegalAccessException ignored) {}
             catch (NoSuchFieldException ignored) {}
+            catch (InvalidIndexException e) {
+                ExceptionReporter.printStackTrace(e);
+            }
 
         }
 
@@ -663,6 +671,9 @@ public class QuestionnaireBuilder {
                 }
             } catch (IllegalAccessException ignored) {}
             catch (NoSuchFieldException ignored) {}
+            catch (InvalidIndexException e) {
+                ExceptionReporter.printStackTrace(e);
+            }
 
         }
 

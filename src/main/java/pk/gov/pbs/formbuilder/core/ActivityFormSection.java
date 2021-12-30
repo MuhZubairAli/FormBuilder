@@ -24,12 +24,11 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.List;
 
 import pk.gov.pbs.formbuilder.R;
-import pk.gov.pbs.formbuilder.exceptions.IllegalMethodCallException;
 import pk.gov.pbs.formbuilder.pojos.ItemSpinnerMember;
 import pk.gov.pbs.formbuilder.exceptions.InvalidQuestionStateException;
 import pk.gov.pbs.formbuilder.inputs.singular.ButtonInput;
 import pk.gov.pbs.formbuilder.meta.Constants;
-import pk.gov.pbs.formbuilder.models.FormContext;
+import pk.gov.pbs.formbuilder.models.SectionContext;
 import pk.gov.pbs.formbuilder.models.HouseholdSection;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
 import pk.gov.pbs.utils.ExceptionReporter;
@@ -72,14 +71,14 @@ public abstract class ActivityFormSection extends ActivityCustom {
          * Current context of form section
          * This must be updated before starting new activity and added to intent extras
          */
-        FormContext fc = (FormContext) getIntent()
+        SectionContext fc = (SectionContext) getIntent()
                 .getSerializableExtra(Constants.Index.INTENT_EXTRA_FORM_CONTEXT);
         HouseholdSection resumeSection = (HouseholdSection) getIntent()
                 .getSerializableExtra(Constants.Index.INTENT_EXTRA_FORM_MODEL);
 
         // if only resume model is provided than derive context from it
         if (fc == null && resumeSection != null) {
-            fc = resumeSection.getFormContext();
+            fc = resumeSection.getSectionContext();
             fc.setSeNo(getSectionNumber());
         }
 
@@ -150,7 +149,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
     public IMetaManifest getMetaManifest() {
         return mMetaDataManifest;
     }
-    public FormContext getFormContext(){
+    public SectionContext getFormContext(){
         return mViewModel.getFormContext();
     }
 

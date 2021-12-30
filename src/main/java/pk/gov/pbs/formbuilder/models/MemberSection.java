@@ -18,13 +18,13 @@ public abstract class MemberSection extends HouseholdSection {
     }
 
     @Override
-    public FormContext getFormContext(){
-        return new FormContext(pcode, hhno, null, sno, null);
+    public SectionContext getSectionContext(){
+        return new SectionContext(bId, hhno, null, sno, null);
     }
 
     @Override
-    public void setFormContext(FormContext context){
-        this.pcode = context.getPCode();
+    public void setSectionContext(SectionContext context){
+        this.bId = context.getBlockIdentifier();
         this.hhno = context.getHHNo();
         this.sno = context.getMemberID();
     }

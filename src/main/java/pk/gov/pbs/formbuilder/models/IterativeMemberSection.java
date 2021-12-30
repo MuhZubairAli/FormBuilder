@@ -18,13 +18,13 @@ public abstract class IterativeMemberSection extends MemberSection{
     }
 
     @Override
-    public FormContext getFormContext(){
-        return new FormContext(pcode, hhno, null, sno, ino);
+    public SectionContext getSectionContext(){
+        return new SectionContext(bId, hhno, null, sno, ino);
     }
 
     @Override
-    public void setFormContext(FormContext context){
-        this.pcode = context.getPCode();
+    public void setSectionContext(SectionContext context){
+        this.bId = context.getBlockIdentifier();
         this.hhno = context.getHHNo();
         this.sno = context.getMemberID();
         this.ino = context.getIterationNumber();

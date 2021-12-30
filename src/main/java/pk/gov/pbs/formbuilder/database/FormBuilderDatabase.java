@@ -8,7 +8,7 @@ import pk.gov.pbs.database.exceptions.UnsupportedDataType;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.models.Annexure;
 import pk.gov.pbs.formbuilder.models.BackupHistory;
-import pk.gov.pbs.formbuilder.models.FormContext;
+import pk.gov.pbs.formbuilder.models.SectionContext;
 import pk.gov.pbs.formbuilder.models.LoginPayload;
 import pk.gov.pbs.formbuilder.models.Option;
 
@@ -17,7 +17,7 @@ public class FormBuilderDatabase extends ModelBasedDatabaseHelper {
     private static final int dbVersion = Constants.DATABASE_VERSION;
     private static FormBuilderDatabase INSTANCE;
     private final Class<?>[] SURVEY_MODELS = new Class[]{
-        Annexure.class, Option.class, BackupHistory.class, LoginPayload.class, FormContext.class
+        Annexure.class, Option.class, BackupHistory.class, LoginPayload.class, SectionContext.class
     };
 
     private FormBuilderDatabase(Context context) {

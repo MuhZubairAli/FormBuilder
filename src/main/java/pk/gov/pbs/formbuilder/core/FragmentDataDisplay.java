@@ -46,7 +46,7 @@ public class FragmentDataDisplay extends Fragment {
                         model
                         ,"SELECT * FROM `" + model.getSimpleName() + "` WHERE pcode=? AND hhno=?"
                         , new String[]{
-                                mViewModel.getFormContext().getPCode(),
+                                mViewModel.getFormContext().getBlockIdentifier(),
                                 mViewModel.getFormContext().getHHNo().toString()
                         }
                 );

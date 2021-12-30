@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 
 import pk.gov.pbs.formbuilder.R;
+import pk.gov.pbs.formbuilder.exceptions.InvalidIndexException;
 import pk.gov.pbs.formbuilder.inputs.abstracts.input.Askable;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
@@ -105,8 +106,17 @@ public class Question {
         }
     }
 
-    public boolean loadAnswer(@NonNull String abIndex, ValueStore... answer){
+    public boolean loadAnswer(@NonNull String abIndex, ValueStore... answer) throws InvalidIndexException {
         if(getAdapter().loadAnswer(abIndex, answer)) {
+            if (getState() != QuestionStates.ANSWERED)
+                setState(QuestionStates.ANSWERED);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean loadAnswer(int abNumericIndex, ValueStore... answer) throws InvalidIndexException {
+        if(getAdapter().loadAnswer(abNumericIndex, answer)) {
             if (getState() != QuestionStates.ANSWERED)
                 setState(QuestionStates.ANSWERED);
             return true;

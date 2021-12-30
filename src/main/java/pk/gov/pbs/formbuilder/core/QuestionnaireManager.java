@@ -8,9 +8,8 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
+import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.formbuilder.inputs.abstracts.input.Askable;
 import pk.gov.pbs.formbuilder.inputs.singular.adapters.KeyboardInputAdapter;
@@ -34,7 +33,7 @@ import pk.gov.pbs.utils.SystemUtils;
  *
  * @param <T> Type of Primary Model (default model of section defined by MetaManifest)
  */
-public abstract class QuestionnaireManager<T extends HouseholdSection> implements IQuestionnaireManager {
+public abstract class QuestionnaireManager<T extends Section> implements IQuestionnaireManager {
     private static final HashMap<String, OnAnswerHandlerExecutor> mOnAnswerTasks = new HashMap<>();
     //private static final int mExecutorThreadCount = 1;
     //private static final ExecutorService mExecutorService = Executors.newFixedThreadPool(mExecutorThreadCount);
@@ -327,7 +326,7 @@ public abstract class QuestionnaireManager<T extends HouseholdSection> implement
 
     protected T fillModel(T section) {
         if (mContext.getViewModel().getFormContext() != null)
-            section.setFormContext(mContext.getViewModel().getFormContext());
+            section.setSectionContext(mContext.getViewModel().getFormContext());
         for(int i = 0; i < mQuestions.size(); i++){
             if(
                 mQuestions.get(i) instanceof QuestionActor ||

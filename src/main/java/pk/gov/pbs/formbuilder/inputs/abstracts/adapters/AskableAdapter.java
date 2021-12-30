@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pk.gov.pbs.formbuilder.core.IQuestionnaireManager;
+import pk.gov.pbs.formbuilder.exceptions.InvalidIndexException;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
@@ -133,12 +134,20 @@ public abstract class AskableAdapter {
         return result;
     }
 
-    public boolean loadAnswer(String abIndex, ValueStore... answers){
+    public boolean loadAnswer(String abIndex, ValueStore... answers) throws InvalidIndexException {
         for (Askable ab : getAskables()){
             if (ab.getIndex().equalsIgnoreCase(abIndex)) {
-                ab.setAnswers(answers);
-                return true;
+                return ab.setAnswers(answers);
             }
+        }
+        throw new InvalidIndexException("there is no Askable with index as : " + abIndex);
+    }
+
+    public boolean loadAnswer(int abNumericIndex, ValueStore... answers) throws InvalidIndexException {
+        if (abNumericIndex < 0 || abNumericIndex >= getAskables().length)
+            throw new InvalidIndexException(abNumericIndex, "it must be between 0 and " + getAskables().length);
+        if (getAskables()[abNumericIndex] != null) {
+            return getAskables()[abNumericIndex].setAnswers(answers);
         }
         return false;
     }

@@ -16,6 +16,7 @@ public abstract class Assignment extends Table {
 
     @NotNull
     @Expose
+    @Unique
     public String EBCode;
 
     @Nullable

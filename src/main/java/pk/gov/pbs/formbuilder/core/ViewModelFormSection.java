@@ -18,7 +18,7 @@ import pk.gov.pbs.formbuilder.database.FormBuilderRepository;
 import pk.gov.pbs.formbuilder.database.dao.HouseholdMemberDao;
 import pk.gov.pbs.formbuilder.inputs.singular.SpecifiableSelectable;
 import pk.gov.pbs.formbuilder.meta.Constants;
-import pk.gov.pbs.formbuilder.models.FormContext;
+import pk.gov.pbs.formbuilder.models.SectionContext;
 import pk.gov.pbs.formbuilder.models.IterativeMemberSection;
 import pk.gov.pbs.formbuilder.models.MemberSection;
 import pk.gov.pbs.formbuilder.models.RosterSection;
@@ -33,7 +33,7 @@ import pk.gov.pbs.formbuilder.utils.ValueStore;
 public abstract class ViewModelFormSection extends AndroidViewModel {
     private Future<List<Section>> mSectionEntriesFetcher;
     private Future<List<RosterSection>> mAllMembersFetcher;
-    protected FormContext mFormContext;
+    protected SectionContext mSectionContext;
     protected LoginPayload mLoginPayload;
     protected IMetaManifest mMetaManifest;
     protected LabelProvider mLabelProvider;
@@ -53,23 +53,23 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
         mLoginPayload = mFormBuilderRepository.getLoginDao().getLoginPayload();
     }
 
-    public void init(IMetaManifest manifest, FormContext formContext, LabelProvider labelProvider, HouseholdSection resumeModel, boolean cacheAllMembers, boolean cacheSectionEntries){
+    public void init(IMetaManifest manifest, SectionContext sectionContext, LabelProvider labelProvider, HouseholdSection resumeModel, boolean cacheAllMembers, boolean cacheSectionEntries){
         mMetaManifest = manifest;
         mLabelProvider = labelProvider;
-        mFormContext = formContext;
+        mSectionContext = sectionContext;
         mResumeModel = resumeModel;
 
         if (cacheAllMembers) {
-            mAllMembersFetcher = getRosterDao().getAll(formContext);
+            mAllMembersFetcher = getRosterDao().getAll(sectionContext);
         }
 
         if (cacheSectionEntries) {
             mSectionEntriesFetcher = getFormRepository().getExecutorService().submit(() -> {
-                Class<?> model = mMetaManifest.getModel(formContext.getSection());
+                Class<?> model = mMetaManifest.getModel(sectionContext.getSection());
                 return (List<Section>) getFormRepository().getDatabase().selectRowsBySQL(
                         model,
                         "SELECT * FROM `" + model.getSimpleName() + "` WHERE `pcode`=? AND `hhno`=?",
-                        new String[]{formContext.getPCode(), String.valueOf(formContext.getHHNo())}
+                        new String[]{sectionContext.getBlockIdentifier(), String.valueOf(sectionContext.getHHNo())}
                 );
             });
         }
@@ -77,7 +77,7 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
 
     /**
      * Determine the max MemberID from household members
-     * because it is not necessary that all MemberIDs will be
+     * because it is assumed that not all MemberIDs will be
      * in increasing order and also there could be gaps in the series
      * due to deleted entries, so use this method instead of taking
      * last last member's SNo
@@ -175,7 +175,7 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
      * Setters
      */
     public void setCurrentMemberID(Integer sno){
-        mFormContext.setSNo(sno);
+        mSectionContext.setSNo(sno);
     }
     public void setResumeModel(Section resumeModel){
         mResumeModel = resumeModel;
@@ -184,7 +184,7 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
         mHouseholdMembersFiltered = membersFiltered;
     }
     public long persistFormContext(){
-        return getFormBuilderRepository().getUtilsDao().setFormContext(mFormContext);
+        return getFormBuilderRepository().getUtilsDao().setFormContext(mSectionContext);
     }
 
     /**
@@ -194,7 +194,7 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
         if (mHouseholdMembers == null) {
             synchronized (this) {
                 if (mAllMembersFetcher == null)
-                    mAllMembersFetcher = getRosterDao().getAll(mFormContext);
+                    mAllMembersFetcher = getRosterDao().getAll(mSectionContext);
 
                 mHouseholdMembers = DatabaseUtils.getFutureValue(mAllMembersFetcher);
                 mAllMembersFetcher = null;
@@ -239,10 +239,10 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
         return mResumeModel;
     }
     public Integer getCurrentMemberID(){
-        return mFormContext.getMemberID();
+        return mSectionContext.getMemberID();
     }
     public Integer getCurrentIteration(){
-        return mFormContext.getIterationNumber();
+        return mSectionContext.getIterationNumber();
     }
     public IMetaManifest getMetaManifest() {
         return mMetaManifest;
@@ -278,8 +278,8 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
         return null;
     }
 
-    public FormContext getFormContext(){
-        return mFormContext;
+    public SectionContext getFormContext(){
+        return mSectionContext;
     }
     public FormBuilderRepository getFormBuilderRepository() {
         return mFormBuilderRepository;
@@ -330,18 +330,18 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
         return false;
     }
 
-    public HouseholdSection getSectionEntryByFormContext(FormContext fContext) {
+    public HouseholdSection getSectionEntryByFormContext(SectionContext fContext) {
         return getSectionEntryByFormContext(fContext, null);
     }
 
-    public HouseholdSection getSectionEntryByFormContext(FormContext fContext, String additionalCriteria, String... additionalArgs){
+    public HouseholdSection getSectionEntryByFormContext(SectionContext fContext, String additionalCriteria, String... additionalArgs){
         Class<?> model = mMetaManifest.getModel(fContext.getSection());
         Future<?> future = getFormRepository().getExecutorService().submit(() -> {
             List<String> args = new ArrayList<>();
             StringBuilder sb = new StringBuilder();
 
             sb.append("`pcode`=? AND `hhno`=?");
-            args.add(fContext.getPCode());
+            args.add(fContext.getBlockIdentifier());
             args.add(String.valueOf(fContext.getHHNo()));
 
             if (fContext.getMemberID() != null && modelHasField(model, "sno")){
