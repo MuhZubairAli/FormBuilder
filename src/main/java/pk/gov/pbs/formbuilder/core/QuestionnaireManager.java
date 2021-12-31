@@ -101,7 +101,7 @@ public abstract class QuestionnaireManager<T extends HouseholdSection> implement
     }
 
     @Override
-    public IErrorStatementProvider getErrorStatement() {
+    public ErrorStatementProvider getErrorStatement() {
         return mContext.getErrorStatementProvider();
     }
 

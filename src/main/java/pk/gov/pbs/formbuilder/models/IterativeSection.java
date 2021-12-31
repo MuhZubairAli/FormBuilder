@@ -18,13 +18,13 @@ public abstract class IterativeSection extends HouseholdSection {
     }
 
     @Override
-    public FormContext getFormContext(){
-        return new FormContext(pcode, hhno, null, null, ino);
+    public SectionContext getFormContext(){
+        return new SectionContext(BId, hhno, null, null, ino);
     }
 
     @Override
-    public void setFormContext(FormContext context){
-        this.pcode = context.getPCode();
+    public void setFormContext(SectionContext context){
+        this.BId = context.getBlockIdentifier();
         this.hhno = context.getHHNo();
         this.ino = context.getIterationNumber();
     }

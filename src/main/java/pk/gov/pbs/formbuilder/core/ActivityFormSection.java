@@ -24,12 +24,11 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.List;
 
 import pk.gov.pbs.formbuilder.R;
-import pk.gov.pbs.formbuilder.exceptions.IllegalMethodCallException;
 import pk.gov.pbs.formbuilder.pojos.ItemSpinnerMember;
 import pk.gov.pbs.formbuilder.exceptions.InvalidQuestionStateException;
 import pk.gov.pbs.formbuilder.inputs.singular.ButtonInput;
 import pk.gov.pbs.formbuilder.meta.Constants;
-import pk.gov.pbs.formbuilder.models.FormContext;
+import pk.gov.pbs.formbuilder.models.SectionContext;
 import pk.gov.pbs.formbuilder.models.HouseholdSection;
 import pk.gov.pbs.formbuilder.toolkits.NavigationToolkit;
 import pk.gov.pbs.utils.ExceptionReporter;
@@ -52,7 +51,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
     protected LabelProvider mLabelProvider;
     protected QuestionnaireMap mMap;
     protected NavigationToolkit mNavigationToolkit;
-    protected IErrorStatementProvider mErrorStatementProvider;
+    protected ErrorStatementProvider mErrorStatementProvider;
     protected IMetaManifest mMetaDataManifest;
 
     @Override
@@ -72,7 +71,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
          * Current context of form section
          * This must be updated before starting new activity and added to intent extras
          */
-        FormContext fc = (FormContext) getIntent()
+        SectionContext fc = (SectionContext) getIntent()
                 .getSerializableExtra(Constants.Index.INTENT_EXTRA_FORM_CONTEXT);
         HouseholdSection resumeSection = (HouseholdSection) getIntent()
                 .getSerializableExtra(Constants.Index.INTENT_EXTRA_FORM_MODEL);
@@ -144,20 +143,20 @@ public abstract class ActivityFormSection extends ActivityCustom {
     public RecyclerView getFormContainer(){
         return this.mContainerForm;
     }
-    public IErrorStatementProvider getErrorStatementProvider(){
+    public ErrorStatementProvider getErrorStatementProvider(){
         return mErrorStatementProvider;
     }
     public IMetaManifest getMetaManifest() {
         return mMetaDataManifest;
     }
-    public FormContext getFormContext(){
+    public SectionContext getFormContext(){
         return mViewModel.getFormContext();
     }
 
     protected abstract QuestionnaireMap constructMap(QuestionnaireBuilder questionnaireBuilder);
     protected abstract ViewModelFormSection constructViewModel();
     protected abstract LabelProvider constructLabelProvider();
-    protected abstract IErrorStatementProvider constructErrorStatementProvider();
+    protected abstract ErrorStatementProvider constructErrorStatementProvider();
     protected abstract IMetaManifest constructMetaManifest();
     protected abstract QuestionnaireManager<?> constructQuestionnaireManager();
     //Todo: Remove this method, automate the process by using question index as placeholder in label string

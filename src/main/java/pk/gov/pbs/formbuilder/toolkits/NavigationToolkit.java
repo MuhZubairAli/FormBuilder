@@ -324,7 +324,9 @@ public class NavigationToolkit {
                     }
                 }
             }
-        } else if (CQ != null) {
+        }
+
+        if (CQ != null) {
             // if clicked question is second last
             if (questionNumber == mQuestions.size()-2) {
                 quickScrollTo(questionNumber+1);

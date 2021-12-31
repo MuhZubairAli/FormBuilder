@@ -7,6 +7,7 @@ import pk.gov.pbs.database.annotations.NotNull;
 import pk.gov.pbs.database.annotations.Unique;
 
 /**
+ * This class could be named as FormSectionContext, but it is shortened for convenience
  * This class will be updated so that it's status will have following functional states
  * 1 -> Section not completed
  * 2 -> Section has completed
@@ -15,10 +16,10 @@ import pk.gov.pbs.database.annotations.Unique;
  * and if all member have completed than section's FormContext will be updated to 2 (section has completed)
  * otherwise default status all table is already 1 and here 1 = (section not completed)
  */
-public class FormContext extends Table implements Cloneable {
+public class SectionContext extends Table implements Cloneable {
     @NotNull
     @Unique
-    public String PCode;       //Processing code
+    public String BId;       //Processing code
     @Nullable
     @Unique
     public Integer HHNo;       //Household number
@@ -26,36 +27,36 @@ public class FormContext extends Table implements Cloneable {
     public Integer SeNo;       //Section number
     public Integer INo;        //Iteration number
 
-    public FormContext(){}
+    public SectionContext(){}
 
-    public FormContext(@NonNull String PCode, @Nullable Integer HHNo, Integer seNo, Integer SNo, Integer INo) {
-        this.PCode = PCode;
+    public SectionContext(@NonNull String BId, @Nullable Integer HHNo, Integer seNo, Integer SNo, Integer INo) {
+        this.BId = BId;
         this.HHNo = HHNo;
         this.SNo = SNo;
         this.SeNo = seNo;
         this.INo = INo;
     }
 
-    public FormContext(@NonNull String PCode,@Nullable Integer HHNo, Integer seNo, Integer sNo) {
-        this.PCode = PCode;
+    public SectionContext(@NonNull String BId, @Nullable Integer HHNo, Integer seNo, Integer sNo) {
+        this.BId = BId;
         this.HHNo = HHNo;
         this.SNo = sNo;
         this.SeNo = seNo;
     }
 
-    public FormContext(@NonNull String PCode,@Nullable Integer HHNo, Integer SeNo) {
-        this.PCode = PCode;
+    public SectionContext(@NonNull String BId, @Nullable Integer HHNo, Integer SeNo) {
+        this.BId = BId;
         this.HHNo = HHNo;
         this.SeNo = SeNo;
     }
 
-    public FormContext(@NonNull String PCode,@Nullable Integer HHNo) {
-        this.PCode = PCode;
+    public SectionContext(@NonNull String BId, @Nullable Integer HHNo) {
+        this.BId = BId;
         this.HHNo = HHNo;
     }
 
-    public String getPCode() {
-        return PCode;
+    public String getBlockIdentifier() {
+        return BId;
     }
 
     public Integer getHHNo() {
@@ -74,43 +75,43 @@ public class FormContext extends Table implements Cloneable {
         return INo;
     }
 
-    public FormContext setSNo(Integer sNo){
+    public SectionContext setSNo(Integer sNo){
         SNo = sNo;
         return this;
     }
 
-    public FormContext setSeNo(int seNo){
+    public SectionContext setSeNo(int seNo){
         SeNo = seNo;
         return this;
     }
 
-    public FormContext setINo(Integer iNo){
+    public SectionContext setINo(Integer iNo){
         INo = iNo;
         return this;
     }
 
     @Override
-    public FormContext clone() {
-        return new FormContext(PCode, HHNo, SeNo, SNo, INo);
+    public SectionContext clone() {
+        return new SectionContext(BId, HHNo, SeNo, SNo, INo);
     }
 
-    public FormContext cloneWithSection(int newSeNo) {
-        return new FormContext(PCode, HHNo, newSeNo, SNo, INo);
+    public SectionContext cloneWithSection(int newSeNo) {
+        return new SectionContext(BId, HHNo, newSeNo, SNo, INo);
     }
 
-    public FormContext cloneWithIteration(int newINo) {
-        return new FormContext(PCode, HHNo, SeNo, SNo, newINo);
+    public SectionContext cloneWithIteration(int newINo) {
+        return new SectionContext(BId, HHNo, SeNo, SNo, newINo);
     }
 
-    public FormContext cloneWithMember(int newSNo) {
-        return new FormContext(PCode, HHNo, SeNo, newSNo, INo);
+    public SectionContext cloneWithMember(int newSNo) {
+        return new SectionContext(BId, HHNo, SeNo, newSNo, INo);
     }
 
-    public FormContext cloneWith(int newSeNo, int newSNo) {
-        return new FormContext(PCode, HHNo, newSeNo, newSNo, INo);
+    public SectionContext cloneWith(int newSeNo, int newSNo) {
+        return new SectionContext(BId, HHNo, newSeNo, newSNo, INo);
     }
 
-    public FormContext cloneWith(int newSeNo, int newSNo, int newINo) {
-        return new FormContext(PCode, HHNo, newSeNo, newSNo, newINo);
+    public SectionContext cloneWith(int newSeNo, int newSNo, int newINo) {
+        return new SectionContext(BId, HHNo, newSeNo, newSNo, newINo);
     }
 }

@@ -7,12 +7,12 @@ import pk.gov.pbs.database.annotations.NotNull;
 import pk.gov.pbs.database.annotations.SqlExclude;
 import pk.gov.pbs.database.annotations.Unique;
 
-public class Section extends Table {
+public abstract class Section extends Table {
     @NotNull
     @Expose
     @Unique
-    @SerializedName("PCode")
-    public String pcode;
+    @SerializedName("BId")
+    public String BId;
 
     @NotNull
     @Expose
@@ -20,11 +20,11 @@ public class Section extends Table {
     @SerializedName("SStatus")
     public Integer section_status; // 1=opened, 2=closed
 
-    public FormContext getFormContext(){
-        return new FormContext(pcode, null, null, null, null);
+    public SectionContext getFormContext(){
+        return new SectionContext(BId, null, null, null, null);
     }
 
-    public void setFormContext(FormContext context){
-        this.pcode = context.getPCode();
+    public void setFormContext(SectionContext context){
+        this.BId = context.getBlockIdentifier();
     }
 }
