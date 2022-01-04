@@ -78,7 +78,7 @@ public abstract class ActivityHouseholdSection extends ActivityFormSection {
                                     try {
                                         if (saveOrUpdateModel()) {
                                             Intent intent = new Intent(ActivityHouseholdSection.this, mMetaDataManifest.getSection(s.getSectionNumber()));
-                                            intent.putExtra(Constants.Index.INTENT_EXTRA_FORM_CONTEXT, mViewModel.getFormContext().setSeNo(s.getSectionNumber()));
+                                            intent.putExtra(Constants.Index.INTENT_EXTRA_FORM_CONTEXT, mViewModel.getSectionContext().setSeNo(s.getSectionNumber()));
                                             startActivity(intent);
                                             ActivityHouseholdSection.this.finish();
                                         } else {

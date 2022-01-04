@@ -30,7 +30,7 @@ public class FormBuilderUtilsDao {
         );
     }
 
-    public Long setFormContext(SectionContext fContext){
+    public Long setSectionContext(SectionContext fContext){
         return DatabaseUtils.getFutureValue(
                 mRepository.replaceOrThrow(fContext)
         );

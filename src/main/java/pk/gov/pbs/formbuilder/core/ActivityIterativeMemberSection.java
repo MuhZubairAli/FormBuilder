@@ -46,8 +46,8 @@ public abstract class ActivityIterativeMemberSection extends ActivityMemberSecti
                 if (s.section_status == Constants.Status.SECTION_OPENED) {
                     IterativeMemberSection rm = (IterativeMemberSection) s;
 
-                    mViewModel.getFormContext().setSNo(rm.getMemberId());
-                    mViewModel.getFormContext().setINo(rm.getIterationNumber());
+                    mViewModel.getSectionContext().setSNo(rm.getMemberId());
+                    mViewModel.getSectionContext().setINo(rm.getIterationNumber());
 
                     mViewModel.setResumeModel(rm);
                     resumeSection();
@@ -62,7 +62,7 @@ public abstract class ActivityIterativeMemberSection extends ActivityMemberSecti
                 for (int i=1; i<mAdapterSpinnerUsers.getCount(); i++){
                     if (mAdapterSpinnerUsers.getItem(i).getModel().getMemberId() == nextSNO) {
                         //reset (if any) iteration number exist for normal iteration behaviour
-                        mViewModel.getFormContext().setINo(null);
+                        mViewModel.getSectionContext().setINo(null);
                         mSpinnerUsers.setSelection(i);
                         return;
                     }
@@ -71,8 +71,8 @@ public abstract class ActivityIterativeMemberSection extends ActivityMemberSecti
         }
 
         //resetting sno and ino in case no selection is made on any spinner
-        mViewModel.getFormContext().setSNo(null);
-        mViewModel.getFormContext().setINo(null);
+        mViewModel.getSectionContext().setSNo(null);
+        mViewModel.getSectionContext().setINo(null);
 
         endSection();
     }
@@ -104,7 +104,7 @@ public abstract class ActivityIterativeMemberSection extends ActivityMemberSecti
     }
 
     protected void resetSelectionSpinnerIterations(){
-        mViewModel.getFormContext().setINo(null);
+        mViewModel.getSectionContext().setINo(null);
         mSpinnerIterations.setSelection(0);
         SP_ITERATION_LAST_VALUE = 0;
     }
@@ -118,10 +118,10 @@ public abstract class ActivityIterativeMemberSection extends ActivityMemberSecti
 
     protected void changeCurrentIteration(int position, ItemSpinnerIterativeMember selectedUser){
         SP_ITERATION_LAST_VALUE = position;
-        mViewModel.getFormContext().setINo(selectedUser.getModel().getIterationNumber());
+        mViewModel.getSectionContext().setINo(selectedUser.getModel().getIterationNumber());
 
         HouseholdSection currentModel = mViewModel
-                .getSectionEntryByFormContext(mViewModel.getFormContext());
+                .getSectionEntryByFormContext(mViewModel.getSectionContext());
 
         mViewModel.setResumeModel(currentModel);
 

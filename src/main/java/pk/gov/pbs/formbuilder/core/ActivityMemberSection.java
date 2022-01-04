@@ -124,7 +124,7 @@ public abstract class ActivityMemberSection extends ActivityHouseholdSection {
         SP_MEMBERS_LAST_VALUE = position;
         mViewModel.setCurrentMemberID(selectedUser.getModel().getMemberId());
         HouseholdSection currentModel = (MemberSection) mViewModel
-                .getSectionEntryByFormContext(mViewModel.getFormContext());
+                .getSectionEntryByFormContext(mViewModel.getSectionContext());
 
         mViewModel.setResumeModel(currentModel);
 

@@ -51,7 +51,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
     protected LabelProvider mLabelProvider;
     protected QuestionnaireMap mMap;
     protected NavigationToolkit mNavigationToolkit;
-    protected IErrorStatementProvider mErrorStatementProvider;
+    protected ErrorStatementProvider mErrorStatementProvider;
     protected IMetaManifest mMetaDataManifest;
 
     @Override
@@ -94,7 +94,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
 
         if (resumeSection == null) {
             resumeSection = mViewModel.getSectionEntryByFormContext(
-                    mViewModel.getFormContext(),
+                    mViewModel.getSectionContext(),
                     "`section_status`=" + Constants.Status.SECTION_OPENED
             );
 
@@ -143,20 +143,20 @@ public abstract class ActivityFormSection extends ActivityCustom {
     public RecyclerView getFormContainer(){
         return this.mContainerForm;
     }
-    public IErrorStatementProvider getErrorStatementProvider(){
+    public ErrorStatementProvider getErrorStatementProvider(){
         return mErrorStatementProvider;
     }
     public IMetaManifest getMetaManifest() {
         return mMetaDataManifest;
     }
     public SectionContext getFormContext(){
-        return mViewModel.getFormContext();
+        return mViewModel.getSectionContext();
     }
 
     protected abstract QuestionnaireMap constructMap(QuestionnaireBuilder questionnaireBuilder);
     protected abstract ViewModelFormSection constructViewModel();
     protected abstract LabelProvider constructLabelProvider();
-    protected abstract IErrorStatementProvider constructErrorStatementProvider();
+    protected abstract ErrorStatementProvider constructErrorStatementProvider();
     protected abstract IMetaManifest constructMetaManifest();
     protected abstract QuestionnaireManager<?> constructQuestionnaireManager();
     //Todo: Remove this method, automate the process by using question index as placeholder in label string
@@ -441,14 +441,14 @@ public abstract class ActivityFormSection extends ActivityCustom {
         if (mMetaDataManifest.isValidIndex(getSectionNumber()+1)) {
             Intent intent = new Intent(this, mMetaDataManifest.getSection(getSectionNumber() + 1));
 
-            mViewModel.getFormContext().setSeNo(getSectionNumber()+1);
+            mViewModel.getSectionContext().setSeNo(getSectionNumber()+1);
             if (mViewModel.getHouseholdMembersFiltered() != null && mViewModel.getHouseholdMembersFiltered().size() > 0)
-                mViewModel.getFormContext().setSNo(mViewModel.getHouseholdMembersFiltered().get(0).getMemberId());
-            mViewModel.persistFormContext();
+                mViewModel.getSectionContext().setSNo(mViewModel.getHouseholdMembersFiltered().get(0).getMemberId());
+            mViewModel.persistSectionContext();
 
             intent.putExtra(
                     Constants.Index.INTENT_EXTRA_FORM_CONTEXT,
-                    mViewModel.getFormContext()
+                    mViewModel.getSectionContext()
             );
             startActivity(intent);
             finish();

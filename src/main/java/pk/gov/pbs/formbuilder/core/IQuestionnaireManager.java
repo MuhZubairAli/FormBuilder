@@ -13,7 +13,7 @@ public interface IQuestionnaireManager {
     void changeQuestionRangeToEnd();
     void changeQuestionRangeNext(String start);
     void changeQuestionRange(String start);
-    IErrorStatementProvider getErrorStatement();
+    ErrorStatementProvider getErrorStatement();
     ActivityFormSection getContext();
     ViewModelFormSection getViewModel();
     void handle(Runnable run);

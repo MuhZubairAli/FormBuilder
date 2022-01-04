@@ -183,8 +183,8 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
     public void setHouseholdMembersFiltered(List<RosterSection> membersFiltered) {
         mHouseholdMembersFiltered = membersFiltered;
     }
-    public long persistFormContext(){
-        return getFormBuilderRepository().getUtilsDao().setFormContext(mSectionContext);
+    public long persistSectionContext(){
+        return getFormBuilderRepository().getUtilsDao().setSectionContext(mSectionContext);
     }
 
     /**
@@ -278,7 +278,7 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
         return null;
     }
 
-    public SectionContext getFormContext(){
+    public SectionContext getSectionContext(){
         return mSectionContext;
     }
     public FormBuilderRepository getFormBuilderRepository() {

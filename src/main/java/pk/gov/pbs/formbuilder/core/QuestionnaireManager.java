@@ -100,7 +100,7 @@ public abstract class QuestionnaireManager<T extends Section> implements IQuesti
     }
 
     @Override
-    public IErrorStatementProvider getErrorStatement() {
+    public ErrorStatementProvider getErrorStatement() {
         return mContext.getErrorStatementProvider();
     }
 
@@ -325,8 +325,8 @@ public abstract class QuestionnaireManager<T extends Section> implements IQuesti
     }
 
     protected T fillModel(T section) {
-        if (mContext.getViewModel().getFormContext() != null)
-            section.setSectionContext(mContext.getViewModel().getFormContext());
+        if (mContext.getViewModel().getSectionContext() != null)
+            section.setSectionContext(mContext.getViewModel().getSectionContext());
         for(int i = 0; i < mQuestions.size(); i++){
             if(
                 mQuestions.get(i) instanceof QuestionActor ||
