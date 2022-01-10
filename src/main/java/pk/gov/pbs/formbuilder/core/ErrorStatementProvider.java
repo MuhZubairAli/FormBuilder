@@ -1,6 +1,7 @@
 package pk.gov.pbs.formbuilder.core;
 
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,18 @@ public abstract class ErrorStatementProvider {
     private static final Map<String, String> statements = new HashMap<>();
     private static final List<String> dynamicStatements = new ArrayList<>();
     private static int errorIndex = 0;
+
+    static {
+        for (Field field : ErrorStatementProvider.class.getDeclaredFields()){
+            if (field.getType() == String.class){
+                try {
+                    field.set(null, generateErrorCode());
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     protected ErrorStatementProvider() {
         try {

@@ -12,4 +12,11 @@ public class QuestionActor extends Question {
             new ButtonInputAdapter(singularInputs)
         );
     }
+
+    public QuestionActor(String questionIndex, ButtonInput[] singularInputs){
+        super(
+            questionIndex,
+            new ButtonInputAdapter(singularInputs)
+        );
+    }
 }

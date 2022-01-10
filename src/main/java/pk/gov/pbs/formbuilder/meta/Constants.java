@@ -1,9 +1,7 @@
 package pk.gov.pbs.formbuilder.meta;
 
-import pk.gov.pbs.formbuilder.BuildConfig;
-
 public class Constants {
-    public static final boolean DEBUG_MODE = BuildConfig.DEBUG;
+    public static final boolean DEBUG_MODE = pk.gov.pbs.utils.Constants.DEBUG_MODE;
     public static final boolean CAN_LOCATION_BE_OUTSIDE_ACCURACY_CIRCLE = false;
     public static final boolean CAN_LOCATION_BE_OUTSIDE_BLOCK = false;
 
@@ -35,6 +33,7 @@ public class Constants {
 
         // Intents indexes
         public static final String INTENT_EXTRA_FORM_CONTEXT = "form_section_context";
+        public static final String INTENT_EXTRA_ASSIGNMENT = "block_household_assignments";
         public static final String INTENT_EXTRA_FORM_STATUS = "action_close_form_status";
         public static final String INTENT_EXTRA_FORM_MODEL = "action_form_model";
     }
