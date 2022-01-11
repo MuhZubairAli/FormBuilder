@@ -49,7 +49,10 @@ public abstract class AskableAdapter {
         if (question.getState() == QuestionStates.PENDING || question.getState() == QuestionStates.UNLOCKED){
             question.setState(QuestionStates.UNLOCKED);
         } else if (question.getState() == QuestionStates.ANSWERED) {
-            mAnswerContainer.post(question::lock);
+            // lock if it has all needed answers
+            if (question.hasAnswers()) {
+                mAnswerContainer.post(question::lock);
+            }
         } else if(question.getState() == QuestionStates.LOCKED){
             question.setState(QuestionStates.UNLOCKED);
             mAnswerContainer.post(question::lock);

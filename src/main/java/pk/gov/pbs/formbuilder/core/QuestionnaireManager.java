@@ -209,7 +209,7 @@ public abstract class QuestionnaireManager<T extends Section> implements IQuesti
         mSectionSkipped = true;
     }
 
-    public int endSection(QuestionActor question) {
+    public int endSection(QuestionButtonGroup question) {
         if(!mSectionEnded){
             mSectionEnded = true;
             addQuestion(question);
@@ -329,7 +329,7 @@ public abstract class QuestionnaireManager<T extends Section> implements IQuesti
             section.setSectionContext(mContext.getViewModel().getSectionContext());
         for(int i = 0; i < mQuestions.size(); i++){
             if(
-                mQuestions.get(i) instanceof QuestionActor ||
+                mQuestions.get(i) instanceof QuestionButtonGroup ||
                 mQuestions.get(i) instanceof QuestionHeader ||
                 mQuestions.get(i).getState() == QuestionStates.UNLOCKED
             )

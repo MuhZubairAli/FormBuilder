@@ -61,7 +61,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
                 return true;
             });
 
-            if(mQuestions.get(viewType) instanceof QuestionActor || mQuestions.get(viewType).getState() == QuestionStates.READ_ONLY){
+            if(mQuestions.get(viewType) instanceof QuestionButtonGroup || mQuestions.get(viewType).getState() == QuestionStates.READ_ONLY){
                 itemView.findViewById(R.id.btn_lock).setVisibility(View.GONE);
                 itemView.findViewById(R.id.btn_reset).setVisibility(View.GONE);
                 itemView.findViewById(R.id.btn_ask_next).setVisibility(View.GONE);
@@ -132,7 +132,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
         Question question = mQuestions.get(position);
         boolean isHeader = question instanceof QuestionHeader;
         Spanned qHTM = Html.fromHtml(mContext.getLabelProvider().getLabel(question.getIndex()));
-        if(isHeader || question instanceof QuestionActor){
+        if(isHeader || question instanceof QuestionButtonGroup){
             holder.tvQuestion.setGravity(Gravity.CENTER_HORIZONTAL);
             if (isHeader) {
                 holder.tvQuestionHint.setVisibility(View.GONE);

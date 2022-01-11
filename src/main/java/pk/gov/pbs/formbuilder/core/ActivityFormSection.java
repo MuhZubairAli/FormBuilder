@@ -146,7 +146,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
     public IMetaManifest getMetaManifest() {
         return mMetaDataManifest;
     }
-    public SectionContext getFormContext(){
+    public SectionContext getSectionContext(){
         return mViewModel.getSectionContext();
     }
 
@@ -416,8 +416,8 @@ public abstract class ActivityFormSection extends ActivityCustom {
         loadTopContainerSectionInfo(toolbox);
     }
 
-    public QuestionActor getActionQuestion(){
-        return new QuestionActor(
+    public QuestionButtonGroup getActionQuestion(){
+        return new QuestionButtonGroup(
                 new ButtonInput[]{
                         new ButtonInput(
                                 Constants.Index.LABEL_BTN_NEXT_SECTION
