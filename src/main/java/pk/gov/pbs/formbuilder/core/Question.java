@@ -4,9 +4,14 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.os.Build;
+import android.text.Html;
+import android.text.Spanned;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -380,6 +385,36 @@ public class Question {
 
     public void initialize(ActivityFormSection context, ViewGroup container){
         getAdapter().init(context, container, this);
+    }
+
+    public void initialize(ActivityCustom context, ViewGroup container){
+        ViewGroup itemView = (ViewGroup) context.getLayoutInflater()
+                .inflate(R.layout.item_layout_question, container, false);
+        getAdapter().init(context, ((ViewGroup) itemView.findViewById(R.id.container_answer)), this);
+
+
+        TextView questionStatement = itemView.findViewById(R.id.tv_question);
+        if (context.getLabelProvider().hasLabel(getIndex())) {
+            questionStatement.setGravity(Gravity.CENTER_HORIZONTAL);
+            Spanned qHTM = Html.fromHtml(context.getLabelProvider().getLabel(getIndex()));
+            questionStatement.setText(qHTM);
+        } else {
+            questionStatement.setVisibility(View.GONE);
+        }
+
+        TextView questionHintStatement = itemView.findViewById(R.id.tv_question_hint);
+        if (context.getLabelProvider().hasHint(getIndex())) {
+            Spanned qHTM = Html.fromHtml(context.getLabelProvider().getHint(getIndex()));
+            questionHintStatement.setText(qHTM);
+        } else {
+            questionHintStatement.setVisibility(View.GONE);
+        }
+
+        itemView.findViewById(R.id.btn_lock).setVisibility(View.GONE);
+        itemView.findViewById(R.id.btn_reset).setVisibility(View.GONE);
+        itemView.findViewById(R.id.btn_ask_next).setVisibility(View.GONE);
+
+        container.addView(itemView);
     }
 
     public void setOnAnswerEventListener(AskableAdapter.OnAnswerEvent eventListener){

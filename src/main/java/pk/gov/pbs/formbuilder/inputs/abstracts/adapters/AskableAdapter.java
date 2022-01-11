@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import pk.gov.pbs.formbuilder.core.ActivityCustom;
 import pk.gov.pbs.formbuilder.core.IQuestionnaireManager;
 import pk.gov.pbs.formbuilder.exceptions.InvalidIndexException;
 import pk.gov.pbs.formbuilder.meta.Constants;
@@ -48,7 +49,10 @@ public abstract class AskableAdapter {
         if (question.getState() == QuestionStates.PENDING || question.getState() == QuestionStates.UNLOCKED){
             question.setState(QuestionStates.UNLOCKED);
         } else if (question.getState() == QuestionStates.ANSWERED) {
-            mAnswerContainer.post(question::lock);
+            // lock if it has all needed answers
+            if (question.hasAnswers()) {
+                mAnswerContainer.post(question::lock);
+            }
         } else if(question.getState() == QuestionStates.LOCKED){
             question.setState(QuestionStates.UNLOCKED);
             mAnswerContainer.post(question::lock);
@@ -99,6 +103,16 @@ public abstract class AskableAdapter {
      * @param question parent question
      */
     public void init(ActivityFormSection context, ViewGroup container, Question question) {
+        mAnswerContainer = container;
+        ViewGroup answerContainer = (ViewGroup) context.getLayoutInflater().inflate(mContainerResID,null);
+        container.addView(answerContainer);
+
+        for (Askable ab : getAskables()) {
+            ab.inflate(context.getLayoutInflater(), context.getLabelProvider(), answerContainer);
+        }
+    }
+
+    public void init(ActivityCustom context, ViewGroup container, Question question) {
         mAnswerContainer = container;
         ViewGroup answerContainer = (ViewGroup) context.getLayoutInflater().inflate(mContainerResID,null);
         container.addView(answerContainer);

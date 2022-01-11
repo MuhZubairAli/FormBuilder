@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import pk.gov.pbs.formbuilder.core.ActivityFormSection;
-import pk.gov.pbs.formbuilder.core.QuestionActor;
+import pk.gov.pbs.formbuilder.core.QuestionButtonGroup;
 import pk.gov.pbs.formbuilder.core.QuestionHeader;
 import pk.gov.pbs.formbuilder.core.Question;
 import pk.gov.pbs.formbuilder.R;
@@ -375,7 +375,7 @@ public class NavigationToolkit {
     public int getQuestionsOnlyCount(){
         int count = 0;
         for (int i = 0; i < mQuestions.size(); i++){
-            if(mQuestions.get(i) instanceof QuestionHeader || mQuestions.get(i) instanceof QuestionActor)
+            if(mQuestions.get(i) instanceof QuestionHeader || mQuestions.get(i) instanceof QuestionButtonGroup)
                 continue;
 
             count++;

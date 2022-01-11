@@ -225,7 +225,7 @@ public abstract class ActivityMemberSection extends ActivityHouseholdSection {
     }
 
     @Override
-    public QuestionActor getActionQuestion() {
+    public QuestionButtonGroup getActionQuestion() {
         List<ButtonInput> inputList = new ArrayList<>();
 
         int nextSNo = mViewModel.getNextEligibleSNo();
@@ -287,7 +287,7 @@ public abstract class ActivityMemberSection extends ActivityHouseholdSection {
         ButtonInput[] buttons = new ButtonInput[inputList.size()];
         inputList.toArray(buttons);
 
-        QuestionActor actionQuestion = new QuestionActor(buttons);
+        QuestionButtonGroup actionQuestion = new QuestionButtonGroup(buttons);
         actionQuestion.getAdapter().setOnAnswerEventListener((manager, askables) -> {
             if (nextSNo == Constants.INVALID_NUMBER)
                 askables[0].lock();

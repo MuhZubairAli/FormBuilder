@@ -48,7 +48,6 @@ public abstract class ActivityFormSection extends ActivityCustom {
     protected ProgressBar mFormProgressBar;
     protected FragmentDataDisplay mCurrentSectionDataDisplayFragment;
     protected ViewModelFormSection mViewModel;
-    protected LabelProvider mLabelProvider;
     protected QuestionnaireMap mMap;
     protected NavigationToolkit mNavigationToolkit;
     protected ErrorStatementProvider mErrorStatementProvider;
@@ -134,9 +133,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
     public NavigationToolkit getNavigationToolkit(){
         return mNavigationToolkit;
     }
-    public LabelProvider getLabelProvider(){
-        return mLabelProvider;
-    }
+
     public QuestionnaireMap getMap() {
         return mMap;
     }
@@ -149,7 +146,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
     public IMetaManifest getMetaManifest() {
         return mMetaDataManifest;
     }
-    public SectionContext getFormContext(){
+    public SectionContext getSectionContext(){
         return mViewModel.getSectionContext();
     }
 
@@ -355,6 +352,9 @@ public abstract class ActivityFormSection extends ActivityCustom {
 
     protected void initTopContainer(){
         ViewGroup toolbox = findViewById(R.id.container_toolbox);
+        if (toolbox == null)
+            return;
+
         mSectionActionButtons = toolbox.findViewById(R.id.container_section_actions);
 
         if (mSectionActionButtons == null)
@@ -416,8 +416,8 @@ public abstract class ActivityFormSection extends ActivityCustom {
         loadTopContainerSectionInfo(toolbox);
     }
 
-    public QuestionActor getActionQuestion(){
-        return new QuestionActor(
+    public QuestionButtonGroup getActionQuestion(){
+        return new QuestionButtonGroup(
                 new ButtonInput[]{
                         new ButtonInput(
                                 Constants.Index.LABEL_BTN_NEXT_SECTION

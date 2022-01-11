@@ -98,9 +98,7 @@ public class ButtonInput extends SingularInput {
     }
 
     @Override
-    public void bindListeners(ActivityFormSection context, Runnable onAnswerEvent) {
-        inputElement.setOnClickListener(handler);
-    }
+    public void bindListeners(ActivityFormSection context, Runnable onAnswerEvent) {}
 
     @Override
     public void inflate(LayoutInflater inflater, LabelProvider labels, ViewGroup parent) {
@@ -109,7 +107,8 @@ public class ButtonInput extends SingularInput {
             ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), inputElement);
             Spanned text = Html.fromHtml(labels.getLabel(getIndex()));
             inputElement.setText(text);
-        }else {
+            inputElement.setOnClickListener(handler);
+        } else {
             ((ViewGroup) getInputView().getParent()).removeView(getInputView());
         }
         parent.addView(getInputView());

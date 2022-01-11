@@ -307,7 +307,7 @@ public abstract class ActivityIterativeMemberSection extends ActivityMemberSecti
     }
 
     @Override
-    public QuestionActor getActionQuestion() {
+    public QuestionButtonGroup getActionQuestion() {
         List<ButtonInput> inputList = new ArrayList<>();
         inputList.add((
                 new ButtonInput(
@@ -386,7 +386,7 @@ public abstract class ActivityIterativeMemberSection extends ActivityMemberSecti
         ButtonInput[] buttons = new ButtonInput[inputList.size()];
         inputList.toArray(buttons);
 
-        QuestionActor actionQuestion = new QuestionActor(buttons);
+        QuestionButtonGroup actionQuestion = new QuestionButtonGroup(buttons);
         actionQuestion.getAdapter().setOnAnswerEventListener((manager, askables) -> {
             if (mSpinnerUsers.getSelectedItemPosition() == 0)
                 askables[0].lock();

@@ -87,6 +87,8 @@ public abstract class Table implements Serializable {
             field.set(this, value.toLong());
         else if (field.getType() == double.class || field.getType() == Double.class)
             field.set(this, value.toDouble());
+        else if (field.getType() == short.class || field.getType() == Short.class)
+            field.set(this, (short) value.toInt());
         else if (field.getType() == boolean.class || field.getType() == Boolean.class)
             field.set(this, value.toBoolean());
         else if (field.getType() == float.class || field.getType() == Float.class)

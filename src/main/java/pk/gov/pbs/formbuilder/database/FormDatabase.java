@@ -1,5 +1,6 @@
 package pk.gov.pbs.formbuilder.database;
 
+import android.app.Application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -15,12 +16,12 @@ public class FormDatabase extends ModelBasedDatabaseHelper {
     private final IMetaManifest mModelManifest;
     private static FormDatabase INSTANCE;
 
-    public FormDatabase(Context context, LoginPayload payload, IMetaManifest manifest) {
+    public FormDatabase(Application context, LoginPayload payload, IMetaManifest manifest) {
         super(context, payload.getUserName()+"_"+payload.gender+".db", Constants.DATABASE_VERSION + manifest.getVersion());
         mModelManifest = manifest;
     }
 
-    public static FormDatabase getInstance(Context context, LoginPayload payload, IMetaManifest manifest){
+    public static FormDatabase getInstance(Application context, LoginPayload payload, IMetaManifest manifest){
         if (INSTANCE == null){
             synchronized (FormBuilderDatabase.class){
                 INSTANCE = new FormDatabase(context, payload, manifest);

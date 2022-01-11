@@ -9,6 +9,7 @@ import pk.gov.pbs.formbuilder.utils.FormBuilderThemeHelper;
 import pk.gov.pbs.utils.Application;
 import pk.gov.pbs.utils.CustomActivity;
 public abstract class ActivityCustom extends CustomActivity {
+    protected LabelProvider mLabelProvider;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setTheme(
@@ -18,5 +19,15 @@ public abstract class ActivityCustom extends CustomActivity {
                 )
         );
         super.onCreate(savedInstanceState);
+    }
+
+    public LabelProvider getLabelProvider(){
+        if (mLabelProvider == null)
+            mLabelProvider = new LabelProvider() {
+                @Override
+                protected void en() {}
+            };
+
+        return mLabelProvider;
     }
 }
