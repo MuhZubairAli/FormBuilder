@@ -87,7 +87,6 @@ public abstract class ActivityFormSection extends ActivityCustom {
         }
 
         mLabelProvider = constructLabelProvider();
-
         mViewModel = constructViewModel();
         mViewModel.init(mMetaDataManifest, fc, mLabelProvider, resumeSection, shouldDownloadHouseholdMembers(), shouldDownloadSectionEntries());
 

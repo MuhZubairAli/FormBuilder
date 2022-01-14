@@ -340,7 +340,7 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
             List<String> args = new ArrayList<>();
             StringBuilder sb = new StringBuilder();
 
-            sb.append("`pcode`=? AND `hhno`=?");
+            sb.append("`bId`=? AND `hhno`=?");
             args.add(fContext.getBlockIdentifier());
             args.add(String.valueOf(fContext.getHHNo()));
 

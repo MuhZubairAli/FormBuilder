@@ -84,7 +84,6 @@ public class ButtonInput extends SingularInput {
 
     @Override
     public void exportAnswer(Section model) throws NoSuchFieldException, IllegalAccessException {
-
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.List;
 
 import pk.gov.pbs.formbuilder.core.ActivityCustom;
 import pk.gov.pbs.formbuilder.core.IQuestionnaireManager;
-import pk.gov.pbs.formbuilder.exceptions.InvalidIndexException;
+import pk.gov.pbs.utils.exceptions.InvalidIndexException;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
