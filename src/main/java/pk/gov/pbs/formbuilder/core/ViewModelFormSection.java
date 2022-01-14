@@ -330,28 +330,32 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
         return false;
     }
 
-    public HouseholdSection getSectionEntryByFormContext(SectionContext fContext) {
-        return getSectionEntryByFormContext(fContext, null);
+    public HouseholdSection getSectionEntryByFormContext(SectionContext sContext) {
+        return getSectionEntryByFormContext(sContext, null);
     }
 
-    public HouseholdSection getSectionEntryByFormContext(SectionContext fContext, String additionalCriteria, String... additionalArgs){
-        Class<?> model = mMetaManifest.getModel(fContext.getSection());
+    public HouseholdSection getSectionEntryByFormContext(SectionContext sContext, String additionalCriteria, String... additionalArgs){
+        Class<?> model = mMetaManifest.getModel(sContext.getSection());
         Future<?> future = getFormRepository().getExecutorService().submit(() -> {
             List<String> args = new ArrayList<>();
             StringBuilder sb = new StringBuilder();
 
-            sb.append("`bId`=? AND `hhno`=?");
-            args.add(fContext.getBlockIdentifier());
-            args.add(String.valueOf(fContext.getHHNo()));
+            sb.append("`bId`=?");
+            args.add(sContext.getBlockIdentifier());
 
-            if (fContext.getMemberID() != null && modelHasField(model, "sno")){
-                sb.append(" AND `sno`=?");
-                args.add(String.valueOf(fContext.getMemberID()));
+            if (sContext.getHHNo() != null && modelHasField(model, "hhno")) {
+                sb.append(" AND `hhno`=?");
+                args.add(String.valueOf(sContext.getHHNo()));
             }
 
-            if (fContext.getIterationNumber() != null && modelHasField(model, "ino")){
+            if (sContext.getMemberID() != null && modelHasField(model, "sno")){
+                sb.append(" AND `sno`=?");
+                args.add(String.valueOf(sContext.getMemberID()));
+            }
+
+            if (sContext.getIterationNumber() != null && modelHasField(model, "ino")){
                 sb.append(" AND `ino`=?");
-                args.add(String.valueOf(fContext.getIterationNumber()));
+                args.add(String.valueOf(sContext.getIterationNumber()));
             }
 
             if (additionalCriteria != null && !additionalCriteria.isEmpty()) {
@@ -362,6 +366,9 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
             //Field pk = DatabaseUtils.getPrimaryKeyField(model);
             //if (pk != null)
             //    sb.append(" ORDER BY `"+pk.getName()+"` DESC");
+
+            if (modelHasField(model, "aid"))
+                sb.append(" ORDER BY `aid` DESC LIMIT 1");
 
             String[] selectionArg = new String[args.size()];
             args.toArray(selectionArg);

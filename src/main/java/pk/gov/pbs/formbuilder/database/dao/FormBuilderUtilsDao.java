@@ -39,7 +39,7 @@ public class FormBuilderUtilsDao {
     //@Query("SELECT * FROM fcs")
     public List<SectionContext> getAllFCs(){
         return DatabaseUtils.getFutureValue(mRepository.selectRowMultiAs(
-                SectionContext.class, "SELECT * FROM "+ SectionContext.class.getSimpleName(), null
+                SectionContext.class, "SELECT * FROM "+ SectionContext.class.getSimpleName(), (String) null
         ));
     }
 
@@ -48,7 +48,7 @@ public class FormBuilderUtilsDao {
         return DatabaseUtils.getFutureValue(mRepository.selectRowMultiAs(
                 BackupHistory.class,
                 "SELECT * FROM "+BackupHistory.class.getSimpleName()+" ORDER BY aid DESC LIMIT 30",
-                null
+                (String) null
         ));
     }
 
