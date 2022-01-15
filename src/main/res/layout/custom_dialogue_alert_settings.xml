@@ -40,12 +40,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    style="@style/thBordered"
+                    style="@style/th"
                     android:text="@string/th_name"
                     android:textAlignment="textStart"/>
                 <TextView
                     android:id="@+id/tv_name"
-                    style="@style/thBordered"
+                    style="@style/th"
                     android:textAlignment="textStart"/>
 
             </TableRow>
@@ -54,12 +54,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    style="@style/thBordered"
+                    style="@style/th"
                     android:text="@string/th_cnic"
                     android:textAlignment="textStart"/>
                 <TextView
                     android:id="@+id/tv_cnic"
-                    style="@style/thBordered"
+                    style="@style/th"
                     android:textAlignment="textStart"/>
 
             </TableRow>
@@ -68,12 +68,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    style="@style/thBordered"
+                    style="@style/th"
                     android:text="@string/th_login_expiry"
                     android:textAlignment="textStart"/>
                 <TextView
                     android:id="@+id/tv_login_expiry"
-                    style="@style/thBordered"
+                    style="@style/th"
                     android:textAlignment="textStart"/>
 
             </TableRow>
@@ -83,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/th_label_spi_change_gender"
-            style="@style/tableCell"
+            style="@style/td"
             android:textColor="?attr/colorText"/>
         <Spinner
             android:id="@+id/spGender"
@@ -99,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/th_label_spi_chose_theme"
-            style="@style/tableCell"
+            style="@style/td"
             android:textColor="?attr/colorText"/>
         <Spinner
             android:id="@+id/spTheme"

@@ -1,4 +1,4 @@
-package pk.gov.pbs.formbuilder.core;
+package pk.gov.pbs.formbuilder.meta;
 
 public interface IMetaManifest {
     String[] section_status = new String[]{"Form Not Opened","Form Opened", "Form Closed"};

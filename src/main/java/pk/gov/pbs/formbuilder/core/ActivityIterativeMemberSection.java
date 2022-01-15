@@ -120,7 +120,7 @@ public abstract class ActivityIterativeMemberSection extends ActivityMemberSecti
         SP_ITERATION_LAST_VALUE = position;
         mViewModel.getSectionContext().setINo(selectedUser.getModel().getIterationNumber());
 
-        HouseholdSection currentModel = mViewModel
+        IterativeMemberSection currentModel = (IterativeMemberSection) mViewModel
                 .getSectionEntryByFormContext(mViewModel.getSectionContext());
 
         mViewModel.setResumeModel(currentModel);

@@ -18,6 +18,7 @@ import pk.gov.pbs.formbuilder.database.FormBuilderRepository;
 import pk.gov.pbs.formbuilder.database.dao.HouseholdMemberDao;
 import pk.gov.pbs.formbuilder.inputs.singular.SpecifiableSelectable;
 import pk.gov.pbs.formbuilder.meta.Constants;
+import pk.gov.pbs.formbuilder.meta.IMetaManifest;
 import pk.gov.pbs.formbuilder.models.SectionContext;
 import pk.gov.pbs.formbuilder.models.IterativeMemberSection;
 import pk.gov.pbs.formbuilder.models.MemberSection;
@@ -53,7 +54,7 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
         mLoginPayload = mFormBuilderRepository.getLoginDao().getLoginPayload();
     }
 
-    public void init(IMetaManifest manifest, SectionContext sectionContext, LabelProvider labelProvider, HouseholdSection resumeModel, boolean cacheAllMembers, boolean cacheSectionEntries){
+    public void init(IMetaManifest manifest, SectionContext sectionContext, LabelProvider labelProvider, Section resumeModel, boolean cacheAllMembers, boolean cacheSectionEntries) {
         mMetaManifest = manifest;
         mLabelProvider = labelProvider;
         mSectionContext = sectionContext;
@@ -330,11 +331,11 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
         return false;
     }
 
-    public HouseholdSection getSectionEntryByFormContext(SectionContext sContext) {
+    public Section getSectionEntryByFormContext(SectionContext sContext) {
         return getSectionEntryByFormContext(sContext, null);
     }
 
-    public HouseholdSection getSectionEntryByFormContext(SectionContext sContext, String additionalCriteria, String... additionalArgs){
+    public Section getSectionEntryByFormContext(SectionContext sContext, String additionalCriteria, String... additionalArgs){
         Class<?> model = mMetaManifest.getModel(sContext.getSection());
         Future<?> future = getFormRepository().getExecutorService().submit(() -> {
             List<String> args = new ArrayList<>();
@@ -381,7 +382,7 @@ public abstract class ViewModelFormSection extends AndroidViewModel {
             );
         });
 
-        return (HouseholdSection) DatabaseUtils.getFutureValue(future);
+        return (Section) DatabaseUtils.getFutureValue(future);
     }
 
     public String getLabelForSpecifiableSelectable(SpecifiableSelectable ab){

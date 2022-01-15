@@ -1,5 +1,6 @@
 package pk.gov.pbs.formbuilder.inputs.singular;
 
+import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
@@ -8,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import pk.gov.pbs.formbuilder.R;
-import pk.gov.pbs.formbuilder.core.ViewModelFormSection;
-import pk.gov.pbs.formbuilder.core.LabelProvider;
 import pk.gov.pbs.formbuilder.core.ActivityFormSection;
+import pk.gov.pbs.formbuilder.core.LabelProvider;
+import pk.gov.pbs.formbuilder.core.ViewModelFormSection;
 import pk.gov.pbs.formbuilder.inputs.abstracts.input.SingularInput;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.utils.ThemeUtils;
@@ -18,6 +19,7 @@ import pk.gov.pbs.utils.ThemeUtils;
 public class ButtonInput extends SingularInput {
     private final View.OnClickListener handler;
     private Button inputElement;
+    private Integer mIconResId;
 
     public ButtonInput(String index, View.OnClickListener callback) {
         super(index, R.layout.input_btn);
@@ -27,6 +29,12 @@ public class ButtonInput extends SingularInput {
     public ButtonInput(String index, int resId, View.OnClickListener callback){
         super(index, resId);
         this.handler = callback;
+    }
+
+    public ButtonInput(String index, int resId, int iconResId, View.OnClickListener callback){
+        super(index, resId);
+        this.handler = callback;
+        mIconResId = iconResId;
     }
 
     public Button getInputView() {
@@ -106,6 +114,12 @@ public class ButtonInput extends SingularInput {
             ThemeUtils.setupTextViewStylesByLocale(labels.getLocale(), inputElement);
             Spanned text = Html.fromHtml(labels.getLabel(getIndex()));
             inputElement.setText(text);
+            if (mIconResId != null) {
+                Drawable img = inflater.getContext().getResources().getDrawable(mIconResId);
+                img.setBounds(0, 0, 36, 36);
+                inputElement.setCompoundDrawables(img, null, null, null);
+            }
+
             inputElement.setOnClickListener(handler);
         } else {
             ((ViewGroup) getInputView().getParent()).removeView(getInputView());

@@ -36,7 +36,7 @@ public abstract class ActivityHouseholdSection extends ActivityFormSection {
             return;
         }
 
-        HouseholdSection model = mViewModel.getSectionEntryByFormContext(getSectionContext());
+        HouseholdSection model = (HouseholdSection) mViewModel.getSectionEntryByFormContext(getSectionContext());
         if (model != null) {
             mViewModel.setResumeModel(model);
             preRepeatSection();

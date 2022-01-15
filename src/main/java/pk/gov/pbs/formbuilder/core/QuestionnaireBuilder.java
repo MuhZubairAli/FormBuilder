@@ -70,7 +70,7 @@ public class QuestionnaireBuilder {
         model = null;
     }
 
-    public QuestionnaireBuilder(LabelProvider labelProvider, HouseholdSection model) {
+    public QuestionnaireBuilder(LabelProvider labelProvider, Section model) {
         mLabelProvider = labelProvider;
         askables = new ArrayList<>();
         this.model = model;
@@ -475,7 +475,7 @@ public class QuestionnaireBuilder {
     //=========================================================================================================
     public Question makeCBI(String qIndex, int oStart, int oEnd, @Nullable Validator validator, @Nullable HashMap<Integer, DatumIdentifier> specifiable) throws InvalidIndexException {
         int count = oStart;
-        String index = qIndex + count;
+        String index = qIndex + "_" + count;
 
         while (mLabelProvider.hasLabel(index) || (count) <= oEnd) {
             if(mLabelProvider.hasLabel(index)) {
@@ -491,7 +491,7 @@ public class QuestionnaireBuilder {
                     askables.add(new CheckInput(index, new ValueStore(count)));
             }
 
-            index = qIndex + (++count);
+            index = qIndex + "_" + (++count);
         }
 
         SingularInput[] abArr = new SingularInput[askables.size()];
@@ -526,9 +526,9 @@ public class QuestionnaireBuilder {
                 catch (NoSuchFieldException ignored) {}
 
                 if(answer != null && !answer.isEmpty() && sAnswer != null && !sAnswer.isEmpty()) {
-                    question.loadAnswer(qIndex + answer.toString(), answer, sAnswer);
+                    question.loadAnswer(qIndex + "_" + answer.toString(), answer, sAnswer);
                 } else if(answer != null && !answer.isEmpty()){
-                    question.loadAnswer(qIndex + answer.toString(), answer);
+                    question.loadAnswer(qIndex + "_" + answer.toString(), answer);
                 }
             }
         }

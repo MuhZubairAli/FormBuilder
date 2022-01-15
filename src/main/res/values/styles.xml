@@ -265,6 +265,10 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="btnInput.danger" parent="btnInput">
+        <item name="android:background">@drawable/bg_gradient_danger</item>
+    </style>
+
     <style name="btnAction">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -277,7 +281,32 @@
     </style>
 
     <!-- =========================================================================================== -->
-    <!-- Table Styles-->
+    <!-- General Table Styles-->
+
+    <style name="tr">
+        <item name="android:background">@drawable/tr_border_bottom</item>
+        <item name="android:layout_marginBottom">@dimen/spaceTiny</item>
+    </style>
+
+    <style name="th">
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:textSize">@dimen/fontSizeNormal</item>
+        <item name="android:padding">@dimen/spacePrimaryHalf</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+        <item name="android:background">?attr/borderTableHeading</item>
+    </style>
+
+    <style name="td">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">?attr/colorText</item>
+        <item name="android:textSize">@dimen/fontSizeNormal</item>
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+    </style>
+
+
+    <!-- =========================================================================================== -->
 
     <string name="table_heading_cell">
         <item name="android:padding">@dimen/spacePrimaryHalf</item>
@@ -286,13 +315,6 @@
         <item name="android:background">?attr/borderTableHeading</item>
     </string>
 
-    <style name="ci_total_cell">
-        <item name="android:textColor">?attr/colorText</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:background">?attr/borderTableHeading</item>
-        <item name="android:layout_margin">@dimen/spaceTiny</item>
-        <item name="android:text">0</item>
-    </style>
     <style name="tableCellZygote">
         <item name="android:padding">@dimen/spacePrimaryHalf</item>
         <item name="android:layout_margin">@dimen/spaceTiny</item>
@@ -301,6 +323,17 @@
         <item name="android:background">?attr/borderTableHeading</item>
     </style>
 
+    <style name="th_information_zygote" parent="textH4">
+        <item name="android:textColor">?attr/colorText</item>
+    </style>
+
+    <style name="td_spinner__container_top" parent="@android:style/Widget.Spinner">
+        <item name="android:layout_margin">@dimen/spaceTiny</item>
+        <item name="android:background">?attr/borderInput</item>
+        <item name="android:textColor">?attr/colorText</item>
+    </style>
+
+
     <style name="tdContainerTop">
         <item name="android:textColor">?attr/colorText</item>
         <item name="android:textSize">@dimen/fontSizeNormal</item>
@@ -308,31 +341,14 @@
         <item name="android:background">?attr/borderInput</item>
     </style>
 
-    <style name="th_information_zygote" parent="textH4">
-        <item name="android:textColor">?attr/colorText</item>
-    </style>
-
-    <style parent="@android:style/Widget.Spinner" name="td_spinner__container_top">
-        <item name="android:layout_margin">@dimen/spaceTiny</item>
-        <item name="android:background">?attr/borderInput</item>
-        <item name="android:textColor">?attr/colorText</item>
-    </style>
-
-    <style name="tableCell">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:textColor">?attr/colorText</item>
-        <item name="android:textSize">@dimen/fontSizeNormal</item>
-    </style>
-
-    <style parent="tdContainerTop" name="tdBordered_topSection">
+    <style name="tdBordered_topSection" parent="tdContainerTop">
         <item name="android:padding">0dp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_margin">@dimen/spaceTiny</item>
         <item name="android:background">?attr/borderTableHeading</item>
     </style>
 
-    <style parent="tdContainerTop" name="btn_topSection">
+    <style name="btn_topSection" parent="tdContainerTop">
         <item name="android:padding">@dimen/spaceInternal</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_margin">@dimen/spaceTiny</item>
@@ -340,13 +356,6 @@
         <item name="android:backgroundTint">?attr/colorAccent</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
-    </style>
-
-    <style parent="tdContainerTop" name="thBordered">
-        <item name="android:padding">@dimen/spacePrimaryHalf</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:layout_margin">@dimen/spaceTiny</item>
-        <item name="android:background">?attr/borderTableHeading</item>
     </style>
 
 </resources>

@@ -24,6 +24,9 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.List;
 
 import pk.gov.pbs.formbuilder.R;
+import pk.gov.pbs.formbuilder.meta.ErrorStatementProvider;
+import pk.gov.pbs.formbuilder.meta.IMetaManifest;
+import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.pojos.ItemSpinnerMember;
 import pk.gov.pbs.formbuilder.exceptions.InvalidQuestionStateException;
 import pk.gov.pbs.formbuilder.inputs.singular.ButtonInput;
@@ -72,7 +75,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
          */
         SectionContext fc = (SectionContext) getIntent()
                 .getSerializableExtra(Constants.Index.INTENT_EXTRA_SECTION_CONTEXT);
-        HouseholdSection resumeSection = (HouseholdSection) getIntent()
+        Section resumeSection = (Section) getIntent()
                 .getSerializableExtra(Constants.Index.INTENT_EXTRA_SECTION_MODEL);
 
         // if only resume model is provided than derive context from it
