@@ -1,14 +1,13 @@
 package pk.gov.pbs.formbuilder.database;
 
 import android.app.Application;
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.HashSet;
 
 import pk.gov.pbs.database.ModelBasedDatabaseHelper;
 import pk.gov.pbs.database.exceptions.UnsupportedDataType;
-import pk.gov.pbs.formbuilder.core.IMetaManifest;
+import pk.gov.pbs.formbuilder.meta.IMetaManifest;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.models.LoginPayload;
 

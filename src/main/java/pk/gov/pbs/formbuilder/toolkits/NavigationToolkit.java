@@ -226,7 +226,11 @@ public class NavigationToolkit {
                     .notifyItemInserted(newItemPos);
 
             mHandler.post(()->{
-                if (newItemPos < mQuestions.size() && mQuestions.get(newItemPos) instanceof QuestionHeader) {
+                if (
+                        newItemPos < mQuestions.size() &&
+                        (mQuestions.get(newItemPos) instanceof QuestionHeader ||
+                         mQuestions.get(newItemPos).getState() == QuestionStates.READ_ONLY)
+                ) {
                     askNextQuestion();
                     return;
                 }

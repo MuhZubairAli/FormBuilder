@@ -1,4 +1,4 @@
-package pk.gov.pbs.formbuilder.core;
+package pk.gov.pbs.formbuilder.meta;
 
 
 import java.lang.reflect.Field;
@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import pk.gov.pbs.formbuilder.exceptions.InvalidIndexException;
+import pk.gov.pbs.utils.exceptions.InvalidIndexException;
 import pk.gov.pbs.utils.ExceptionReporter;
 
 public abstract class ErrorStatementProvider {
@@ -19,17 +19,17 @@ public abstract class ErrorStatementProvider {
     private static final List<String> dynamicStatements = new ArrayList<>();
     private static int errorIndex = 0;
 
-    static {
-        for (Field field : ErrorStatementProvider.class.getDeclaredFields()){
-            if (field.getType() == String.class){
-                try {
-                    field.set(null, generateErrorCode());
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+//    static {
+//        for (Field field : ErrorStatementProvider.class.getDeclaredFields()){
+//            if (field.getType() == String.class){
+//                try {
+//                    field.set(null, generateErrorCode());
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
     protected ErrorStatementProvider() {
         try {

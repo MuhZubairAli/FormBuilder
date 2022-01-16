@@ -32,10 +32,10 @@ public class Constants {
         public static final String SHARED_PREFERENCE_THEME = "themeIndex";
 
         // Intents indexes
-        public static final String INTENT_EXTRA_FORM_CONTEXT = "form_section_context";
+        public static final String INTENT_EXTRA_SECTION_CONTEXT = "form_section_context";
         public static final String INTENT_EXTRA_ASSIGNMENT = "block_household_assignments";
         public static final String INTENT_EXTRA_FORM_STATUS = "action_close_form_status";
-        public static final String INTENT_EXTRA_FORM_MODEL = "action_form_model";
+        public static final String INTENT_EXTRA_SECTION_MODEL = "action_form_model";
     }
 
     public static class Status {

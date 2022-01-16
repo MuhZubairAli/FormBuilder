@@ -36,7 +36,7 @@ public abstract class ActivityHouseholdSection extends ActivityFormSection {
             return;
         }
 
-        HouseholdSection model = mViewModel.getSectionEntryByFormContext(getSectionContext());
+        HouseholdSection model = (HouseholdSection) mViewModel.getSectionEntryByFormContext(getSectionContext());
         if (model != null) {
             mViewModel.setResumeModel(model);
             preRepeatSection();
@@ -78,7 +78,7 @@ public abstract class ActivityHouseholdSection extends ActivityFormSection {
                                     try {
                                         if (saveOrUpdateModel()) {
                                             Intent intent = new Intent(ActivityHouseholdSection.this, mMetaDataManifest.getSection(s.getSectionNumber()));
-                                            intent.putExtra(Constants.Index.INTENT_EXTRA_FORM_CONTEXT, mViewModel.getSectionContext().setSeNo(s.getSectionNumber()));
+                                            intent.putExtra(Constants.Index.INTENT_EXTRA_SECTION_CONTEXT, mViewModel.getSectionContext().setSeNo(s.getSectionNumber()));
                                             startActivity(intent);
                                             ActivityHouseholdSection.this.finish();
                                         } else {

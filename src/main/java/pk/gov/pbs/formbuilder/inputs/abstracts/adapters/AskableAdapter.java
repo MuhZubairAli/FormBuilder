@@ -10,7 +10,7 @@ import java.util.List;
 
 import pk.gov.pbs.formbuilder.core.ActivityCustom;
 import pk.gov.pbs.formbuilder.core.IQuestionnaireManager;
-import pk.gov.pbs.formbuilder.exceptions.InvalidIndexException;
+import pk.gov.pbs.utils.exceptions.InvalidIndexException;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
@@ -154,7 +154,7 @@ public abstract class AskableAdapter {
                 return ab.setAnswers(answers);
             }
         }
-        throw new InvalidIndexException("there is no Askable with index as : " + abIndex);
+        throw new InvalidIndexException("loadAnswer] there is no Askable with index as : " + abIndex);
     }
 
     public boolean loadAnswer(int abNumericIndex, ValueStore... answers) throws InvalidIndexException {

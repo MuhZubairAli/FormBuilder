@@ -55,6 +55,10 @@ public class SectionContext extends Table implements Cloneable {
         this.HHNo = HHNo;
     }
 
+    public SectionContext(@NonNull String bId) {
+        this.bId = bId;
+    }
+
     public String getBlockIdentifier() {
         return bId;
     }

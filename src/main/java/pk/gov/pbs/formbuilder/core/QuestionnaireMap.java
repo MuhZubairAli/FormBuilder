@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import pk.gov.pbs.formbuilder.exceptions.InvalidIndexException;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.meta.QuestionStates;
 import pk.gov.pbs.formbuilder.models.HouseholdSection;
@@ -22,6 +21,7 @@ public abstract class QuestionnaireMap {
     private String o_end;
     private int start;
     private int end;
+    private ValueStore[] mExtraData;
     private ImportStrategy mImportStrategy;
     private boolean mReadOnly = false;
     protected QuestionnaireBuilder __;
@@ -31,36 +31,39 @@ public abstract class QuestionnaireMap {
 
     protected QuestionnaireMap(){}
 
-    public QuestionnaireMap(QuestionnaireBuilder qBuilder) {
-        construct(qBuilder);
+    public QuestionnaireMap(QuestionnaireBuilder qBuilder, ValueStore... extraData) {
+        mExtraData = extraData;
+        construct(qBuilder, extraData);
     }
 
-    public QuestionnaireMap(String startFrom, QuestionnaireBuilder qBuilder) {
-        construct(startFrom, qBuilder);
+    public QuestionnaireMap(String startFrom, QuestionnaireBuilder qBuilder, ValueStore... extraData) {
+        mExtraData = extraData;
+        construct(startFrom, qBuilder, extraData);
     }
 
-    public QuestionnaireMap(String startFrom, String endTo, QuestionnaireBuilder qBuilder) {
-        construct(startFrom, endTo, qBuilder);
+    public QuestionnaireMap(String startFrom, String endTo, QuestionnaireBuilder qBuilder, ValueStore... extraData) {
+        mExtraData = extraData;
+        construct(startFrom, endTo, qBuilder, extraData);
     }
 
-    protected void construct(QuestionnaireBuilder qBuilder) {
+    protected void construct(QuestionnaireBuilder qBuilder, ValueStore... extraData) {
         this.map = new ArrayList<>();
         this.indexes = new HashMap<>();
         this.__ = qBuilder;
-        generateMap();
+        generateMap(extraData);
         initIndexes();
     }
 
-    protected void construct(String startFrom, QuestionnaireBuilder qBuilder) {
+    protected void construct(String startFrom, QuestionnaireBuilder qBuilder, ValueStore... extraData) {
         this.__ = qBuilder;
         this.map = new ArrayList<>();
         this.indexes = new HashMap<>();
         this.o_start = startFrom;
-        generateMap();
+        generateMap(extraData);
         initIndexes();
     }
 
-    protected void construct(String startFrom, String endTo, QuestionnaireBuilder qBuilder) {
+    protected void construct(String startFrom, String endTo, QuestionnaireBuilder qBuilder, ValueStore... extraData) {
         construct(startFrom, qBuilder);
         this.o_end = endTo;
         initIndexes();
@@ -254,7 +257,7 @@ public abstract class QuestionnaireMap {
         initIndexes();
         map.clear();
         indexes.clear();
-        generateMap();
+        generateMap(mExtraData);
     }
 
     public int getQuestionCount(){
@@ -271,9 +274,9 @@ public abstract class QuestionnaireMap {
         return Constants.INVALID_NUMBER;
     }
 
-    private void generateMap() {
+    private void generateMap(ValueStore... extraData) {
         try {
-            initQuestions();
+            initQuestions(extraData);
 
             if (mImportStrategy != null)
                 mImportStrategy.importStrategy(this);
@@ -282,7 +285,7 @@ public abstract class QuestionnaireMap {
         }
     }
 
-    protected abstract void initQuestions() throws Exception;
+    protected abstract void initQuestions(ValueStore... extraData) throws Exception;
 
     /**
      * This interface is used to define trade of data (import of answers) map questions and model(s)

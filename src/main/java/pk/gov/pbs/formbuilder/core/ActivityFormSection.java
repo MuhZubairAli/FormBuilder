@@ -24,6 +24,9 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.List;
 
 import pk.gov.pbs.formbuilder.R;
+import pk.gov.pbs.formbuilder.meta.ErrorStatementProvider;
+import pk.gov.pbs.formbuilder.meta.IMetaManifest;
+import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.pojos.ItemSpinnerMember;
 import pk.gov.pbs.formbuilder.exceptions.InvalidQuestionStateException;
 import pk.gov.pbs.formbuilder.inputs.singular.ButtonInput;
@@ -71,9 +74,9 @@ public abstract class ActivityFormSection extends ActivityCustom {
          * This must be updated before starting new activity and added to intent extras
          */
         SectionContext fc = (SectionContext) getIntent()
-                .getSerializableExtra(Constants.Index.INTENT_EXTRA_FORM_CONTEXT);
-        HouseholdSection resumeSection = (HouseholdSection) getIntent()
-                .getSerializableExtra(Constants.Index.INTENT_EXTRA_FORM_MODEL);
+                .getSerializableExtra(Constants.Index.INTENT_EXTRA_SECTION_CONTEXT);
+        Section resumeSection = (Section) getIntent()
+                .getSerializableExtra(Constants.Index.INTENT_EXTRA_SECTION_MODEL);
 
         // if only resume model is provided than derive context from it
         if (fc == null && resumeSection != null) {
@@ -87,7 +90,6 @@ public abstract class ActivityFormSection extends ActivityCustom {
         }
 
         mLabelProvider = constructLabelProvider();
-
         mViewModel = constructViewModel();
         mViewModel.init(mMetaDataManifest, fc, mLabelProvider, resumeSection, shouldDownloadHouseholdMembers(), shouldDownloadSectionEntries());
 
@@ -150,6 +152,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
         return mViewModel.getSectionContext();
     }
 
+    protected abstract void onActionClickPartiallyRefuse();
     protected abstract QuestionnaireMap constructMap(QuestionnaireBuilder questionnaireBuilder);
     protected abstract ViewModelFormSection constructViewModel();
     protected abstract LabelProvider constructLabelProvider();
@@ -247,15 +250,11 @@ public abstract class ActivityFormSection extends ActivityCustom {
         };
     }
 
-    protected boolean shouldDownloadHouseholdMembers() {
-        return false;
+    protected int getSectionNumberFromDataTabPosition(int position) {
+        // roster section at 2 index, and first tab in data display is roster section
+        // so position 0 is section number (0+2) = 2, same way position is converted to section number
+        return position + 2;
     }
-
-    protected boolean shouldDownloadSectionEntries(){
-        return false;
-    }
-
-    protected void refreshTopContainerSpinner(){ }
 
     /**
      * Because there is Askable of type HouseholdMembersSpinnerInput
@@ -283,12 +282,6 @@ public abstract class ActivityFormSection extends ActivityCustom {
 
             return label.toString();
         };
-    }
-
-    protected int getSectionNumberFromDataTabPosition(int position) {
-        // roster section at 2 index, and first tab in data display is roster section
-        // so position 0 is section number (0+2) = 2, same way position is converted to section number
-        return position + 2;
     }
 
     public int getSectionNumber() {
@@ -447,7 +440,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
             mViewModel.persistSectionContext();
 
             intent.putExtra(
-                    Constants.Index.INTENT_EXTRA_FORM_CONTEXT,
+                    Constants.Index.INTENT_EXTRA_SECTION_CONTEXT,
                     mViewModel.getSectionContext()
             );
             startActivity(intent);
@@ -670,7 +663,15 @@ public abstract class ActivityFormSection extends ActivityCustom {
         );
     }
 
-    protected abstract void onActionClickPartiallyRefuse();
+    protected boolean shouldDownloadHouseholdMembers() {
+        return false;
+    }
+
+    protected boolean shouldDownloadSectionEntries(){
+        return false;
+    }
+
+    protected void refreshTopContainerSpinner(){ }
 
     protected void onActionClickDebug(){
         int questionCount = mQuestionnaireManager.getQuestions().size();
