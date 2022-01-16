@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import pk.gov.pbs.formbuilder.meta.QuestionStates;
 import pk.gov.pbs.utils.exceptions.InvalidIndexException;
 import pk.gov.pbs.formbuilder.inputs.abstracts.adapters.AskableAdapter;
 import pk.gov.pbs.formbuilder.inputs.grouped.GroupInputDate;
@@ -688,19 +689,23 @@ public class QuestionnaireBuilder {
     //========================== DATA INPUT ===========================
 
     public Question makeDataInput(String qIndex, Askable[] askables){
-        return new Question(
+        Question question = new Question(
                 qIndex,
                 new DataInputAdapter(askables)
         );
+        question.setState(QuestionStates.READ_ONLY);
+        return question;
     }
 
     public Question makeDataInput(String qIndex, List<Askable> askableList){
         Askable[] abbArr = new Askable[askableList.size()];
         abbArr = askableList.toArray(abbArr);
-        return new Question(
+        Question question = new Question(
                 qIndex,
                 new DataInputAdapter(abbArr)
         );
+        question.setState(QuestionStates.READ_ONLY);
+        return question;
     }
 
 

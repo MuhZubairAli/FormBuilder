@@ -19,17 +19,17 @@ public abstract class ErrorStatementProvider {
     private static final List<String> dynamicStatements = new ArrayList<>();
     private static int errorIndex = 0;
 
-    static {
-        for (Field field : ErrorStatementProvider.class.getDeclaredFields()){
-            if (field.getType() == String.class){
-                try {
-                    field.set(null, generateErrorCode());
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+//    static {
+//        for (Field field : ErrorStatementProvider.class.getDeclaredFields()){
+//            if (field.getType() == String.class){
+//                try {
+//                    field.set(null, generateErrorCode());
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
     protected ErrorStatementProvider() {
         try {
