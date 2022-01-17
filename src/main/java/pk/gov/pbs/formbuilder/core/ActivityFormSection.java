@@ -84,7 +84,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
             fc.setSeNo(getSectionNumber());
         }
 
-        if (fc == null || fc.getSection() == null || fc.getSection().intValue() != getSectionNumber()){
+        if (fc == null || fc.getSection() == null || fc.getSection() != getSectionNumber()){
             mUXToolkit.showAlertDialogue("Invalid Form Context, Kindly make sure you are in correct section. If problem persists please contact DPC@PBS");
             return;
         }
@@ -103,11 +103,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
                 mViewModel.setResumeModel(resumeSection);
         }
 
-        if (mViewModel.getResumeModel() != null)
-            mQuestionnaireBuilder = new QuestionnaireBuilder(mLabelProvider, resumeSection);
-        else
-            mQuestionnaireBuilder = new QuestionnaireBuilder(mLabelProvider);
-
+        mQuestionnaireBuilder = new QuestionnaireBuilder(mLabelProvider, resumeSection);
         mMap = constructMap(mQuestionnaireBuilder);
         mQuestionnaireManager = constructQuestionnaireManager();
         mNavigationToolkit = new NavigationToolkit(this);
