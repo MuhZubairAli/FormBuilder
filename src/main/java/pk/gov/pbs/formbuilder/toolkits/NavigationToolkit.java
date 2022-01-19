@@ -247,11 +247,11 @@ public class NavigationToolkit {
                         mQuestions.get(newItemPos).requestFocus();
                         //Focus request is delayed so scrolling to new Question's top would be
                         //completed by the time focus request is made
-                        mHandler.post(() -> {
+                        mHandler.postDelayed(() -> {
                             if (mQuestions.get(newItemPos).getState() != QuestionStates.LOCKED) {
                                 mQuestions.get(newItemPos).requestInputFocus();
                             }
-                        });
+                        }, 500);
                     }
                 });
             });
