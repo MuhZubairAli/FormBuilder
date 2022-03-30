@@ -12,6 +12,7 @@ import pk.gov.pbs.formbuilder.R;
 import pk.gov.pbs.formbuilder.core.ActivityFormSection;
 import pk.gov.pbs.formbuilder.core.LabelProvider;
 import pk.gov.pbs.formbuilder.core.ViewModelFormSection;
+import pk.gov.pbs.formbuilder.exceptions.IllegalMethodCallException;
 import pk.gov.pbs.formbuilder.inputs.abstracts.input.SingularInput;
 import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.utils.ThemeUtils;
@@ -35,6 +36,16 @@ public class ButtonInput extends SingularInput {
         super(index, resId);
         this.handler = callback;
         mIconResId = iconResId;
+    }
+
+    public ButtonInput setIcon(int iconResId) {
+        if (inputElement != null) {
+            Drawable img = inputElement.getContext().getResources().getDrawable(iconResId);
+            img.setBounds(0, 0, 36, 36);
+            inputElement.setCompoundDrawables(img, null, null, null);
+        } else
+            mIconResId = iconResId;
+        return this;
     }
 
     public Button getInputView() {

@@ -219,39 +219,35 @@ public class NavigationToolkit {
 
         QuestionNavigationResponse response = mContext.getQuestionnaireManager().advanceQuestion();
         if (response.getStatusCode() == QuestionNavigationStatus.VALIDATION_OK) {
-            int newItemPos = response.getDataCode().toInt();
+            final int newItemPos = response.getDataCode().toInt();
             Objects.requireNonNull(mContext   //for RecyclerView
                     .getFormContainer()
                     .getAdapter())
                     .notifyItemInserted(newItemPos);
 
             mHandler.post(()->{
-                if (
-                        newItemPos < mQuestions.size() &&
-                        (mQuestions.get(newItemPos) instanceof QuestionHeader ||
-                         mQuestions.get(newItemPos).getState() == QuestionStates.READ_ONLY)
+                if (mQuestions.get(newItemPos) instanceof QuestionHeader ||
+                    mQuestions.get(newItemPos).getState() == QuestionStates.READ_ONLY
                 ) {
                     askNextQuestion();
                     return;
                 }
 
+                quickScrollTo(newItemPos);
+                mHandler.post(()->{mQuestions.get(newItemPos).requestFocus();
+                    //Focus request is delayed so scrolling to new Question's top would be
+                    //completed by the time focus request is made
+                    mHandler.postDelayed(() -> {
+                        if (mQuestions.get(newItemPos).getState() != QuestionStates.LOCKED) {
+                            mQuestions.get(newItemPos).requestInputFocus();
+                        }
+                    }, 500);
+                });
+
+                //lock last question if applicable
                 mHandler.post(()-> {
                     if(newItemPos > 0) {
                         mQuestions.get(newItemPos - 1).lock();
-                    }
-                });
-
-                quickScrollTo(newItemPos);
-                mHandler.post(()->{
-                    if (newItemPos < mQuestions.size()){
-                        mQuestions.get(newItemPos).requestFocus();
-                        //Focus request is delayed so scrolling to new Question's top would be
-                        //completed by the time focus request is made
-                        mHandler.post(() -> {
-                            if (mQuestions.get(newItemPos).getState() != QuestionStates.LOCKED) {
-                                mQuestions.get(newItemPos).requestInputFocus();
-                            }
-                        });
                     }
                 });
             });
@@ -288,7 +284,6 @@ public class NavigationToolkit {
                         scrollTo(newItemPos+1);
                         mHandler.post(() -> {
                             mContext.getUXToolkit().hideKeyboardFrom(null);
-                            mQuestions.get(newItemPos).requestFocus();
                         });
                     });
                 });

@@ -9,7 +9,7 @@ import java.util.List;
 
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.meta.QuestionStates;
-import pk.gov.pbs.formbuilder.models.HouseholdSection;
+import pk.gov.pbs.formbuilder.models.Section;
 import pk.gov.pbs.formbuilder.utils.ValueStore;
 import pk.gov.pbs.utils.ExceptionReporter;
 
@@ -76,7 +76,7 @@ public abstract class QuestionnaireMap {
         mReadOnly = true;
     }
 
-    public void setModel(HouseholdSection model){
+    public void setModel(Section model){
         __.setModel(model);
     }
 

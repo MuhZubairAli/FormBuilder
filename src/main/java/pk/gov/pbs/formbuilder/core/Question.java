@@ -296,13 +296,11 @@ public class Question {
                 questionView.setFocusable(true);
                 questionView.setFocusableInTouchMode(true);
 
+                questionView.requestFocus();
                 questionView.post(()->{
-                    questionView.requestFocus();
-                    questionView.post(()->{
-                        questionView.setClickable(false);
-                        questionView.setFocusable(false);
-                        questionView.setFocusableInTouchMode(false);
-                    });
+                    questionView.setClickable(false);
+                    questionView.setFocusable(false);
+                    questionView.setFocusableInTouchMode(false);
                 });
                 return true;
             }

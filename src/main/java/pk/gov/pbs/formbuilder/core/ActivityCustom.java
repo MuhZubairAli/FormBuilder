@@ -10,6 +10,7 @@ import pk.gov.pbs.utils.Application;
 import pk.gov.pbs.utils.CustomActivity;
 public abstract class ActivityCustom extends CustomActivity {
     protected LabelProvider mLabelProvider;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setTheme(
