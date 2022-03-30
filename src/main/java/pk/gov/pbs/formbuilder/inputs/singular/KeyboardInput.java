@@ -221,11 +221,14 @@ public class KeyboardInput extends SingularInput {
     @Override
     public boolean requestFocus() {
         if(getInputView() != null) {
-            getInputView().post(()->{
-                ((ActivityCustom) getInputView().getContext())
-                        .getUXToolkit().showKeyboardTo(getInputView());
-            });
-            return getInputView().requestFocus();
+            boolean result =  getInputView().requestFocus();
+            if (result) {
+                getInputView().post(() -> {
+                    ((ActivityCustom) getInputView().getContext())
+                            .getUXToolkit().showKeyboardTo(getInputView());
+                });
+                return true;
+            }
         }
         return false;
     }
