@@ -267,7 +267,7 @@ public abstract class ActivityFormSection extends ActivityCustom {
                 label.append(mModel.getMemberId().toString());
             label.append(". ").append(mModel.getName());
 
-            if (mModel.getGenderCode() != null && mModel.getGenderCode() != null)
+            if (mModel.getGenderCode() != null && mModel.getRelationCode() != null)
                 label.append(" - ")
                         .append(getMetaManifest().getRelationshipLabel(mModel.getRelationCode(), mModel.getGenderCode()));
 
