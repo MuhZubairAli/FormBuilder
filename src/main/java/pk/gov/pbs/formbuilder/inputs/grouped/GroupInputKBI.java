@@ -51,7 +51,7 @@ public class GroupInputKBI extends GroupInputLinearLayout {
         if(canSkipValidate())
             return true;
 
-        if (hasAnswer())
+        if (hasValidator())
             return mKeyboardInput.validateAnswer();
 
         return false;
