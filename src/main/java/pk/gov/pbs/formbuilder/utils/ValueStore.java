@@ -5,6 +5,34 @@ import androidx.annotation.NonNull;
 public class ValueStore {
     protected String mStoredValue;
 
+    public static ValueStore from(String val){
+        return new ValueStore(val);
+    }
+
+    public static ValueStore from(boolean val){
+        return new ValueStore(val);
+    }
+
+    public static ValueStore from(int val){
+        return new ValueStore(val);
+    }
+
+    public static ValueStore from(long val){
+        return new ValueStore(val);
+    }
+
+    public static ValueStore from(double val){
+        return new ValueStore(val);
+    }
+
+    public static ValueStore from(float val){
+        return new ValueStore(val);
+    }
+
+    public static ValueStore from(char val){
+        return new ValueStore(val);
+    }
+
     public ValueStore(@NonNull String val){
         setValue(val);
     }

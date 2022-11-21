@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 import pk.gov.pbs.database.ModelBasedDatabaseHelper;
 import pk.gov.pbs.database.exceptions.UnsupportedDataType;
-import pk.gov.pbs.formbuilder.meta.IMetaManifest;
+import pk.gov.pbs.formbuilder.core.IMetaManifest;
 import pk.gov.pbs.formbuilder.meta.Constants;
 import pk.gov.pbs.formbuilder.models.LoginPayload;
 
