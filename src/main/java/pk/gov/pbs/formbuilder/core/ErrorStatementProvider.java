@@ -1,4 +1,4 @@
-package pk.gov.pbs.formbuilder.meta;
+package pk.gov.pbs.formbuilder.core;
 
 
 import java.lang.reflect.Field;
